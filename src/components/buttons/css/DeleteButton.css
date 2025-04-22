@@ -1,0 +1,25 @@
+.button-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .delete-button{
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+  }
+
+.delete-button:hover {
+    background-color: #d71111;
+  }
+  
+  .delete-button:active {
+    background-color: #d71111;
+  }
