@@ -1,25 +1,29 @@
-.button-icon {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .update-button {
+.update-button {
+    width: 50px;
+    height: 50px;
+    background-color: #2e5f3e;
+    border: none;
     border-radius: 12px;
-    width: 40px;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #2e5f3e;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    padding: 0;
   }
   
   .update-button:hover {
     background-color: #3d8154;
   }
-
+  
   .update-button:active {
     background-color: #3d8154;
+  }
+  
+  .update-button-icon {
+    width: 70%;
+    height: 70%;
+    color: white;
+    pointer-events: none;
   }
   

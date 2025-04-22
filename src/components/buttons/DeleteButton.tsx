@@ -1,6 +1,6 @@
 import React from "react";
+import { MdDelete } from "react-icons/md";
 import "./css/DeleteButton.css";
-import deleteIcon from "../../assets/DeleteButton.png";
 
 const DeleteButton: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
   const handleClick = () => {
@@ -13,7 +13,7 @@ const DeleteButton: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
 
   return (
     <button className="delete-button" onClick={handleClick}>
-      <img src={deleteIcon} alt="삭제" className="button-icon" />
+      <MdDelete className="delete-button-icon" />
     </button>
   );
 };
