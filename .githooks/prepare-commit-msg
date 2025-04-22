@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#제외할 브랜치들
+BRANCHES_TO_SKIP=("main" "develop" "release" "hotfix")
+
+#현재 브랜치 이름
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+#브랜치 이름에서 KW-nnn 형태 추출
+JIRA_ID=$(echo "$BRANCH_NAME" | grep -oE 'KW-[0-9]+')
+
+#디버깅용 로그
+echo "[DEBUG] BRANCH_NAME: $BRANCH_NAME" >> /tmp/prepare_commit.log
+echo "[DEBUG] JIRA_ID: $JIRA_ID" >> /tmp/prepare_commit.log
+echo "[DEBUG] COMMIT_MSG_FILE: $1" >> /tmp/prepare_commit.log
+
+#제외 여부 확인
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -cx "$BRANCH_NAME")
+BRANCH_IN_COMMIT=$(grep -vE '^#' "$1" | grep -c "$JIRA_ID")
+
+#이미 KW-nnn이 앞에 포함되어 있는 경우는 스킵, 이외에는 항상 메시지 앞에 JIRA ID 삽입
+if [[ -n "$JIRA_ID" && "$BRANCH_EXCLUDED" -eq 0 && "$BRANCH_IN_COMMIT" -eq 0 ]]; then
+  sed -i.bak -e "1s/^/${JIRA_ID//\//\\/}\//" "$1"
+  echo "[prepare-commit-msg] '$JIRA_ID' Jira ticket number automatically added to the commit msg as a prefix"
+fi
+
