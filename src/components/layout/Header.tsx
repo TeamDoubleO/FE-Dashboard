@@ -1,6 +1,6 @@
 import React from "react";
+import logo from "/src/assets/images/KEYWE_logo.png";
 import "./css/Header.css";
-import logo from "../../assets/KEYWE-logo.png";
 
 interface HeaderProps {
   currentPage: string;
@@ -12,12 +12,13 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
 
   return (
     <header className="header">
-      <img src={logo} alt="KEYWE 로고" className="header-logo" />
-      <nav className="nav">
+      <img src={logo} alt="로고" className="header-logo" />
+
+      <nav className="header-nav">
         {menuItems.map((item) => (
           <span
             key={item}
-            className={`nav-item ${currentPage === item ? "active" : ""}`}
+            className={`header-nav-item ${currentPage === item ? "active" : ""}`}
             onClick={() => onPageChange(item)}
           >
             {item}
