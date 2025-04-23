@@ -27,7 +27,6 @@
     font-weight: bold;
   }
   
-  /* 화살표 표시 */
   .sidebar li.active::before {
     content: "";
     position: absolute;
