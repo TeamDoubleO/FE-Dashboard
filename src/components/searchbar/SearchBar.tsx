@@ -29,12 +29,12 @@ const SearchBar = ({ type }: SearchBarProps) => {
 
   return (
     <div className="search-bar">
-      <div className="search-dropdown">
-        <button className="search-dropdown-toggle" onClick={() => setDropdownOpen(!dropdownOpen)}>
-          {selected} <span className="search-arrow">▼</span>
+      <div className="search-bar-dropdown">
+        <button className="search-bar-dropdown-toggle" onClick={() => setDropdownOpen(!dropdownOpen)}>
+          {selected} <span className="search-bar-arrow">▼</span>
         </button>
         {dropdownOpen && (
-          <ul className="search-dropdown-menu">
+          <ul className="search-bar-dropdown-menu">
             {options.map((opt) => (
               <li key={opt} onClick={() => { setSelected(opt); setDropdownOpen(false); }}>
                 {opt}
@@ -45,13 +45,13 @@ const SearchBar = ({ type }: SearchBarProps) => {
       </div>
       <input
         type="text"
-        className="search-input"
+        className="search-bar-input"
         placeholder={placeholder[type]}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
 
-      <button className="search-button" onClick={handleSearch}>
+      <button className="search-bar-button" onClick={handleSearch}>
         검색
       </button>
     </div>
