@@ -75,3 +75,9 @@
   .approval-table-reject-btn:active {
     background-color: #c62828;
   }
+
+  .approval-table-approve-btn:focus,
+  .approval-table-reject-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
