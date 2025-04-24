@@ -1,6 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import TablePage from './pages/TablePage'
 

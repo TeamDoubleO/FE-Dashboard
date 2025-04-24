@@ -1,8 +1,11 @@
+import { useState } from "react";
+
 import CheckEditTextTable from '../components/table/CheckEditTextTable';
 import CheckEditTable from '../components/table/CheckEditTable';
 import CheckTable from '../components/table/CheckTable';
 import DefaultTable from '../components/table/DefaultTable';
 import ApproveTable from '../components/table/ApprovalTable.tsx';
+import Pagination from '../components/table/Pagination.tsx';
 
 import users from "../mocks/usersData.ts";
 import patients from "../mocks/patientsData.ts";
@@ -41,6 +44,13 @@ const districtsColums = [
 
 
 const TablePage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  const paginatedData = approvals.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleApprove = (id: number) => {
     console.log("승인:", id);
@@ -61,9 +71,14 @@ const TablePage = () => {
       <DefaultTable tableTitles={districtsColums} data={districts}/>
       <br /><br />
       <ApproveTable
-        data={approvals}
+        data={paginatedData}
         onApprove={handleApprove}
         onReject={handleReject}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(approvals.length / itemsPerPage)}
+        onPageChange={setCurrentPage}
       />
     </>
   )
