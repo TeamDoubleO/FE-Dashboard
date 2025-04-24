@@ -1,0 +1,51 @@
+  .check-edit-text-table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  
+  .check-edit-text-table {
+    min-width: 1200px;
+    font-family: sans-serif;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  
+  .check-edit-text-table thead {
+    background-color: #f5f5f5;
+    text-align: left;
+  }
+  
+  .check-edit-text-table th,
+  .check-edit-text-table td {
+    width: 100px;  
+    height: 30px;     
+    padding: 8px 50px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .check-edit-text-table th:first-child,
+  .check-edit-text-table td:first-child {
+    width: 40px;
+    text-align: center;
+  }
+  
+  .check-edit-text-table-selected-row {
+    background-color: #e7ede8;
+    color: #1d4f2c;
+  }
+  
+  .check-edit-text-table-name {
+    font-weight: 500;
+  }
+
+  .check-edit-text-input {
+    width: 100px;  
+    height: 30px;        
+    padding: 8px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
