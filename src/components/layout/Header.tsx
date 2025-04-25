@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
-  const menuItems = ["대시보드", "사원 정보", "출입 권한", "마이 페이지"];
+  const menuItems = ["대시보드", "출입 및 권한", "마이 페이지"];
 
   return (
     <header className="header">

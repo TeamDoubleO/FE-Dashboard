@@ -15,11 +15,8 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, currentSidebarItem, onSi
       case "대시보드":
         items = ["대시보드 홈", "사이드 메뉴"];
         break;
-      case "사원 정보":
-        items = ["사원 정보 관리"];
-        break;
-      case "출입 권한":
-        items = ["보안 그룹 관리", "구역관리", "사원 권한 관리리"];
+      case "출입 및 권한":
+        items = ["출입 내역", "권한 처리 내역"];
         break;
       case "마이 페이지":
         items = ["내 프로필", "설정"];
