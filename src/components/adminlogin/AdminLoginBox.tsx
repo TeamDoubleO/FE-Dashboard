@@ -12,7 +12,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
   const [error, setError] = useState("");
 
   const handleLogin = () => {
-    // 샘플 로그인 로직
+    // 로그인 로직 샘플플
     if (companyId === "keywe" && adminId === "admin" && password === "1234") {
       onLogin();
     } else {
