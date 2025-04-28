@@ -6,12 +6,19 @@ import CheckTable from '../components/table/CheckTable';
 import DefaultTable from '../components/table/DefaultTable';
 import ApproveTable from '../components/table/ApprovalTable.tsx';
 import Pagination from '../components/table/Pagination.tsx';
+import AdminMypageTable from "../components/Admin/AdminMypageTable.tsx";
 
 import users from "../mocks/usersData.ts";
 import patients from "../mocks/patientsData.ts";
 import requests from "../mocks/requestsData.ts";
 import districts from "../mocks/districtsData.ts";
 import approvals from "../mocks/approvalsData.ts";
+
+const hospitalInfo = {
+  hospitalName: "서울 성모병원",
+  hospitalId: 1234,
+  adminId: "admin12"
+};
 
 const usersColumns = [
   { key: "name", label: "사원이름" },
@@ -79,6 +86,12 @@ const TablePage = () => {
         currentPage={currentPage}
         totalPages={Math.ceil(approvals.length / itemsPerPage)}
         onPageChange={setCurrentPage}
+      />
+
+      <AdminMypageTable
+        hospitalName={hospitalInfo.hospitalName}
+        hospitalId={hospitalInfo.hospitalId}
+        adminId={hospitalInfo.adminId}
       />
     </>
   )
