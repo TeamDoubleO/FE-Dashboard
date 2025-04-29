@@ -1,17 +1,23 @@
+.admin-mypage-table-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .admin-mypage-table-container {
     width: fit-content;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 8px;
+    margin-top: 0px;
+    margin-left: 10px;
+    padding: 20px;
     background-color: transparent;
   }
   
   .admin-mypage-table {
     border-collapse: collapse;
     width: 100%;
-    min-width: 1000px;
+    min-width: 1200px;
     background-color: white;
     border: 1px solid #ccc;
+    margin-top: 10px;
   }
   
   .admin-mypage-table td {
