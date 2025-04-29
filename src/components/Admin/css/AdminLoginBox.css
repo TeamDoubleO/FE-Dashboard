@@ -1,13 +1,4 @@
-.admin-login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: #e7ece8;
-  }
-  
-  .admin-login-box {
+.admin-login-box {
     background-color: white;
     padding: 40px;
     border-radius: 16px;
