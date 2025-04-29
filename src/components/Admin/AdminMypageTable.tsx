@@ -10,7 +10,7 @@ interface HospitalInfoProps {
 const AdminMypageTable: React.FC<HospitalInfoProps> = ({ hospitalName, hospitalId, adminId }) => {
   return (
     <div className="admin-mypage-table-container">
-      <h3>관리자 정보</h3>
+      <span className="admin-mypage-table-title">관리자 정보</span>
       <table className="admin-mypage-table">
         <tbody>
           <tr>
