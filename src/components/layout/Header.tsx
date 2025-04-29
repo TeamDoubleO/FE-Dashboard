@@ -1,30 +1,21 @@
-import React from "react";
-import logo from "/src/assets/images/KEYWE_logo.png";
-import "./css/Header.css";
+import './css/Header.css';
+import Logo from '../../assets/images/KEYWE_logo-white.png';
+import LogoutButton from '../buttons/LogoutButton'; 
 
-interface HeaderProps {
-  currentPage: string;
-  onPageChange: (page: string) => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
-  const menuItems = ["대시보드", "출입 및 권한", "마이 페이지"];
+const Header = () => {
+  const handleLogout = () => {
+    console.log('로그아웃 완료!');
+  };
 
   return (
     <header className="header">
-      <img src={logo} alt="로고" className="header-logo" />
+      <div className="header-content">
+        <img src={Logo} alt="KEYWE Logo" className="header-logo-image" />
+      </div>
 
-      <nav className="header-nav">
-        {menuItems.map((item) => (
-          <span
-            key={item}
-            className={`header-nav-item ${currentPage === item ? "active" : ""}`}
-            onClick={() => onPageChange(item)}
-          >
-            {item}
-          </span>
-        ))}
-      </nav>
+      <div className="header-logout-wrapper">
+        <LogoutButton onLogout={handleLogout} />
+      </div>
     </header>
   );
 };
