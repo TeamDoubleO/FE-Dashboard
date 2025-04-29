@@ -1,42 +1,168 @@
 .sidebar {
-    width: 200px;
-    background-color: #164d27;
-    color: white;
+  background-color: #e6e4e4;
+  height: calc(100vh - 45px);
+  border-right: 1px solid #ccc;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
 
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar li {
-    padding: 15px 20px 15px 24px;
-    cursor: pointer;
-    position: relative;
-    transition: background-color 0.2s ease;
-  }
-  
-  .sidebar li:hover {
-    background-color: #24562B;
-  }
-  
-  .sidebar li.active {
-    background-color: #24562B;
-    font-weight: bold;
-  }
-  
-  .sidebar li.active::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 8px solid white;
-  }
-  
+.sidebar-open {
+  width: 200px;
+}
+
+.sidebar-closed {
+  width: 45px;
+}
+
+.sidebar-toggle-button {
+  background-color: #acc3ad;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #333;
+  outline: none;
+}
+
+.sidebar-hamburger-icon {
+  color: #0e3d0e; 
+  font-size: 22px;
+}
+
+.sidebar-open .sidebar-toggle-button {
+  justify-content: flex-end;
+}
+
+.sidebar-closed .sidebar-toggle-button {
+  justify-content: center;
+}
+
+.sidebar-toggle-button:focus {
+  outline: none;
+  background-color: #9ab69c;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu-title {
+  background-color: #c7c7c7;
+  color: #868686;
+  font-weight: bold;
+  padding: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  transition: color 0.3s ease;
+  border-radius: 0;
+}
+
+.sidebar-open .sidebar-menu-title {
+  color: #333;
+}
+
+.sidebar-group-selected {
+  background-color: #88a088;
+}
+
+.sidebar-menu-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu-group ul li {
+  background-color: #e6e4e4;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.sidebar-menu-group ul li:hover {
+  background-color: #c0cec4;
+}
+
+.sidebar-menu-group ul li.selected {
+  background-color: #b5cbb4;
+  font-weight: bold;
+  color: #333;
+}
+
+.sidebar-menu-icon {
+  font-size: 25px;
+  color: #868686;
+  transition: color 0.3s ease;
+}
+
+.sidebar-menu-open {
+  color: #0e3d0e;
+}
+
+.sidebar-closed .sidebar-menu-icon:hover {
+  color: #0e3d0e;
+}
+
+.sidebar-closed .sidebar-group-selected .sidebar-menu-icon {
+  color: #0e3d0e;
+}
+
+.sidebar-chevron-icon {
+  color: #868686;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-menu-group ul li span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-open .sidebar-menu-group ul li span {
+  justify-content: flex-start;
+}
+
+.sidebar-collapsed-image {
+  display: block;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.sidebar-menu-group ul li .sidebar-collapsed-image {
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-menu-group ul li.selected .sidebar-collapsed-image {
+  width: 28px;
+  height: 28px;
+}
+
+.sidebar-menu-group ul li:hover .sidebar-collapsed-image {
+  transform: scale(1.1);
+}
+
+.sidebar-closed .sidebar-menu-group ul li {
+  padding: 7px 10px;
+}
+
+.sidebar-menu-group ul li:hover .sidebar-collapsed-image {
+  width: 28px;
+  height: 28px;
+  transform: scale(1.1);
+}

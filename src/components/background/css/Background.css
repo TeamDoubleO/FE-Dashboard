@@ -1,6 +1,9 @@
-.background {
-    flex: 1;
-    background-color: #E8E8E8;
-    overflow-y: auto;
-    height: 100vh;
-  }
+.background-layer {
+  position: absolute;
+  top: 60px;
+  left: 45px;
+  right: 0;
+  bottom: 0;
+  background-color: #E8E8E8; 
+  z-index: -1;
+}

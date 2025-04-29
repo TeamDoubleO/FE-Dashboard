@@ -1,12 +1,7 @@
-import React from "react";
-import "./css/Background.css";
+import './css/Background.css';
 
-interface BackgroundProps {
-  children: React.ReactNode;
-}
-
-const Background: React.FC<BackgroundProps> = ({ children }) => {
-  return <div className="background">{children}</div>;
+const Background = () => {
+  return <div className="background-layer"></div>;
 };
 
 export default Background;
