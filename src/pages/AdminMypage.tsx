@@ -10,8 +10,8 @@ const hospitalInfo = {
 };
 
 const breadCrumbInfo = {
-    cp: "관리페이지",
-    csi: "관리자 마이페이지"
+    currentPage: "관리페이지",
+    currentSidebarItem: "관리자 마이페이지"
 };
 
 const AdminMyPage = () => {
@@ -20,8 +20,8 @@ const AdminMyPage = () => {
       <Background />
       <Layout>
         <Breadcrumb 
-            currentPage={breadCrumbInfo.cp}
-            currentSidebarItem={breadCrumbInfo.csi}
+            currentPage={breadCrumbInfo.currentPage}
+            currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
         <AdminMypageTable
             hospitalName={hospitalInfo.hospitalName}
