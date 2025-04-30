@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import AdminLogin from './pages/AdminLogin'
 import AdminMyPage from './pages/AdminMypage';
 import IssueHistoryPage from './pages/IssueHistoryPage';
+import EntryHistoryPage from './pages/entryHistoryPage';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin/>} />
           <Route path="/admin/mypage" element={<AdminMyPage/>} />
           <Route path="/issuehistory" element={<IssueHistoryPage/>} />
+          <Route path="/entryhistory" element={<EntryHistoryPage />} />
         </Routes>
       </Router>
     </>
