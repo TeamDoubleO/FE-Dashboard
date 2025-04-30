@@ -1,17 +1,27 @@
 .admin-login-page {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-  }
-  
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-image: url('../../assets/images/Login-Background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden; 
+}
 
-  .admin-login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: #e7ece8;
-  }
+.admin-login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(200, 200, 200, 0.497); /* 투명한 검정 오버레이 */
+  z-index: 0;
+}
+
+.admin-login-box {
+  position: relative;
+  z-index: 1;
+}

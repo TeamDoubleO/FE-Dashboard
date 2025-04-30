@@ -96,7 +96,9 @@ const Sidebar = () => {
             onClick={() => toggleGroup('dashboard')}
           >
             {!isOpen ? (
-              <IoMdHome className={`sidebar-menu-icon ${groupOpen.dashboard ? 'sidebar-menu-open' : ''}`} />
+              <div className="sidebar-collapsed-item" data-tooltip="대시보드">
+                <IoMdHome className={`sidebar-menu-icon ${groupOpen.dashboard ? 'sidebar-menu-open' : ''}`} />
+              </div>
             ) : (
               <>
                 <span>대시보드</span>
@@ -117,11 +119,13 @@ const Sidebar = () => {
                   {isOpen ? (
                     <span>{menu}</span>
                   ) : (
-                    <img
-                      src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
-                      alt="sidebar-icon"
-                      className="sidebar-collapsed-image"
-                    />
+                    <div className="sidebar-collapsed-item" data-tooltip={menu}>
+                      <img
+                        src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
+                        alt="sidebar-icon"
+                        className="sidebar-collapsed-image"
+                      />
+                    </div>
                   )}
                 </li>
               ))}
@@ -136,7 +140,9 @@ const Sidebar = () => {
             onClick={() => toggleGroup('access')}
           >
             {!isOpen ? (
-              <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.access ? 'sidebar-menu-open' : ''}`} />
+              <div className="sidebar-collapsed-item" data-tooltip="출입 관련">
+                <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.access ? 'sidebar-menu-open' : ''}`} />
+              </div>
             ) : (
               <>
                 <span>출입 관련</span>
@@ -157,11 +163,13 @@ const Sidebar = () => {
                   {isOpen ? (
                     <span>{menu}</span>
                   ) : (
-                    <img
-                      src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
-                      alt="sidebar-icon"
-                      className="sidebar-collapsed-image"
-                    />
+                    <div className="sidebar-collapsed-item" data-tooltip={menu}>
+                      <img
+                        src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
+                        alt="sidebar-icon"
+                        className="sidebar-collapsed-image"
+                      />
+                    </div>
                   )}
                 </li>
               ))}
@@ -176,7 +184,9 @@ const Sidebar = () => {
             onClick={() => toggleGroup('admin')}
           >
             {!isOpen ? (
-              <MdSettings className={`sidebar-menu-icon ${groupOpen.admin ? 'sidebar-menu-open' : ''}`} />
+              <div className="sidebar-collapsed-item" data-tooltip="관리페이지">
+                <MdSettings className={`sidebar-menu-icon ${groupOpen.admin ? 'sidebar-menu-open' : ''}`} />
+              </div>
             ) : (
               <>
                 <span>관리페이지</span>
@@ -197,11 +207,13 @@ const Sidebar = () => {
                   {isOpen ? (
                     <span>{menu}</span>
                   ) : (
-                    <img
-                      src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
-                      alt="sidebar-icon"
-                      className="sidebar-collapsed-image"
-                    />
+                    <div className="sidebar-collapsed-item" data-tooltip={menu}>
+                      <img
+                        src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
+                        alt="sidebar-icon"
+                        className="sidebar-collapsed-image"
+                      />
+                    </div>
                   )}
                 </li>
               ))}
