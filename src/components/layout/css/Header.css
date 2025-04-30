@@ -35,3 +35,7 @@
   align-items: center;
   margin-right: 50px;
 }
+
+.header-logo-image {
+  cursor: pointer;
+}
