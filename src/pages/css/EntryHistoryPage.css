@@ -1,0 +1,14 @@
+  .entry-history-container {
+    width: fit-content;
+    margin-top: 0px;
+    margin-left: 10px;
+    padding: 20px;
+    background-color: transparent;
+  }
+  
+  .entry-history-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #333;
+  }

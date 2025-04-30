@@ -18,6 +18,7 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin/>} />
           <Route path="/admin/mypage" element={<AdminMyPage/>} />
           <Route path="/issuehistory" element={<IssueHistoryPage/>} />
+          <Route path="/entryhistory" element={<EntryHistoryPage />} />
         </Routes>
       </Router>
     </>
