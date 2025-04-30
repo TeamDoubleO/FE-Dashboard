@@ -35,10 +35,11 @@ const patientsColums = [
 ]
 
 const requestsColums = [
-  { key: "requestId", label: "권한요청ID" },
-  { key: "requestDate", label: "요청날짜" },
+  { key: "requestId", label: "출입 요청 ID" },
   { key: "requestor", label: "요청자" },
-  { key: "status", label: "요청상태" },
+  { key: "district", label: "출입 구역"},
+  { key: "StartTime", label: "출입 시작 시간"},
+  { key: "EndTime", label: "출입 만료 시간"},
 ]
 
 const districtsColums = [

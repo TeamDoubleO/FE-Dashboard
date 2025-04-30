@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import "./css/DefaultTable.css";
 
@@ -31,7 +29,6 @@ const DefaultTable: React.FC<CheckEditTableProps> = ({ tableTitles, data }) => {
                 {tableTitles.map((col) => (
                   <td
                     key={col.key}
-                    className={col.key === "name" ? "default-table-name" : ""}
                   >
                     {row[col.key]}
                   </td>
