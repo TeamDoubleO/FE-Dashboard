@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import "./css/Pagination.css";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
