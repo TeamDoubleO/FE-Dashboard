@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import "./css/CheckEditTable.css";
 import { FiEdit } from "react-icons/fi";

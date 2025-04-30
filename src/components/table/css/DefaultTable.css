@@ -1,14 +1,18 @@
-.default-table-wrapper {
+  .default-table-wrapper {
     overflow-x: auto;
     background: white;
     border-radius: 8px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   }
+
+  .default-table-title {
+    font-size: 20px;
+    font-weight: 700;
+  }
   
   .default-table {
-    min-width: 1200px;
-    font-family: sans-serif;
-    table-layout: fixed;
+    width: 100%;             
+    table-layout: auto;      
     border-collapse: collapse;
   }
   
@@ -19,7 +23,7 @@
   
   .default-table th,
   .default-table td {
-    width: 100px;
+    width: 120px;
     height: 30px;     
     padding: 8px 50px;
     border-bottom: 1px solid #e0e0e0;

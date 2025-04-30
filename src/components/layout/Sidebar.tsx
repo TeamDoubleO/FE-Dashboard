@@ -143,16 +143,16 @@ const Sidebar = () => {
                 }
               </li>
               <li
-                className={selectedMenu === '권한 처리 내역' ? 'selected' : ''}
+                className={selectedMenu === '출입증 발급 내역' ? 'selected' : ''}
                 onClick={() => {
-                  setSelectedMenu('권한 처리 내역');
+                  setSelectedMenu('출입증 발급 내역');
                   setSelectedGroup('access');
                 }}
               >
                 {isOpen 
-                  ? <span>권한 처리 내역</span> 
+                  ? <span>출입증 발급 내역</span> 
                   : <img 
-                      src={selectedMenu === '권한 처리 내역' ? SidebarButtonGreen : SidebarButtonGray} 
+                      src={selectedMenu === '출입증 발급 내역' ? SidebarButtonGreen : SidebarButtonGray} 
                       alt="sidebar-icon" 
                       className="sidebar-collapsed-image" 
                     />
