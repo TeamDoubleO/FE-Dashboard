@@ -7,7 +7,7 @@ import './css/IssueDetailPage.css';
 
 const breadCrumbInfo = {
     currentPage: "출입 관련",
-    currentSidebarItem: "출입 내역"
+    currentSidebarItem: "출입증 발급 내역"
 };
 
 const issuesColums = [
@@ -47,13 +47,13 @@ const IssueDetailPage = () => {
         />
 
           <div className="issue-detail-container">
-            <div className="issue-detail-title">출입 내역 상세 조회</div>
+            <div className="issue-detail-title">출입증 발급 내역 상세 조회</div>
             <DefaultTable 
                 tableTitles={issuesColums} 
                 data={issue}
             />
             <br /><br />
-            <div className="issue-detail-title">출입 구역 조회</div>
+            <div className="issue-detail-title">출입 구역</div>
             <DefaultTable 
                 tableTitles={districtsColums} 
                 data={districts}
