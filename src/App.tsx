@@ -6,6 +6,7 @@ import AdminLogin from './pages/AdminLogin';
 import AdminMyPage from './pages/AdminMypage';
 import IssueHistoryPage from './pages/IssueHistoryPage';
 import EntryHistoryPage from './pages/EntryHistoryPage';
+import IssueDetailPage from './pages/IssueDetailPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/mypage" element={<AdminMyPage />} />
         <Route path="/issuehistory" element={<IssueHistoryPage />} />
+        <Route path="/issuedetail/:requestId" element={<IssueDetailPage />} />
         <Route path="/entryhistory" element={<EntryHistoryPage />} />
       </Routes>
     </Router>
