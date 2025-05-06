@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
@@ -8,14 +9,15 @@ import Pagination from '../components/table/Pagination.tsx';
 
 import './css/IssueHistoryPage.css';
 
-import requests from '../mocks/requestsData';
+import issues from '../mocks/issuesData';
 
-const requestsColums = [
-    { key: "requestId", label: "출입 요청 ID" },
-    { key: "requestor", label: "요청자" },
-    { key: "district", label: "출입 구역"},
-    { key: "StartTime", label: "출입 시작 시간"},
-    { key: "EndTime", label: "출입 만료 시간"},
+const issueColums = [
+    { key: "memberId", label: "사용자 ID" },
+    { key: "name", label: "발급자명"},
+    { key: "passId", label: "출입증 ID" },
+    { key: "districtId", label: "출입 구역 ID"},
+    { key: "startTime", label: "출입 시작 시간"},
+    { key: "endTime", label: "출입 만료 시간"},
 ]
 
 const breadCrumbInfo = {
@@ -24,10 +26,11 @@ const breadCrumbInfo = {
 };
 
 const IssueHistoryPage = () => {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const paginatedData = requests.slice(
+  const paginatedData = issues.slice(
       (currentPage - 1) * itemsPerPage,
       currentPage * itemsPerPage
   );
@@ -44,12 +47,13 @@ const IssueHistoryPage = () => {
           <div className="issue-history-container">
             <div className="issue-history-title">출입증 발급 내역 조회</div>
             <DefaultTable 
-                tableTitles={requestsColums} 
+                tableTitles={issueColums} 
                 data={paginatedData}
+                onRowClick={(row) => navigate(`/issuedetail/${row.requestId}`)}
             />
             <Pagination
               currentPage={currentPage}
-              totalPages={Math.ceil(requests.length / itemsPerPage)}
+              totalPages={Math.ceil(issues.length / itemsPerPage)}
               onPageChange={setCurrentPage}
             />
         </div>
