@@ -21,12 +21,14 @@ function App() {
 
         {/* 보호된 라우트 그룹 */}
         <Route element={<PrivateRoute />}>
+          <Route>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/table" element={<TablePage />} />
           <Route path="/admin/mypage" element={<AdminMyPage />} />
           <Route path="/issuehistory" element={<IssueHistoryPage />} />
           <Route path="/issuedetail/:requestId" element={<IssueDetailPage />} />
           <Route path="/entryhistory" element={<EntryHistoryPage />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
