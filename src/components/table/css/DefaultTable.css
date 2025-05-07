@@ -32,3 +32,11 @@
   .default-table-name {
     font-weight: 500;
   }
+
+  .default-table .clickable-row {
+    cursor: pointer;
+  }
+  
+  .default-table .clickable-row:hover {
+    background-color: #f0f8ff; 
+  }

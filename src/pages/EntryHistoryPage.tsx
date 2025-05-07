@@ -8,26 +8,26 @@ import Pagination from '../components/table/Pagination.tsx';
 
 import './css/EntryHistoryPage.css';
 
-import requests from '../mocks/requestsData.ts';
+import entryHistory from '../mocks/entryHistoryData.ts';
 
-const requestsColums = [
-    { key: "requestId", label: "출입 요청 ID" },
-    { key: "requestor", label: "요청자" },
-    { key: "district", label: "출입 구역"},
-    { key: "StartTime", label: "출입 시작 시간"},
-    { key: "EndTime", label: "출입 만료 시간"},
+const entryHistoryColums = [
+    { key: "memberId", label: "사용자 ID" },
+    { key: "name", label: "출입자명" },
+    { key: "passId", label: "출입증 ID" },
+    { key: "districtId", label: "출입 구역 ID"},
+    { key: "entryTime", label: "출입 시간"},
 ]
 
 const breadCrumbInfo = {
     currentPage: "출입 관련",
-    currentSidebarItem: "출입증 발급 내역"
+    currentSidebarItem: "출입 내역"
 };
 
 const EntryHistoryPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const paginatedData = requests.slice(
+  const paginatedData = entryHistory.slice(
       (currentPage - 1) * itemsPerPage,
       currentPage * itemsPerPage
   );
@@ -44,12 +44,12 @@ const EntryHistoryPage = () => {
           <div className="entry-history-container">
             <div className="entry-history-title">출입 내역 조회</div>
             <DefaultTable 
-                tableTitles={requestsColums} 
+                tableTitles={entryHistoryColums} 
                 data={paginatedData}
             />
             <Pagination
               currentPage={currentPage}
-              totalPages={Math.ceil(requests.length / itemsPerPage)}
+              totalPages={Math.ceil(entryHistory.length / itemsPerPage)}
               onPageChange={setCurrentPage}
             />
         </div>

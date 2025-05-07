@@ -9,9 +9,10 @@ type Column = {
 interface CheckEditTableProps {
   tableTitles: Column[];
   data: Record<string, any>[];
+  onRowClick?: (row: Record<string, any>) => void;
 }
 
-const DefaultTable: React.FC<CheckEditTableProps> = ({ tableTitles, data }) => {
+const DefaultTable: React.FC<CheckEditTableProps> = ({ tableTitles, data, onRowClick }) => {
     return (
       <div className="default-table-wrapper">
         <table className="default-table">
@@ -25,13 +26,13 @@ const DefaultTable: React.FC<CheckEditTableProps> = ({ tableTitles, data }) => {
           </thead>
           <tbody>
             {data.map((row, idx) => (
-              <tr key={idx}>
+              <tr
+                key={idx}
+                onClick={() => onRowClick?.(row)} 
+                className={onRowClick ? 'clickable-row' : ''}
+              >
                 {tableTitles.map((col) => (
-                  <td
-                    key={col.key}
-                  >
-                    {row[col.key]}
-                  </td>
+                  <td key={col.key}>{row[col.key]}</td>
                 ))}
                 <td></td>
               </tr>
