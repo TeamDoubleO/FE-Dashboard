@@ -35,18 +35,26 @@ const Sidebar = () => {
     return saved ? saved === 'true' : true;
   });
 
-  const [groupOpen, setGroupOpen] = useState<GroupOpenState>({
-    dashboard: true,
-    access: true,
-    admin: true,
+  const [groupOpen, setGroupOpen] = useState<GroupOpenState>(() => {
+    const saved = localStorage.getItem('groupOpen');
+    return saved ? JSON.parse(saved) : {
+      dashboard: true,
+      access: true,
+      admin: true,
+    };
   });
 
   const [selectedMenu, setSelectedMenu] = useState<string>('');
   const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
 
   const toggleSidebar = () => setIsOpen(prev => !prev);
+
   const toggleGroup = (group: Group) => {
-    setGroupOpen(prev => ({ ...prev, [group]: !prev[group] }));
+    setGroupOpen(prev => {
+      const updated = { ...prev, [group]: !prev[group] };
+      localStorage.setItem('groupOpen', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const handleMenuClick = (menu: string, group: Group) => {
@@ -59,7 +67,7 @@ const Sidebar = () => {
   useEffect(() => {
     let matchedMenu: string | null = null;
     let matchedGroup: Group | null = null;
-  
+
     if (location.pathname.includes('/issuedetail')) {
       matchedMenu = '출입증 발급 내역';
       matchedGroup = 'access';
@@ -73,10 +81,10 @@ const Sidebar = () => {
       matchedMenu = '대시보드';
       matchedGroup = 'dashboard';
     } else if (location.pathname.includes('/admin')) {
-      matchedMenu = '마이페이지1'; // 또는 조건 추가 가능
+      matchedMenu = '마이페이지1';
       matchedGroup = 'admin';
     }
-  
+
     if (matchedMenu && matchedGroup) {
       setSelectedMenu(matchedMenu);
       setSelectedGroup(matchedGroup);
