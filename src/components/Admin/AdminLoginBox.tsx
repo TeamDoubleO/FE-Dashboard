@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./css/AdminLoginBox.css";
 
 interface AdminLoginProps {
@@ -9,13 +11,28 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
   const [adminId, setAdminId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // 로그인 로직 샘플
-    if (adminId === "admin" && password === "1234") {
-      onLogin();
-    } else {
-      setError("일치하는 정보가 존재하지 않습니다.\n입력 내용을 다시 확인해주세요.");
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8082/auth/login", {
+        username: adminId,
+        password: password,
+      });
+
+      if (response.data.success) {
+        const token = response.data.data.accessToken;
+        localStorage.setItem("accessToken", token);
+        onLogin();
+        navigate("/dashboard");
+      } else {
+        setError("로그인 실패: 서버 응답 오류");
+      }
+    } catch (err: any) {
+      const message = err?.response?.data?.data?.message;
+      if (message) {
+        setError(message);
+      }
     }
   };
 
@@ -38,7 +55,11 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <p className="admin-login-error">{error}</p>}
+        {error && (
+          <p className="admin-login-error" style={{ color: "red", whiteSpace: "pre-wrap" }}>
+            {error}
+          </p>
+        )}
         <button className="admin-login-button" onClick={handleLogin}>
           로그인
         </button>
