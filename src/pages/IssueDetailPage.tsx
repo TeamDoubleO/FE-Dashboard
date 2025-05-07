@@ -1,5 +1,3 @@
-import { useLocation } from 'react-router-dom';
-
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
@@ -31,15 +29,13 @@ const districtsColums = [
 ]
 
 const districts = [
-    { districtName: "암병동", districtDescription: "3층 암병동"},
-    { districtName: "암병동", districtDescription: "3층 암병동"},
-    { districtName: "암병동", districtDescription: "3층 암병동"}
+    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"},
+    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"},
+    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"}
 ]
 
 
 const IssueDetailPage = () => {
-  const location = useLocation();
-  const { memberId } = location.state || {};
 
   return (
     <>
