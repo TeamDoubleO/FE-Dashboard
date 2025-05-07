@@ -89,7 +89,7 @@
   white-space: nowrap;
   transition: background-color 0.2s;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
 }
