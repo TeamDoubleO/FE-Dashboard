@@ -18,7 +18,6 @@ function App() {
 
         {/* 로그인 페이지 */}
         <Route path="/admin/login" element={<AdminLogin />} />
-
         {/* 보호된 라우트 그룹 */}
         <Route element={<PrivateRoute />}>
           <Route>

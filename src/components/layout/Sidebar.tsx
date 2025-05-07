@@ -57,17 +57,29 @@ const Sidebar = () => {
 
   // 현재 URL 경로에 따라 사이드바의 선택 메뉴 및 그룹 상태를 설정
   useEffect(() => {
-    const foundEntry = Object.entries(menuPathMap).find(
-      ([_, path]) => path === location.pathname
-    );
-
-    if (foundEntry) {
-      const [menu, path] = foundEntry;
-      setSelectedMenu(menu);
-
-      if (path.includes('/dashboard')) setSelectedGroup('dashboard');
-      else if (path.includes('/entry') || path.includes('/issue')) setSelectedGroup('access');
-      else if (path.includes('/admin')) setSelectedGroup('admin');
+    let matchedMenu: string | null = null;
+    let matchedGroup: Group | null = null;
+  
+    if (location.pathname.includes('/issuedetail')) {
+      matchedMenu = '출입증 발급 내역';
+      matchedGroup = 'access';
+    } else if (location.pathname.includes('/issuehistory')) {
+      matchedMenu = '출입증 발급 내역';
+      matchedGroup = 'access';
+    } else if (location.pathname.includes('/entry')) {
+      matchedMenu = '출입 내역';
+      matchedGroup = 'access';
+    } else if (location.pathname.includes('/dashboard')) {
+      matchedMenu = '대시보드';
+      matchedGroup = 'dashboard';
+    } else if (location.pathname.includes('/admin')) {
+      matchedMenu = '마이페이지1'; // 또는 조건 추가 가능
+      matchedGroup = 'admin';
+    }
+  
+    if (matchedMenu && matchedGroup) {
+      setSelectedMenu(matchedMenu);
+      setSelectedGroup(matchedGroup);
     }
   }, [location.pathname]);
 
