@@ -43,13 +43,12 @@ const IssueHistoryPage = () => {
             currentPage={breadCrumbInfo.currentPage}
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
-
           <div className="issue-history-container">
             <div className="issue-history-title">출입증 발급 내역 조회</div>
             <DefaultTable 
                 tableTitles={issueColums} 
                 data={paginatedData}
-                onRowClick={(row) => navigate(`/issuedetail/${row.requestId}`)}
+                onRowClick={(row) => navigate(`/issuedetail/${row.memberId}`)}
             />
             <Pagination
               currentPage={currentPage}

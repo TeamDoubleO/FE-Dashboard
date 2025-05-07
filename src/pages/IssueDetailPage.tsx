@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
@@ -36,6 +38,8 @@ const districts = [
 
 
 const IssueDetailPage = () => {
+  const location = useLocation();
+  const { memberId } = location.state || {};
 
   return (
     <>
