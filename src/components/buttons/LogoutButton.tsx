@@ -31,7 +31,8 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
       console.warn("로그아웃 API 실패 (무시하고 계속 진행)", err);
     }
 
-    localStorage.removeItem("accessToken");
+    localStorage.clear();
+
     onLogout();
     navigate("/admin/login");
   };
