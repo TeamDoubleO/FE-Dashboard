@@ -2,12 +2,12 @@ import React from 'react';
 import './css/AdminMyPageTable.css';
 
 interface HospitalInfoProps {
-  hospitalName: string;
-  hospitalId: number;
-  adminId: string;
+  affiliation: string;
+  affiliationId: string;
+  username: string;
 }
 
-const AdminMypageTable: React.FC<HospitalInfoProps> = ({ hospitalName, hospitalId, adminId }) => {
+const AdminMypageTable: React.FC<HospitalInfoProps> = ({ affiliation, affiliationId, username }) => {
   return (
     <div className="admin-mypage-table-container">
       <span className="admin-mypage-table-title">관리자 정보</span>
@@ -15,15 +15,15 @@ const AdminMypageTable: React.FC<HospitalInfoProps> = ({ hospitalName, hospitalI
         <tbody>
           <tr>
             <td className="admin-mypage-table-label-cell">병원명(기관명)</td>
-            <td>{hospitalName}</td>
+            <td>{affiliation}</td>
           </tr>
           <tr>
             <td className="admin-mypage-table-label-cell">병원 ID (기관 ID)</td>
-            <td>{hospitalId}</td>
+            <td>{affiliationId}</td>
           </tr>
           <tr>
             <td className="admin-mypage-table-label-cell">관리자 ID</td>
-            <td>{adminId}</td>
+            <td>{username}</td>
           </tr>
         </tbody>
       </table>
