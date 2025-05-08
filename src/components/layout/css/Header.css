@@ -40,3 +40,15 @@
 .header-logo-image {
   cursor: pointer;
 }
+
+.logout-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}

@@ -1,0 +1,58 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ReusableButton from '../buttons/ReusableButton';
+import ReusableInput from '../input/ReusableInput';
+
+import './css/AdminPasswordBox.css';
+
+const AdminPasswordBox = () => {
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handlePasswordChange = () => {
+    if (newPassword !== confirmPassword) {
+      alert("새 비밀번호가 일치하지 않습니다.");
+      return;
+    }
+    alert("비밀번호가 변경되었습니다.");
+  };
+
+  return (
+    <div className="admin-password-container">
+      <h2 className="admin-password-title">비밀번호변경</h2>
+      <div className="admin-password-form">
+        <ReusableInput
+          label="현재 비밀번호"
+          type="password"
+          value={currentPassword}
+          onChange={e => setCurrentPassword(e.target.value)}
+        />
+        <ReusableInput
+          label="새 비밀번호"
+          type="password"
+          value={newPassword}
+          onChange={e => setNewPassword(e.target.value)}
+        />
+        <ReusableInput
+          label="새 비밀번호 확인"
+          type="password"
+          value={confirmPassword}
+          onChange={e => setConfirmPassword(e.target.value)}
+        />
+
+        <div className="admin-password-form-actions">
+          <ReusableButton onClick={handlePasswordChange} className="primary">
+            비밀번호 변경하기
+          </ReusableButton>
+          <ReusableButton onClick={() => navigate("/admin/mypage")} className="secondary">
+            취소
+          </ReusableButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminPasswordBox;
