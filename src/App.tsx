@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Dashboard from './pages/Dashboard';
+import DashboardSample from './pages/DashboardSample';
 import AdminLogin from './pages/AdminLogin';
 import AdminMyPage from './pages/AdminMypage';
 import IssueHistoryPage from './pages/IssueHistoryPage';
@@ -22,6 +23,7 @@ function App() {
         {/* 보호된 라우트 그룹 */}
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboardsample" element={<DashboardSample />} />
           <Route path="/admin/mypage" element={<AdminMyPage />} />
           <Route path="/issuehistory" element={<IssueHistoryPage />} />
           <Route path="/issuedetail/:requestId" element={<IssueDetailPage />} />
