@@ -21,8 +21,8 @@ const menuPathMap: Record<string, string> = {
   '대시보드': '/dashboard',
   '출입 내역': '/entryhistory',
   '출입증 발급 내역': '/issuehistory',
-  '마이페이지1': '/admin/mypage',
-  '마이페이지2': '/admin/mypage',
+  '관리자 정보': '/admin/mypage',
+  '출입 권한': '/admin/mypage',
 };
 
 const Sidebar = () => {
@@ -80,8 +80,8 @@ const Sidebar = () => {
     } else if (location.pathname.includes('/dashboard')) {
       matchedMenu = '대시보드';
       matchedGroup = 'dashboard';
-    } else if (location.pathname.includes('/admin')) {
-      matchedMenu = '마이페이지1';
+    } else if (location.pathname.includes('/changepassword') || location.pathname.includes('/admin')) {
+      matchedMenu = '관리자 정보';
       matchedGroup = 'admin';
     }
 
@@ -218,7 +218,7 @@ const Sidebar = () => {
           </div>
           {groupOpen.admin && (
             <ul>
-              {['마이페이지1', '마이페이지2'].map(menu => (
+              {['관리자 정보', '출입 권한'].map(menu => (
                 <li
                   key={menu}
                   className={selectedMenu === menu ? 'selected' : ''}

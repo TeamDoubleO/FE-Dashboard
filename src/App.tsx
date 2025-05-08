@@ -8,6 +8,7 @@ import IssueHistoryPage from './pages/IssueHistoryPage';
 import EntryHistoryPage from './pages/EntryHistoryPage';
 import IssueDetailPage from './pages/IssueDetailPage';
 import PrivateRoute from './contexts/PrivateRoute';
+import AdminPasswordPage from './pages/AdminPasswordPage';
 
 function App() {
   return (
@@ -18,16 +19,16 @@ function App() {
 
         {/* 로그인 페이지 */}
         <Route path="/admin/login" element={<AdminLogin />} />
+
         {/* 보호된 라우트 그룹 */}
         <Route element={<PrivateRoute />}>
-          <Route>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/table" element={<TablePage />} />
           <Route path="/admin/mypage" element={<AdminMyPage />} />
           <Route path="/issuehistory" element={<IssueHistoryPage />} />
           <Route path="/issuedetail/:requestId" element={<IssueDetailPage />} />
           <Route path="/entryhistory" element={<EntryHistoryPage />} />
-          </Route>
+          <Route path="/adminpassword" element={<AdminPasswordPage />} />
         </Route>
       </Routes>
     </Router>
