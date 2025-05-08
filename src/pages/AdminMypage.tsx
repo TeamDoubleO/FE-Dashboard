@@ -1,13 +1,10 @@
+import { useEffect, useState } from 'react';
+
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
 import AdminMypageTable from '../components/Admin/AdminMypageTable';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
-
-const hospitalInfo = {
-    hospitalName: "서울 성모병원",
-    hospitalId: 1234,
-    adminId: "admin12"
-};
+import { fetchAdminData } from '../apis/adminApi';
 
 const breadCrumbInfo = {
     currentPage: "관리페이지",
@@ -15,6 +12,31 @@ const breadCrumbInfo = {
 };
 
 const AdminMyPage = () => {
+  const [hospitalInfo, setHospitalInfo] = useState<{
+    affiliation: string;
+    affiliationId: string;
+    username: string;
+  } | null>(null);
+
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadAdminData = async () => {
+      try {
+        const data = await fetchAdminData();
+        setHospitalInfo({
+          affiliation: data.affiliation,
+          affiliationId: data.affiliationId,
+          username: data.username,
+        });
+      } catch (err) {
+        setError((err as Error).message);
+      }
+    };
+
+    loadAdminData();
+  }, []);
+
   return (
     <>
       <Background />
@@ -23,11 +45,15 @@ const AdminMyPage = () => {
             currentPage={breadCrumbInfo.currentPage}
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
+        {hospitalInfo ? (
         <AdminMypageTable
-            hospitalName={hospitalInfo.hospitalName}
-            hospitalId={hospitalInfo.hospitalId}
-            adminId={hospitalInfo.adminId}
+          affiliation={hospitalInfo.affiliation}
+          affiliationId={hospitalInfo.affiliationId}
+          username={hospitalInfo.username}
         />
+      ) : (
+        <div style={{ padding: "20px" }}>관리자 정보를 불러오는 중입니다...</div>
+      )}
       </Layout>
     </>
   );
