@@ -40,3 +40,8 @@
   .default-table .clickable-row:hover {
     background-color: #f0f8ff; 
   }
+
+  .default-table th,
+  .default-table td {
+    white-space: nowrap;
+  }
