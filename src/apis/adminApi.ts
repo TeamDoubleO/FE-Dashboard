@@ -13,3 +13,21 @@ export const fetchAdminData = async () => {
         throw new Error(message);
     }
 };
+
+// 관리자 비밀번호 변경
+interface PasswordUpdatePayload {
+    passwordOriginal: string;
+    passwordNew: string;
+}
+
+export const updateAdminPassword = async (payload: PasswordUpdatePayload) => {
+    try {
+        const res = await axiosWithAuthorization.patch(`/admins/me/password`, payload);
+        console.log("관리자 비밀번호 변경:", res.data);
+        return res.data.data;
+    } catch (error) {
+        const err = error as AxiosError<{ data?: { message?: string } }>;
+        const message = err.response?.data?.data?.message ?? "관리자 비밀번호를 변경할 수 없습니다.";
+        throw new Error(message);
+    }
+}

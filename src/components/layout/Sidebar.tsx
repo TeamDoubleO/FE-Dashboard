@@ -22,7 +22,7 @@ const menuPathMap: Record<string, string> = {
   '출입 내역': '/entryhistory',
   '출입증 발급 내역': '/issuehistory',
   '관리자 정보': '/admin/mypage',
-  '출입 권한': '/admin/mypage',
+  '출입 정책': '/admin/mypage',
 };
 
 const Sidebar = () => {
@@ -218,7 +218,7 @@ const Sidebar = () => {
           </div>
           {groupOpen.admin && (
             <ul>
-              {['관리자 정보', '출입 권한'].map(menu => (
+              {['관리자 정보', '출입 정책'].map(menu => (
                 <li
                   key={menu}
                   className={selectedMenu === menu ? 'selected' : ''}
