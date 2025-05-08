@@ -40,11 +40,17 @@ const AdminMyPage = () => {
     loadAdminData();
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      console.error("관리자 정보 조회 에러:", error);
+    }
+  }, [error]);
+
   return (
     <>
       <Background />
       <Layout>
-        <Breadcrumb
+        <Breadcrumb 
           currentPage={breadCrumbInfo.currentPage}
           currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
