@@ -2,34 +2,26 @@ import './css/Header.css';
 import Logo from '../../assets/images/KEYWE_logo-white.png';
 import ReusableButton from '../buttons/ReusableButton';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
+import { adminLogout } from '../../apis/loginApi';
 
 const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    const confirmed = window.confirm("로그아웃하시겠습니까?");
+    const confirmed = window.confirm("로그아웃 하시겠습니까?");
     if (!confirmed) return;
 
-    const token = localStorage.getItem("accessToken");
-
     try {
-      await axios.post(
-        "http://localhost:8082/auth/logout",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      );
-    } catch (err) {
-      console.warn("로그아웃 API 실패 (무시하고 계속 진행)", err);
+      await adminLogout();
+      localStorage.clear();
+      navigate("/admin/login");
+    } catch (err: any) {
+      const message = err?.message ?? "로그아웃 실패";
+      alert(message); 
+      console.warn("관리자 로그아웃 실패:", err);
+      navigate("/admin/login");
     }
-
-    localStorage.clear();
-    navigate("/admin/login");
   };
 
   return (
