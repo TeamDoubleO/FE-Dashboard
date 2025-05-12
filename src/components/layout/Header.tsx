@@ -17,6 +17,7 @@ const Header = () => {
       localStorage.clear();
       navigate("/admin/login");
     } catch (err: any) {
+      localStorage.clear();
       const message = err?.message ?? "로그아웃 실패";
       alert(message); 
       console.warn("관리자 로그아웃 실패:", err);

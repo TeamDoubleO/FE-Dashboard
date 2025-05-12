@@ -23,7 +23,7 @@ axiosWithAuthorization.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry && originalRequest.url !== "/auth/logout") {
       originalRequest._retry = true;
       console.warn("401 에러 발생하여 엑세스 토큰 재발급 시도");
 
@@ -54,6 +54,7 @@ axiosWithAuthorization.interceptors.response.use(
         return Promise.reject(new Error("새로운 accessToken을 받지 못했습니다."));
       } catch (refreshError) {
         console.error("엑세스 토큰 재발급 실패:", refreshError);
+        localStorage.clear(); 
         window.location.href = "/admin/login";
         return Promise.reject(refreshError);
       }
