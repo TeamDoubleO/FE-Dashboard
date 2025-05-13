@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./css/AdminLoginBox.css";
 import ReusableButton from "../buttons/ReusableButton";
+import ReusableInput from "../input/ReusableInput";
 
 interface AdminLoginProps {
   onLogin: () => void;
@@ -50,19 +51,21 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
         <p className="admin-login-subtitle">웹 관리자 모드로 로그인하세요.</p>
 
         <form onSubmit={handleSubmit}>
-          <input
+          <ReusableInput
             type="text"
-            className="admin-login-input"
             placeholder="관리자 ID"
             value={adminId}
             onChange={(e) => setAdminId(e.target.value)}
-          />
-          <input
-            type="password"
             className="admin-login-input"
+          />
+          <ReusableInput
+            type="password"
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="admin-login-input"
+            showToggle
+            iconClassName="admin-login-reusable-input-icon"
           />
           {error && <p className="admin-login-error">{error}</p>}
 
