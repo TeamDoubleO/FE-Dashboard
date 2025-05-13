@@ -8,9 +8,8 @@ export const fetchAdminData = async () => {
         console.log("관리자 본인 정보 조회:", res.data);
         return res.data.data;
     } catch (error) {
-        const err = error as AxiosError<{ data?: { message?: string } }>;
-        const message = err.response?.data?.data?.message ?? "관리자 본인 정보를 조회할 수 없습니다.";
-        throw new Error(message);
+        console.log("관리 본인 정보 조회 오류:", error); 
+        throw error;
     }
 };
 

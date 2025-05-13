@@ -1,9 +1,15 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+
 const getAccessToken = (): string | null => {
   return localStorage.getItem("accessToken");
 };
 
 const axiosWithAuthorization: AxiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_PUBLIC_KEYWE_SERVER_URI,
+  withCredentials: true,
+});
+
+const axiosWithoutAuth: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_PUBLIC_KEYWE_SERVER_URI,
   withCredentials: true,
 });
@@ -23,32 +29,36 @@ axiosWithAuthorization.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
-    if (error.response?.status === 401 && !originalRequest._retry && originalRequest.url !== "/auth/logout") {
+    console.log("401 발생한 요청 경로:", originalRequest.url);
+
+    if (error.response?.status === 401 && !originalRequest._retry && originalRequest.url !== "/auth/reissue") {
       originalRequest._retry = true;
       console.warn("401 에러 발생하여 엑세스 토큰 재발급 시도");
 
       try {
-        const res = await axios.post(
+        const accessToken = getAccessToken(); 
+
+        const res = await axiosWithoutAuth.post(
           "/auth/reissue",
           {},
           {
-            headers: {
-              Authorization: `Bearer ${getAccessToken()}`
-            },
             withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${accessToken}`, 
+            },
           }
         );
 
-        const newAccessToken = res.headers["authorization"];
+        const newAccessToken = res.headers["authorization"]?.replace("Bearer ", "");
+
         if (newAccessToken) {
-          const tokenValue = newAccessToken.replace("Bearer ", "");
-          localStorage.setItem("accessToken", tokenValue);
+          localStorage.setItem("accessToken", newAccessToken);
 
           originalRequest.headers = originalRequest.headers || {};
-          originalRequest.headers.Authorization = `Bearer ${tokenValue}`;
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
           console.info("엑세스 토큰 재발급 성공 및 재요청 수행");
-
-          return axiosWithAuthorization(originalRequest); 
+        
+          return axiosWithAuthorization.request(originalRequest);
         }
         // 엑세스 토큰을 받지 못했을 경우
         return Promise.reject(new Error("새로운 accessToken을 받지 못했습니다."));
