@@ -9,6 +9,7 @@ import EntryHistoryPage from './pages/EntryHistoryPage';
 import IssueDetailPage from './pages/IssueDetailPage';
 import PrivateRoute from './contexts/PrivateRoute';
 import AdminPasswordPage from './pages/AdminPasswordPage';
+import AdminAccessPolicyPage from './pages/AdminAccessPolicyPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/issuedetail/:requestId" element={<IssueDetailPage />} />
           <Route path="/entryhistory" element={<EntryHistoryPage />} />
           <Route path="/adminpassword" element={<AdminPasswordPage />} />
+          <Route path="/admin/accesspolicy" element={<AdminAccessPolicyPage />} />
         </Route>
       </Routes>
     </Router>

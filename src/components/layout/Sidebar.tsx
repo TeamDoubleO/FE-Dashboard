@@ -22,7 +22,7 @@ const menuPathMap: Record<string, string> = {
   '출입 내역': '/entryhistory',
   '출입증 발급 내역': '/issuehistory',
   '관리자 정보': '/admin/mypage',
-  '출입 정책': '/admin/mypage',
+  '출입 정책': '/admin/accesspolicy',
 };
 
 const Sidebar = () => {
@@ -80,6 +80,9 @@ const Sidebar = () => {
     } else if (location.pathname.includes('/dashboard')) {
       matchedMenu = '대시보드';
       matchedGroup = 'dashboard';
+    } else if (location.pathname.includes('/admin/accesspolicy')) {
+      matchedMenu = '출입 정책';
+      matchedGroup = 'admin';
     } else if (location.pathname.includes('/changepassword') || location.pathname.includes('/admin')) {
       matchedMenu = '관리자 정보';
       matchedGroup = 'admin';
