@@ -1,8 +1,8 @@
 :root {
-    --color1: #82c7e2; /* Summer */
-    --color2: #1c6765; /* Winter */
-    --color3: #5AC66F; /* Spring */
-    --color4: #235D3A; /* Autumn */
+    --color1: #82c7e2;
+    --color2: #1c6765;
+    --color3: #5AC66F;
+    --color4: #235D3A;
   }
   
   .dashboard-grid {

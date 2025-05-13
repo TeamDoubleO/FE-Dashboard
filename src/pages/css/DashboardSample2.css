@@ -1,0 +1,155 @@
+:root {
+  --color1: #82c7e2;
+  --color2: #1c6765;
+  --color3: #5AC66F;
+  --color4: #235D3A;
+  --color5: #0d6728;
+  --color6: #626262;
+}
+
+.summary-wrapper {
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.summary-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  margin-top: 3px;
+  color: #333;
+}
+
+.summary-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.summary-card {
+  width: 220px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.summary-card-header {
+  color: #fff;
+  padding: 10px;
+}
+
+.summary-card-header.color1 { background-color: var(--color1); }
+.summary-card-header.color2 { background-color: var(--color2); }
+.summary-card-header.color3 { background-color: var(--color3); }
+.summary-card-header.color4 { background-color: var(--color4); }
+.summary-card-header.color5 { background-color: var(--color5); }
+.summary-card-header.color6 { background-color: var(--color6); }
+
+.summary-label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.summary-sub {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  text-align: center;
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+.hospital-filter-wrapper {
+  margin-top: 32px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  background-color: #f6f6f6;
+}
+
+.filter-row input[type="text"] {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+  background-color: #f6f6f6;
+}
+
+.checkbox-grid label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  background-color: #f6f6f6;
+}
+
+.tag {
+  background-color: #c3e9c3;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 13px;
+  background-color: #f6f6f6;
+}
+
+.filter-buttons button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ddd;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.filter-buttons .confirm {
+  background-color: #0e3d0e;
+  color: white;
+}
