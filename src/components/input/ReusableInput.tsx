@@ -1,18 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 import "./css/ReusableInput.css";
 
-interface ReusableInputProps {
-  label: string;
-  type?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface ReusableInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  showToggle?: boolean;
+  iconClassName?: string;
 }
 
-const ReusableInput: React.FC<ReusableInputProps> = ({ label, type = "text", value, onChange }) => {
+const ReusableInput: React.FC<ReusableInputProps> = ({
+  label,
+  className = "",
+  type,
+  showToggle = false,
+  ...props
+}) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const isPassword = type === "password" && showToggle;
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
+
   return (
     <div className="reusable-input-wrapper">
-      <label className="reusable-input-label">{label}</label>
-      <input className="reusable-input-field" type={type} value={value} onChange={onChange} />
+      {label && <label className="reusable-input-label">{label}</label>}
+      <div className="reusable-input-inner">
+        <input
+          type={inputType}
+          className={`reusable-input-field ${className}`}
+          {...props}
+        />
+        {isPassword && (
+          <span
+            className="reusable-input-icon"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <IoEyeOff /> : <IoEye />}
+          </span>
+        )}
+      </div>
     </div>
   );
 };

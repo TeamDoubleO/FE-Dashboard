@@ -21,16 +21,6 @@
     margin-bottom: 24px;
   }
   
-  .admin-login-input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
-  
   .admin-login-button {
     width: 100%;
     padding: 14px;
@@ -54,4 +44,15 @@
     margin-top: 4px;
     margin-bottom: 8px;
     white-space: pre-line;
+  }
+
+  .admin-login-input {
+ width: 100%;
+    padding: 15px;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
   }

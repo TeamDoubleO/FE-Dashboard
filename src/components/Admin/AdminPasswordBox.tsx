@@ -38,24 +38,34 @@ const AdminPasswordBox = () => {
           type="password"
           value={currentPassword}
           onChange={e => setCurrentPassword(e.target.value)}
+          showToggle
+          className="admin-password-input"
+          iconClassName="admin-password-reusable-input-icon"
         />
         <ReusableInput
           label="새 비밀번호"
           type="password"
           value={newPassword}
           onChange={e => setNewPassword(e.target.value)}
+          showToggle
+          className="admin-password-input"
+          iconClassName="admin-password-reusable-input-icon"
         />
         <ReusableInput
           label="새 비밀번호 확인"
           type="password"
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
+          showToggle
+          className="admin-password-input"
+          iconClassName="admin-password-reusable-input-icon"
         />
 
         <div className="admin-password-form-actions">
           <ReusableButton onClick={handlePasswordChange} className="primary">
             비밀번호 변경하기
           </ReusableButton>
+
           <ReusableButton onClick={() => navigate("/admin/mypage")} className="secondary">
             취소
           </ReusableButton>
