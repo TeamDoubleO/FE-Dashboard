@@ -10,7 +10,7 @@ interface SummaryBlock {
   colorClass: string;
   stats: {
     현재: number;
-    입당: number;
+    입장: number;
     퇴장: number;
     잔류: number;
   };
@@ -40,42 +40,42 @@ const DashboardSample2 = () => {
       인원: 320,
       차량: 150,
       colorClass: 'color1',
-      stats: { 현재: 320, 입당: 200, 퇴장: 90, 잔류: 30 },
+      stats: { 현재: 320, 입장: 200, 퇴장: 90, 잔류: 30 },
     },
     {
       label: '환자',
       인원: 180,
       차량: 80,
       colorClass: 'color2',
-      stats: { 현재: 180, 입당: 100, 퇴장: 60, 잔류: 20 },
+      stats: { 현재: 180, 입장: 100, 퇴장: 60, 잔류: 20 },
     },
     {
       label: '보호자',
       인원: 90,
       차량: 40,
       colorClass: 'color3',
-      stats: { 현재: 90, 입당: 60, 퇴장: 20, 잔류: 10 },
+      stats: { 현재: 90, 입장: 60, 퇴장: 20, 잔류: 10 },
     },
     {
       label: '방문',
       인원: 35,
       차량: 10,
       colorClass: 'color4',
-      stats: { 현재: 35, 입당: 20, 퇴장: 10, 잔류: 5 },
+      stats: { 현재: 35, 입장: 20, 퇴장: 10, 잔류: 5 },
     },
     {
       label: '버스',
       인원: 12,
       차량: 6,
       colorClass: 'color5',
-      stats: { 현재: 12, 입당: 8, 퇴장: 3, 잔류: 1 },
+      stats: { 현재: 12, 입장: 8, 퇴장: 3, 잔류: 1 },
     },
     {
       label: '기타',
       인원: 5,
       차량: 2,
       colorClass: 'color6',
-      stats: { 현재: 5, 입당: 3, 퇴장: 1, 잔류: 1 },
+      stats: { 현재: 5, 입장: 3, 퇴장: 1, 잔류: 1 },
     },
   ];
 
@@ -117,7 +117,7 @@ const DashboardSample2 = () => {
                     <tr>
                       <th></th>
                       <th>현재</th>
-                      <th>입당</th>
+                      <th>입장</th>
                       <th>퇴장</th>
                       <th>잔류</th>
                     </tr>
@@ -126,7 +126,7 @@ const DashboardSample2 = () => {
                     <tr>
                       <td>인원</td>
                       <td>{block.stats.현재}</td>
-                      <td>{block.stats.입당}</td>
+                      <td>{block.stats.입장}</td>
                       <td>{block.stats.퇴장}</td>
                       <td>{block.stats.잔류}</td>
                     </tr>
