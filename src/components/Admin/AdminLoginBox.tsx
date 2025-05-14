@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./css/AdminLoginBox.css";
 import ReusableButton from "../buttons/ReusableButton";
 import ReusableInput from "../input/ReusableInput";
+
+import { adminLogin } from "../../apis/loginApi";
 
 interface AdminLoginProps {
   onLogin: () => void;
@@ -17,25 +18,20 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:8082/auth/login", {
+      const response = await adminLogin({
         username: adminId,
         password: password,
       });
-
-      if (response.data.success) {
-        const token = response.data.data.accessToken;
+    const token = response.accessToken;
+      if (token) {
         localStorage.setItem("accessToken", token);
-
         onLogin();
         navigate("/dashboard");
       } else {
-        setError("로그인 실패: 서버 응답 오류");
+        setError("로그인 실패: 엑세스 토큰이 없음");
       }
-    } catch (err: any) {
-      const message = err?.response?.data?.data?.message;
-      if (message) {
-        setError(message);
-      }
+    } catch (error: any) {
+      setError(error.message); 
     }
   };
 
