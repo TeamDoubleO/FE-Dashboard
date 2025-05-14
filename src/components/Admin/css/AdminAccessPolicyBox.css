@@ -54,18 +54,10 @@
     gap: 8px;
   }
   
-  .admin-access-policy-note {
-    font-size: 16px;
-    color: #374151;
-    margin-top: 16px;
-    padding-top: 12px;
-    border-top: 1px solid #e5e7eb;
-  }
-  
   .admin-access-policy-button-wrapper {
     display: flex;
     justify-content: flex-end;
-    margin-top: 24px;
+    margin-top: 0px;
   }
   
   .admin-access-policy-button {
@@ -95,4 +87,24 @@
 
 .admin-access-policy-adjust {
   margin-top: 9px;
+}
+
+.admin-access-policy-current-box {
+  margin-top: 24px;
+  margin-bottom: 40px;
+  padding: 16px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+.admin-access-policy-current-list {
+  list-style: none;
+  padding: 0 0 0 5px;
+  margin: 5px;
+}
+
+.admin-access-policy-current-list li {
+  font-size: 16px;
+  color: #374151;
+  margin-bottom: 10px;
 }
