@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
@@ -8,14 +8,14 @@ import Pagination from '../components/table/Pagination.tsx';
 
 import './css/EntryHistoryPage.css';
 
-import entryHistory from '../mocks/entryHistoryData.ts';
+import { fetchEntryPassLog } from "../apis/passApi.ts";
 
 const entryHistoryColums = [
     { key: "memberId", label: "사용자 ID" },
-    { key: "name", label: "출입자명" },
+    { key: "memberName", label: "출입자명" },
     { key: "passId", label: "출입증 ID" },
-    { key: "districtId", label: "출입 구역 ID"},
-    { key: "entryTime", label: "출입 시간"},
+    { key: "areaId", label: "출입 구역 ID"},
+    { key: "createdDt", label: "출입 시간"},
 ]
 
 const breadCrumbInfo = {
@@ -24,8 +24,22 @@ const breadCrumbInfo = {
 };
 
 const EntryHistoryPage = () => {
+  const [entryHistory, setEntryHistory] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await fetchEntryPassLog(); 
+        setEntryHistory(data);
+      } catch (err) {
+        console.error("출입 내역 불러오기 실패:", err);
+      }
+    };
+
+    loadData();
+  }, []);
 
   const paginatedData = entryHistory.slice(
       (currentPage - 1) * itemsPerPage,
