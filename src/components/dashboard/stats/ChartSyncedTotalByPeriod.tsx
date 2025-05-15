@@ -12,6 +12,8 @@ const dailyCategories = [
 const weeklyCategories = ['1주차', '2주차', '3주차', '4주차'];
 const monthlyCategories = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
 
+const SHARED_GROUP_ID = 'access-stats-group';
+
 const optionsWithMainTitle = (
   id: string,
   color: string,
@@ -19,6 +21,7 @@ const optionsWithMainTitle = (
 ): ApexOptions => ({
   chart: {
     id,
+    group: SHARED_GROUP_ID,
     type: 'line',
     height: 160,
     toolbar: { show: true },
@@ -66,9 +69,10 @@ const baseOptions = (
 ): ApexOptions => ({
   chart: {
     id,
+    group: SHARED_GROUP_ID,
     type: 'line',
     height: 120,
-    toolbar: { show: false },
+    toolbar: { show: true },
   },
   subtitle: {
     text: subtitleText,
@@ -97,7 +101,7 @@ const ChartSyncedTotalByPeriod = () => {
   return (
     <div className="chart-synced-total-by-period-card">
       <div className="chart-synced-total-by-period-wrapper">
-        <div className="chart-synced-total-by-period-group">
+        <div className="chart-synced-total-by-period-group chart-synced-total-by-period-toolbar">
           <Chart
             options={optionsWithMainTitle('chart-daily', '#1c6765', dailyCategories)}
             series={[{

@@ -7,3 +7,7 @@
 
 .chart-synced-total-by-period-wrapper {
   padding-top: 10px;}
+
+.chart-synced-total-by-period-toolbar .apexcharts-toolbar {
+  top: 30px !important;
+}
