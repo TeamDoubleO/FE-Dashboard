@@ -143,7 +143,6 @@
   margin: 0 auto;
   width: 20px;
   height: 20px;
-  transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
 .sidebar-menu-group ul li .sidebar-collapsed-image {
@@ -184,7 +183,6 @@
   position: absolute;
   left: 130%;
   top: 50%;
-  transform: translateY(-50%);
   background-color: rgba(14, 61, 14, 0.689);
   color: #fff;
   padding: 6px 10px;

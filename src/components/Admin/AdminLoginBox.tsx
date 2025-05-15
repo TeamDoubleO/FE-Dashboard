@@ -26,7 +26,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
       if (token) {
         localStorage.setItem("accessToken", token);
         onLogin();
-        navigate("/dashboard");
+        navigate("/dashboardstats");
       } else {
         setError("로그인 실패: 엑세스 토큰이 없음");
       }
