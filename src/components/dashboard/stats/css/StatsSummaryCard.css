@@ -4,7 +4,7 @@
   gap: 10px;
   width: 99.5%;
   box-sizing: border-box;
-  min-width: 1100px;
+  min-width: 1300px;
   overflow-x: auto;
 }
 
@@ -99,7 +99,7 @@
 .stats-summary-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
   background-color: white;
 }

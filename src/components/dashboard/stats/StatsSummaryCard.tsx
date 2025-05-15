@@ -42,22 +42,28 @@ const cardData = [
 ];
 
 const StatsSummaryCard = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
 
   const toggleDropdown = (index: number) => {
-    setOpenIndex(prev => (prev === index ? null : index));
+    setOpenIndices(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
   };
 
   return (
     <div className="stats-summary-card-wrapper">
       {cardData.map((card, idx) => {
-        const isOpen = openIndex === idx;
+        const isOpen = openIndices.has(idx);
         return (
           <div
             key={idx}
-            className={`stats-summary-card stats-summary-card-${card.classKey} ${
-              isOpen ? 'unfolded' : 'folded'
-            }`}
+            className={`stats-summary-card stats-summary-card-${card.classKey} ${isOpen ? 'unfolded' : 'folded'}`}
           >
             <div className="stats-summary-card-body">
               <div className="stats-summary-card-title">{card.title}</div>
