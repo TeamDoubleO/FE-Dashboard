@@ -1,0 +1,13 @@
+.chart-synced-total-by-period-card {
+  width: 99%;
+  background: #efefef;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.chart-synced-total-by-period-wrapper {
+  padding-top: 10px;}
+
+.chart-synced-total-by-period-toolbar .apexcharts-toolbar {
+  top: 30px !important;
+}

@@ -1,0 +1,10 @@
+.dashboard-stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+
+.dashboard-stats-container > :first-child {
+  grid-column: span 2;
+}
