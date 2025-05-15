@@ -19,7 +19,7 @@ const ChartLineZoneAccess = () => {
     chart: { type: 'line' },
     stroke: { curve: 'straight', width: 2 },
     markers: {
-      size: 0, // 네모만 보이게 하고 마커 숨김
+      size: 0,
     },
     dataLabels: {
       enabled: true,
