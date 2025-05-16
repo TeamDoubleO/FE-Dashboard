@@ -75,7 +75,7 @@ const AdminAccessPolicyBox = () => {
             방문 예정 날짜 기준 <strong>{initialData.reserveDayOffset}일 전 {formattedTime}</strong>부터 신청 가능합니다.
           </li>
           <li>
-            현재 보호자 수 제한: <strong>{initialData.maxGuardianNum}명까지</strong> 허용됩니다.
+            현재 보호자 수 제한 <strong>{initialData.maxGuardianNum}명까지</strong> 허용됩니다.
           </li>
         </ul>
       </div>
@@ -84,23 +84,22 @@ const AdminAccessPolicyBox = () => {
 
       <div className="admin-access-policy-section">
         <label className="admin-access-policy-label">
-          출입 신청 가능 최대 기간 (일):
+          출입 신청 가능 최대 기간 (일)
         </label>
         <ReusableInput
           type="text"
           value={maxDays}
           onChange={handleMaxDaysChange}
-          className="admin-access-policy-input"
+          className="admin-access-policy-input input-offset"
         />
       </div>
 
-      <div className="admin-access-policy-section">
+      <div className="admin-access-policy-section middle-section">
         <label className="admin-access-policy-label">
           당일 출입 신청 마감 시간
           <span className="admin-access-policy-subtext">
             (이후엔 익일 이후만 신청 가능)
           </span>
-          :
         </label>
         <div className="admin-access-policy-select-group">
           <select
@@ -144,7 +143,7 @@ const AdminAccessPolicyBox = () => {
 
       <div className="admin-access-policy-section">
         <label className="admin-access-policy-label">
-          한 명의 환자에 대해 방문 가능한 최대 보호자 수:
+          한 명의 환자에 대해 방문 가능한 최대 보호자 수
         </label>
         <div className="admin-access-policy-select-group">
           <ReusableInput
