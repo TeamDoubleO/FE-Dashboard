@@ -18,7 +18,7 @@ interface GroupOpenState {
 
 const menuPathMap: Record<string, string> = {
   '방문자 통계': '/dashboardstats',
-  '대시보드': '/dashboardpass',
+  '출입증 발급 현황': '/dashboardpass',
   '출입 내역': '/entryhistory',
   '출입증 발급 내역': '/issuehistory',
   '관리자 정보': '/admin/mypage',
@@ -81,7 +81,7 @@ const Sidebar = () => {
       matchedMenu = '방문자 통계';
       matchedGroup = 'dashboard';
     } else if (location.pathname.includes('/dashboardpass')) {
-      matchedMenu = '대시보드';
+      matchedMenu = '출입증 발급 현황';
       matchedGroup = 'dashboard';
     } else if (location.pathname.includes('/admin/accesspolicy')) {
       matchedMenu = '출입 정책';
@@ -136,7 +136,7 @@ const Sidebar = () => {
           </div>
           {groupOpen.dashboard && (
             <ul>
-              {['방문자 통계', '대시보드'].map(menu => (
+              {['방문자 통계', '출입증 발급 현황'].map(menu => (
                 <li
                   key={menu}
                   className={selectedMenu === menu ? 'selected' : ''}
