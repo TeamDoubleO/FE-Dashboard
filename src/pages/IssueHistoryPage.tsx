@@ -48,7 +48,7 @@ const IssueHistoryPage = () => {
             <DefaultTable 
                 tableTitles={issueColums} 
                 data={paginatedData}
-                onRowClick={(row) => navigate(`/issuedetail/${row.passId}`)}
+                onRowClick={(row) => navigate(`/issuedetail/${row.passId}`, { state: row })}
             />
             <Pagination
               currentPage={currentPage}
