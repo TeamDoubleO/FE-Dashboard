@@ -27,9 +27,8 @@ const districtsColums = [
 ]
 
 const districts = [
-    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"},
-    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"},
-    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"}
+    { districtName: "본관 1층", districtDescription: "강북삼성병원 본관 1층 로비"},
+    { districtName: "본관 암병동 303호", districtDescription: "강북삼성병원 본관 3층에 위치한 암병동"},
 ]
 
 
