@@ -1,0 +1,27 @@
+.dashboard-pass-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: px;
+}
+
+.dashboard-pass-row {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.dashboard-pass-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dashboard-pass-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-pass-col > * {
+  width: 100%;
+}
