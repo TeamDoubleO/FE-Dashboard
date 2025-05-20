@@ -43,35 +43,51 @@ const SearchFilter = () => {
     <div className="search-filter-wrapper">
       <div className="search-filter-row">
         {['직원', '병동', '외래', '방문객'].map((type) => (
-          <label key={type}>
+          <label key={type} className="custom-checkbox">
             <input
               type="checkbox"
               value={type}
               checked={selectedTypes.includes(type)}
               onChange={handleCheckboxChange}
-            /> {type}
+            />
+            <span className="checkmark" />
+            {type}
           </label>
         ))}
         <input type="text" placeholder="병동 또는 구역 검색" />
         <input type="text" placeholder="결과내 재검색" />
-        <label><input type="radio" name="view" defaultChecked /> 요약</label>
-        <label><input type="radio" name="view" /> 상세목록</label>
+        <label className="custom-radio">
+          <input type="radio" name="view" defaultChecked />
+          <span className="radio-dot" />
+          요약
+        </label>
+        <label className="custom-radio">
+          <input type="radio" name="view" />
+          <span className="radio-dot" />
+          상세목록
+        </label>
       </div>
 
       <div className="search-filter-row">
         <div className="search-filter-section-title">부서명</div>
         <input type="text" placeholder="부서를 입력하세요" />
-        <label><input type="checkbox" /> 포함</label>
+        <label className="custom-checkbox">
+          <input type="checkbox" />
+          <span className="checkmark" />
+          포함
+        </label>
       </div>
 
       <div className="search-filter-checkbox-grid">
         {departmentList.map(dept => (
-          <label key={dept}>
+          <label key={dept} className="custom-checkbox">
             <input
               type="checkbox"
               checked={selectedDepartments.includes(dept)}
               onChange={(e) => handleDepartmentChange(dept, e.target.checked)}
-            /> {dept}
+            />
+            <span className="checkmark" />
+            {dept}
           </label>
         ))}
       </div>
