@@ -25,6 +25,7 @@ const breadCrumbInfo = {
 
 const EntryHistoryPage = () => {
   const [entryHistory, setEntryHistory] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -32,7 +33,8 @@ const EntryHistoryPage = () => {
     const loadData = async () => {
       try {
         const data = await fetchEntryPassLog(); 
-        setEntryHistory(data);
+        setEntryHistory(data.content); 
+        setTotalPages(data.totalPages);
       } catch (err) {
         console.error("출입 내역 불러오기 실패:", err);
       }
