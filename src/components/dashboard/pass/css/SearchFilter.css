@@ -7,6 +7,7 @@
   width: 100%;
   max-width: 1500px;
   box-sizing: border-box;
+  color: black;
 }
 
 .search-filter-row {
@@ -18,6 +19,7 @@
   background-color: #f6f6f6;
   width: 100%;
   box-sizing: border-box;
+  color: black;
 }
 
 .search-filter-row input[type="text"] {
@@ -29,11 +31,14 @@
   border-radius: 4px;
   font-size: 13px;
   box-sizing: border-box;
+  color: black;
+  background-color: #ffffff;
 }
 
 .search-filter-section-title {
   font-weight: bold;
   margin-right: 8px;
+  color: black;
 }
 
 .search-filter-checkbox-grid {
@@ -51,6 +56,7 @@
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  color: black;
 }
 
 .search-filter-tag-box {
@@ -62,6 +68,7 @@
   background-color: #f6f6f6;
   width: 100%;
   box-sizing: border-box;
+  color: black;
 }
 
 .search-filter-tag {
@@ -71,6 +78,7 @@
   font-size: 13px;
   border: 1px solid #ccc;
   white-space: nowrap;
+  color: black;
 }
 
 .search-filter-footer-row {
@@ -83,6 +91,7 @@
   background-color: #f6f6f6;
   width: 100%;
   box-sizing: border-box;
+  color: black;
 }
 
 .search-filter-buttons {
@@ -98,9 +107,113 @@
   background-color: #ddd;
   cursor: pointer;
   font-size: 13px;
+  color: black;
 }
 
 .search-filter-buttons .confirm {
   background-color: #0e3d0e;
   color: white;
+}
+
+
+/* 브라우저 다크모드 때문에 넣음 */
+.custom-checkbox {
+  position: relative;
+  padding-left: 26px;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  color: #000;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox .checkmark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #007ed2;
+}
+
+.custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.custom-radio {
+  position: relative;
+  padding-left: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  color: #000;
+  font-size: 14px;
+}
+
+.custom-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.custom-radio .radio-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px;
+  width: 14px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+}
+
+.custom-radio input:checked ~ .radio-dot {
+  background-color: #007ed2;
+}
+
+.custom-radio .radio-dot:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-radio input:checked ~ .radio-dot:after {
+  display: block;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
 }
