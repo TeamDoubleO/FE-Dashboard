@@ -22,7 +22,7 @@ const barOptions: ApexOptions = {
   xaxis: {
     categories: ['월', '화', '수', '목', '금', '토', '일'],
   },
-  colors: ['#82c7e2', '#1c6765', '#5AC66F', '#235D3A'],
+  colors: ['#82c7e2', '#2e7d7a', '#235D3A'], // 환자, 보호자, 방문객
   dataLabels: {
     enabled: true,
     style: {
@@ -50,10 +50,9 @@ const barOptions: ApexOptions = {
 };
 
 const barSeries = [
-  { name: '병동', data: [10, 12, 11, 19, 14, 8, 7] },
-  { name: '외래', data: [8, 10, 7, 11, 13, 16, 15] },
-  { name: '방문객', data: [16, 9, 10, 7, 8, 15, 14] },
-  { name: '직원', data: [20, 28, 19, 22, 15, 17, 16] },
+  { name: '환자', data: [12, 14, 13, 15, 11, 10, 9] },
+  { name: '보호자', data: [8, 7, 6, 9, 10, 11, 12] },
+  { name: '방문객', data: [10, 12, 11, 10, 9, 14, 13] },
 ];
 
 const ChartBarUserAccess = () => {

@@ -58,13 +58,6 @@ const ChartGrowPassRequest = () => {
         style: { fontSize: '12px' },
       },
     },
-    yaxis: [
-      {
-        min: 5,
-        max: 20,
-        title: { text: '건수' },
-      },
-    ],
     tooltip: {
       shared: true,
       intersect: false,

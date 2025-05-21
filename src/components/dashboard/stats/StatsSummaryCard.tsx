@@ -22,22 +22,10 @@ const cardData = [
     details: { 현재: 80, 입장: 60, 퇴장: 10, 잔류: 10 },
   },
   {
-    title: '직원',
-    count: 12,
-    classKey: 'staff',
-    details: { 현재: 50, 입장: 30, 퇴장: 10, 잔류: 10 },
-  },
-  {
     title: '방문객',
     count: 89,
     classKey: 'visitor',
     details: { 현재: 100, 입장: 70, 퇴장: 20, 잔류: 10 },
-  },
-  {
-    title: '기타',
-    count: 34,
-    classKey: 'etc',
-    details: { 현재: 40, 입장: 20, 퇴장: 10, 잔류: 10 },
   },
 ];
 
@@ -82,20 +70,14 @@ const StatsSummaryCard = () => {
                 <table className="stats-summary-table">
                   <thead>
                     <tr>
-                      <th>인원</th>
-                      <th>현재</th>
-                      <th>입장</th>
-                      <th>퇴장</th>
-                      <th>잔류</th>
+                      <th>총 입장 수</th>
+                      <th>총 퇴장 수</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{card.title}</td>
-                      <td>{card.details.현재}</td>
                       <td>{card.details.입장}</td>
                       <td>{card.details.퇴장}</td>
-                      <td>{card.details.잔류}</td>
                     </tr>
                   </tbody>
                 </table>
