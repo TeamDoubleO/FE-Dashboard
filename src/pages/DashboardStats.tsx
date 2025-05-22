@@ -2,7 +2,7 @@ import StatsSummaryCard from '../components/dashboard/stats/StatsSummaryCard';
 import ChartAreaTotalByHour from '../components/dashboard/stats/ChartAreaTotalByHour';
 import ChartSyncedTotalByPeriod from '../components/dashboard/stats/ChartSyncedTotalByPeriod';
 import ChartBarUserAccess from '../components/dashboard/stats/ChartBarUserAccess';
-import ChartLineZoneAccess from '../components/dashboard/stats/ChartLineZoneAccess';
+import ChartLineBuildingAccess from '../components/dashboard/stats/ChartLineBuildingAccess';
 
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
@@ -19,7 +19,7 @@ const DashboardStats = () => {
           <ChartAreaTotalByHour />
           <ChartSyncedTotalByPeriod />
           <ChartBarUserAccess />
-          <ChartLineZoneAccess />
+          <ChartLineBuildingAccess />
         </div>
       </Layout>
     </>
