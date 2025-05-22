@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
-
 import ChartGrowPassRequest from '../components/dashboard/pass/ChartGrowPassRequest';
 import SearchFilter from '../components/dashboard/pass/SearchFilter';
 import ChartLinePassByTeam from '../components/dashboard/pass/ChartLinePassByTeam';
-
-
 import { fetchAdminData } from '../apis/adminApi';
-
+import Loading from '../components/loading/Loading'; // ✅ 추가
 import './css/DashboardPass.css';
 
 interface FilterOptions {
@@ -21,7 +18,6 @@ interface FilterOptions {
 
 const DashboardPass = () => {
   const [hospitalId, setHospitalId] = useState<string | null>(null);
-
   const [filterOptions, setFilterOptions] = useState<FilterOptions | null>(null);
 
   useEffect(() => {
@@ -35,23 +31,29 @@ const DashboardPass = () => {
       });
   }, []);
 
-  if (!hospitalId) return <div>병원 정보를 불러오는 중입니다...</div>;
-
   return (
     <>
       <Background />
       <Layout>
         <div className="dashboard-pass-container">
-          <div className="dashboard-pass-col">
-            <ChartGrowPassRequest />
-            <SearchFilter onApply={setFilterOptions} />
+          {!hospitalId && (
+            <div className="dashboard-loading-overlay">
+              <Loading />
+              <div className="dashboard-loading-text">병원 정보를 불러오는 중입니다...</div>
+            </div>
+          )}
 
-            {filterOptions && (
-              <div className="dashboard-pass-row">
-                <ChartLinePassByTeam filters={filterOptions} />
-              </div>
-            )}
-          </div>
+          {hospitalId && (
+            <div className="dashboard-pass-col">
+              <ChartGrowPassRequest />
+              <SearchFilter onApply={setFilterOptions} />
+              {filterOptions && (
+                <div className="dashboard-pass-row">
+                  <ChartLinePassByTeam filters={filterOptions} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </Layout>
     </>

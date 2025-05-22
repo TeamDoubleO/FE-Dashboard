@@ -85,7 +85,7 @@ const ChartGrowPassRequest = () => {
 
   return (
     <div className="chart-grow-pass-request-card">
-      <Chart options={options} series={series} type="area" height={440} />
+      <Chart options={options} series={series} type="area" height={400} />
     </div>
   );
 };
