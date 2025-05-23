@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: px;
+  min-height: 100vh;
 }
 
 .dashboard-pass-row {
@@ -17,11 +17,40 @@
   gap: 16px;
 }
 
-.dashboard-pass-row > * {
-  flex: 1;
-  min-width: 0;
-}
-
 .dashboard-pass-col > * {
   width: 100%;
 }
+
+.dashboard-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 99%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-loading-text {
+  margin-top: 150px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.scrollable-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;         /* 줄바꿈 방지 */
+  overflow-x: auto;          /* 가로 스크롤 */
+  overflow-y: hidden;        /* 세로 스크롤 제거 */
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+
+

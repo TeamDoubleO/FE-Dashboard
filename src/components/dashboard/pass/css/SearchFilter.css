@@ -4,7 +4,8 @@
   border-radius: 6px;
   font-size: 14px;
   background-color: #efefef;
-  width: 100%;
+  width: 99%;
+  min-width: 1300px;
   max-width: 1500px;
   box-sizing: border-box;
   color: black;
