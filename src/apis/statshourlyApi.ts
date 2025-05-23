@@ -8,7 +8,7 @@ export interface StatsHourlyItem {
 }
 
 // 시간대별 출입 통계 조회 API
-export const fetchStatsHourlyApi = async (): Promise<StatsHourlyItem[]> => {
+export const fetchStatsHourly = async (): Promise<StatsHourlyItem[]> => {
   try {
     console.log("[DEBUG] GET 요청 시작: /pass-logs/hourly");
 

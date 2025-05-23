@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { fetchStatsHourlyApi, StatsHourlyItem } from '../../../apis/statshourlyApi';
+import { fetchStatsHourly, StatsHourlyItem } from '../../../apis/statshourlyApi';
 import './css/ChartAreaTotalByHour.css';
 
 const ChartAreaTotalByHour = () => {
@@ -11,7 +11,7 @@ const ChartAreaTotalByHour = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetchStatsHourlyApi();
+        const res = await fetchStatsHourly();
 
         // total 값에 index+1을 더해서 시각적으로 보이게 만듦 (테스트용)
         //const values = res.map((item: StatsHourlyItem, index: number) => item.total + (index + 1));
