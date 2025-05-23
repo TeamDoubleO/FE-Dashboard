@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { fetchStatsHourly, StatsHourlyItem } from '../../../apis/statshourlyApi';
+import { fetchStatsHourly, StatsHourlyItem } from '../../../apis/dashStatsApi';
 import './css/ChartAreaTotalByHour.css';
 
 const ChartAreaTotalByHour = () => {

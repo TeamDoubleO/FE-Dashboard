@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './css/SearchFilter.css';
-import { fetchBuildings, fetchAreas } from '../../../apis/hospitalApi';
-import type { Area } from '../../../apis/hospitalApi';
+import { fetchBuildings, fetchAreas } from '../../../apis/dashPassApi';
+import type { Area } from '../../../apis/dashPassApi';
 
 const userTypes = ['전체', '환자', '보호자', '방문객'];
 const periodOptions = [

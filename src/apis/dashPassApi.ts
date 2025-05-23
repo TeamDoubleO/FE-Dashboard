@@ -28,7 +28,7 @@ export const fetchBuildings = async (): Promise<Building[]> => {
   return res.data.data;
 };
 
-// 건물 ID 기반 구역 목록 조회 (Path Parameter 방식)
+// 건물 ID 기반 구역 목록 조회
 export const fetchAreas = async (buildingId: number): Promise<Area[]> => {
   console.log('fetchAreas 호출:', buildingId);
   const res = await axiosWithAuthorization.get<ApiResponse<Area[]>>(
