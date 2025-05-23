@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './css/SearchFilter.css';
-import { fetchBuildings, fetchAreas } from '../../../apis/hospitalApi';
-import type { Area } from '../../../apis/hospitalApi';
+import { fetchBuildings, fetchAreas } from '../../../apis/dashPassApi';
+import type { Area } from '../../../apis/dashPassApi';
 
 const userTypes = ['전체', '환자', '보호자', '방문객'];
 const periodOptions = [
@@ -170,9 +170,6 @@ const SearchFilter = ({ onApply }: SearchFilterProps) => {
 
   const isAllBuildingsSelected =
     buildings.length > 0 && selectedBuildingIds.length === buildings.length;
-
-  //const minRange = 7;
-
 
   // 어제 날짜 (오늘 기준 -1일)
   const getYesterday = () => {

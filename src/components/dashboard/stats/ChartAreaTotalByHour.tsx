@@ -1,13 +1,35 @@
+import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
+import { fetchStatsHourly, StatsHourlyItem } from '../../../apis/dashStatsApi';
 import './css/ChartAreaTotalByHour.css';
 
 const ChartAreaTotalByHour = () => {
-  const labels = Array.from({ length: 24 }, (_, i) => `${i}시`);
-  const fixedData = [
-    32, 28, 24, 25, 19, 25, 21, 22, 20, 28, 32, 29,
-    31, 27, 22, 24, 30, 26, 24, 26, 24, 32, 30, 28,
-  ];
+  const [hourlyData, setHourlyData] = useState<number[]>([]);
+  const [hourLabels, setHourLabels] = useState<string[]>([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await fetchStatsHourly();
+
+        // total 값에 index+1을 더해서 시각적으로 보이게 만듦 (테스트용)
+        //const values = res.map((item: StatsHourlyItem, index: number) => item.total + (index + 1));
+        const values = res.map((item: StatsHourlyItem) => item.total);
+        const labels = res.map((item: StatsHourlyItem) => `${item.hour}시`);
+
+        console.log('[DEBUG] adjusted values:', values);
+        console.log('[DEBUG] hour labels:', labels);
+
+        setHourlyData(values);
+        setHourLabels(labels);
+      } catch (error) {
+        console.error('시간대별 출입 수 데이터를 불러오는 데 실패했습니다:', error);
+      }
+    };
+
+    load();
+  }, []);
 
   const areaOptions: ApexOptions = {
     chart: {
@@ -20,9 +42,15 @@ const ChartAreaTotalByHour = () => {
       width: 2,
     },
     xaxis: {
-      categories: labels,
+      categories: hourLabels,
       labels: {
         rotate: -45,
+        style: { fontSize: '11px' },
+      },
+    },
+    yaxis: {
+      min: 0,
+      labels: {
         style: { fontSize: '11px' },
       },
     },
@@ -39,7 +67,7 @@ const ChartAreaTotalByHour = () => {
         padding: 4,
         borderRadius: 2,
         backgroundColor: '#1c6765',
-      }
+      },
     },
     markers: {
       size: 4,
@@ -75,7 +103,7 @@ const ChartAreaTotalByHour = () => {
     <div className="chart-area-total-by-hour-card">
       <Chart
         options={areaOptions}
-        series={[{ name: '총 출입 수', data: fixedData }]}
+        series={[{ name: '총 출입 수', data: hourlyData }]}
         type="area"
         height={440}
       />

@@ -1,8 +1,8 @@
 import { useEffect, useState, useMemo } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { fetchBuildings } from '../../../apis/hospitalApi';
-import type { Building } from '../../../apis/hospitalApi';
+import { fetchBuildings } from '../../../apis/dashPassApi';
+import type { Building } from '../../../apis/dashPassApi';
 import './css/ChartLineBuildingAccess.css';
 
 const ChartLineBuildingAccess = () => {

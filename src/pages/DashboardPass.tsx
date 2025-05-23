@@ -5,7 +5,7 @@ import ChartGrowPassRequest from '../components/dashboard/pass/ChartGrowPassRequ
 import SearchFilter from '../components/dashboard/pass/SearchFilter';
 import ChartLinePassByTeam from '../components/dashboard/pass/ChartLinePassByTeam';
 import { fetchAdminData } from '../apis/adminApi';
-import Loading from '../components/loading/Loading'; // ✅ 추가
+import Loading from '../components/loading/Loading';
 import './css/DashboardPass.css';
 
 interface FilterOptions {
@@ -37,9 +37,9 @@ const DashboardPass = () => {
       <Layout>
         <div className="dashboard-pass-container">
           {!hospitalId && (
-            <div className="dashboard-loading-overlay">
+            <div className="dashboard-pass-loading-overlay">
               <Loading />
-              <div className="dashboard-loading-text">병원 정보를 불러오는 중입니다...</div>
+              <div className="dashboard-pass-loading-text">병원 정보를 불러오는 중입니다...</div>
             </div>
           )}
 
