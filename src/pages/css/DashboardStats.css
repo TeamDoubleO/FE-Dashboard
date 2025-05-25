@@ -1,0 +1,30 @@
+.dashboard-stats-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+
+.dashboard-stats-container > :first-child {
+  grid-column: span 2;
+}
+
+.dashboard-pass-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 99%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-pass-loading-text {
+  margin-top: 150px;
+  font-size: 1.2rem;
+  color: #333;
+}

@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
@@ -45,7 +47,7 @@ const IssueDetailPage = () => {
             <div className="issue-detail-title">출입증 발급 내역 상세 조회</div>
             <DefaultTable 
                 tableTitles={issuesColums} 
-                data={issue}
+                data={[issue]}
             />
             <br /><br />
             <div className="issue-detail-title">출입 구역</div>

@@ -1,0 +1,38 @@
+.dashboard-pass-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.dashboard-pass-row {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.dashboard-pass-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dashboard-pass-col > * {
+  width: 100%;
+}
+
+.scrollable-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+.dashboard-pass-loading-text {
+  margin-top: 150px;
+  font-size: 1.2rem;
+  color: #333;
+}

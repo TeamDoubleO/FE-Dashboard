@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/AdminMyPageTable.css';
+import './css/AdminMypageTable.css';
 
 interface HospitalInfoProps {
   affiliation: string;

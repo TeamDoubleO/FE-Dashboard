@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Dashboard from './pages/Dashboard';
 import DashboardSample from './pages/DashboardSample';
 import DashboardSample2 from './pages/DashboardSample2';
+import DashboardStats from './pages/DashboardStats'
+import DashboardPass from './pages/DashboardPass'
 import AdminLogin from './pages/AdminLogin';
 import AdminMyPage from './pages/AdminMypage';
 import IssueHistoryPage from './pages/IssueHistoryPage';
@@ -27,6 +29,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboardsample" element={<DashboardSample />} />
           <Route path="/dashboardsample2" element={<DashboardSample2 />} />
+          <Route path="/dashboardstats" element={<DashboardStats />} />
+          <Route path="/dashboardpass" element={<DashboardPass />} />
           <Route path="/admin/mypage" element={<AdminMyPage />} />
           <Route path="/issuehistory" element={<IssueHistoryPage />} />
           <Route path="/issuedetail/:requestId" element={<IssueDetailPage />} />

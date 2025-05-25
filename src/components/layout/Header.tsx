@@ -32,7 +32,7 @@ const Header = () => {
           src={Logo}
           alt="KEYWE Logo"
           className="header-logo-image"
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate('/dashboardstats')}
         />
       </div>
 

@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
+import Loading from '../components/loading/Loading';
 import './css/Dashboard.css';
 
 const Dashboard = () => {
@@ -7,7 +8,10 @@ const Dashboard = () => {
     <>
       <Background />
       <Layout>
-        <div className="sample-box">샘플 박스</div>
+        <div className="dashboard-container">
+          <Loading />
+          <div className="sample-box">샘플 박스</div>
+        </div>
       </Layout>
     </>
   );
