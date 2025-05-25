@@ -5,7 +5,6 @@ import Background from '../components/background/Background.tsx';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
 
-import { useLocation } from "react-router-dom";
 import './css/IssueDetailPage.css';
 
 const breadCrumbInfo = {
