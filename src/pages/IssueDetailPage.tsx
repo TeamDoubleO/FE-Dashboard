@@ -3,6 +3,7 @@ import Background from '../components/background/Background.tsx';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
 
+import { useLocation } from "react-router-dom";
 import './css/IssueDetailPage.css';
 
 const breadCrumbInfo = {
@@ -12,30 +13,24 @@ const breadCrumbInfo = {
 
 const issuesColums = [
     { key: "memberId", label: "사용자 ID" },
-    { key: "name", label: "발급자명"},
+    { key: "memberName", label: "발급자명"},
     { key: "passId", label: "출입증 ID" },
-    { key: "districtId", label: "출입 구역 ID"},
-    { key: "startTime", label: "출입 시작 시간"},
-    { key: "endTime", label: "출입 만료 시간"},
+    { key: "startedAt", label: "출입 시작 시간"},
+    { key: "expiredAt", label: "출입 마감 시간"},
+    { key: "visitCategory", label: "출입 구분"},
 ]
 
-const issue = [
-  {memberId: "1234", name: "채민주", passId: "5678", districtId: "A010101", startTime: "2025-04-01", endTime: "2025-04-01"},
-]
-
-const districtsColums = [
-    { key: "districtName", label: "구역 명" },
-    { key: "districtDescription", label: "구역 설명" },
-]
-
-const districts = [
-    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"},
-    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"},
-    { districtName: "암병동", districtDescription: "서울 성모병원 3층에 위치한 암병동"}
+const areasColums = [
+    { key: "areaCode", label: "구역 ID" },
+    { key: "areaName", label: "구역 명" },
 ]
 
 
 const IssueDetailPage = () => {
+  const location = useLocation();
+  const data = location.state;
+  const issue = [data]; 
+  const areasInfo = data?.areas || [];
 
   return (
     <>
@@ -55,8 +50,8 @@ const IssueDetailPage = () => {
             <br /><br />
             <div className="issue-detail-title">출입 구역</div>
             <DefaultTable 
-                tableTitles={districtsColums} 
-                data={districts}
+                tableTitles={areasColums} 
+                data={areasInfo}
             />
         </div>
       </Layout>

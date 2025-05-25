@@ -14,7 +14,8 @@ const entryHistoryColums = [
     { key: "memberId", label: "사용자 ID" },
     { key: "memberName", label: "출입자명" },
     { key: "passId", label: "출입증 ID" },
-    { key: "areaId", label: "출입 구역 ID"},
+    { key: "areaId", label: "출입 구역 ID" },
+    { key: "areaName", label: "출입 구역명" },
     { key: "createdDt", label: "출입 시간"},
 ]
 
@@ -27,13 +28,12 @@ const EntryHistoryPage = () => {
   const [entryHistory, setEntryHistory] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await fetchEntryPassLog(); 
-        setEntryHistory(data.content); 
+        const data = await fetchEntryPassLog(currentPage - 1); 
+        setEntryHistory(data.content);
         setTotalPages(data.totalPages);
       } catch (err) {
         console.error("출입 내역 불러오기 실패:", err);
@@ -41,12 +41,7 @@ const EntryHistoryPage = () => {
     };
 
     loadData();
-  }, []);
-
-  const paginatedData = entryHistory.slice(
-      (currentPage - 1) * itemsPerPage,
-      currentPage * itemsPerPage
-  );
+  }, [currentPage]);
 
   return (
     <>
@@ -61,11 +56,11 @@ const EntryHistoryPage = () => {
             <div className="entry-history-title">출입 내역 조회</div>
             <DefaultTable 
                 tableTitles={entryHistoryColums} 
-                data={paginatedData}
+                data={entryHistory}
             />
             <Pagination
               currentPage={currentPage}
-              totalPages={Math.ceil(entryHistory.length / itemsPerPage)}
+              totalPages={totalPages} 
               onPageChange={setCurrentPage}
             />
         </div>
