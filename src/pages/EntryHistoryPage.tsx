@@ -10,13 +10,13 @@ import './css/EntryHistoryPage.css';
 
 import { fetchEntryPassLog } from "../apis/passApi.ts";
 
-const entryHistoryColums = [
-    { key: "memberId", label: "사용자 ID" },
+const entryHistoryColumns = [
+    { key: "memberId", label: "사용자ID" },
     { key: "memberName", label: "출입자명" },
-    { key: "passId", label: "출입증 ID" },
-    { key: "areaId", label: "출입 구역 ID" },
-    { key: "areaName", label: "출입 구역명" },
-    { key: "createdDt", label: "출입 시간"},
+    { key: "passId", label: "출입증ID" },
+    { key: "areaId", label: "출입구역ID" },
+    { key: "areaName", label: "출입구역명" },
+    { key: "createdDt", label: "출입시간"},
 ]
 
 const breadCrumbInfo = {
@@ -55,7 +55,7 @@ const EntryHistoryPage = () => {
           <div className="entry-history-container">
             <div className="entry-history-title">출입 내역 조회</div>
             <DefaultTable 
-                tableTitles={entryHistoryColums} 
+                tableTitles={entryHistoryColumns} 
                 data={entryHistory}
             />
             <Pagination

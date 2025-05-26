@@ -11,13 +11,13 @@ import './css/IssueHistoryPage.css';
 
 import { fetchIssuedPassLog } from "../apis/passApi.ts";
 
-const issueColums = [
-    { key: "memberId", label: "사용자 ID" },
+const issueColumns = [
+    { key: "memberId", label: "사용자ID" },
     { key: "memberName", label: "발급자명"},
-    { key: "passId", label: "출입증 ID" },
-    { key: "startedAt", label: "출입 시작 시간"},
-    { key: "expiredAt", label: "출입 마감 시간"},
-    { key: "visitCategory", label: "출입 구분"},
+    { key: "passId", label: "출입증ID" },
+    { key: "startAt", label: "출입시작시간"},
+    { key: "expiredAt", label: "출입마감시간"},
+    { key: "visitCategory", label: "출입구분"},
 ]
 
 const breadCrumbInfo = {
@@ -57,7 +57,7 @@ const IssueHistoryPage = () => {
           <div className="issue-history-container">
             <div className="issue-history-title">출입증 발급 내역 조회</div>
             <DefaultTable 
-                tableTitles={issueColums} 
+                tableTitles={issueColumns} 
                 data={issueHistory}
                 onRowClick={(row) => navigate(`/issuedetail/${row.passId}`, { state: row })}
             />
