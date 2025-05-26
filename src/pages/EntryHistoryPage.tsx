@@ -14,7 +14,7 @@ const entryHistoryColumns = [
     { key: "memberId", label: "사용자ID" },
     { key: "memberName", label: "출입자명" },
     { key: "passId", label: "출입증ID" },
-    { key: "areaId", label: "출입구역ID" },
+    { key: "areaCode", label: "출입구역ID" },
     { key: "areaName", label: "출입구역명" },
     { key: "createdDt", label: "출입시간"},
 ]

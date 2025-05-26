@@ -1,0 +1,46 @@
+.pending-detail-container {
+    width: fit-content;
+    margin-top: 0px;
+    margin-left: 10px;
+    padding: 20px;
+    background-color: transparent;
+  }
+  
+  .pending-detail-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #333;
+  }
+
+  .pending-detail-table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    color: black
+  }
+
+  .pending-detail-table {
+    width: 100%;            
+    table-layout: auto;       
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  .pending-detail-table td {
+    padding: 10px 26px;
+    border: 1px solid #ccc;
+    width: 180px;
+    background-color: #fff;
+  }
+  
+  .pending-detail-table-label-cell {
+    font-weight: bold;
+    background-color: #f9f9f9;
+    width: 180px;
+  }
+
+  .pending-detail-table td:nth-child(2) {
+    width: 700px; 
+  }
