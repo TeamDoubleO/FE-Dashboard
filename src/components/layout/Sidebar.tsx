@@ -9,10 +9,11 @@ import { MdOutlineKey, MdSettings } from 'react-icons/md';
 import SidebarButtonGray from '../../assets/images/KEYWE-sidebar-button-gray.png';
 import SidebarButtonGreen from '../../assets/images/KEYWE-sidebar-button-green.png';
 
-type Group = 'dashboard' | 'access' | 'admin';
+type Group = 'dashboard' | 'access' | 'pending' | 'admin';
 interface GroupOpenState {
   dashboard: boolean;
   access: boolean;
+  pending: boolean;
   admin: boolean;
 }
 
@@ -21,8 +22,10 @@ const menuPathMap: Record<string, string> = {
   '출입증 발급 현황': '/dashboardpass',
   '출입 내역': '/entryhistory',
   '출입증 발급 내역': '/issuehistory',
+  '출입증 발급 신청 내역': '/passpending',
   '관리자 정보': '/admin/mypage',
   '출입 정책': '/admin/accesspolicy',
+  
 };
 
 const Sidebar = () => {
@@ -40,6 +43,7 @@ const Sidebar = () => {
     return saved ? JSON.parse(saved) : {
       dashboard: true,
       access: true,
+      pending: true,
       admin: true,
     };
   });
@@ -89,6 +93,12 @@ const Sidebar = () => {
     } else if (location.pathname.includes('/changepassword') || location.pathname.includes('/admin')) {
       matchedMenu = '관리자 정보';
       matchedGroup = 'admin';
+    } else if (location.pathname.includes('/passpending')) {
+      matchedMenu = '출입증 발급 신청 내역';
+      matchedGroup = 'pending';
+    } else if (location.pathname.includes('/pendingdetail')) {
+      matchedMenu = '출입증 발급 신청 내역';
+      matchedGroup = 'pending';
     }
 
     if (matchedMenu && matchedGroup) {
@@ -141,6 +151,50 @@ const Sidebar = () => {
                   key={menu}
                   className={selectedMenu === menu ? 'selected' : ''}
                   onClick={() => handleMenuClick(menu, 'dashboard')}
+                >
+                  {isOpen ? (
+                    <span>{menu}</span>
+                  ) : (
+                    <div className="sidebar-collapsed-item" data-tooltip={menu}>
+                      <img
+                        src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
+                        alt="sidebar-icon"
+                        className="sidebar-collapsed-image"
+                      />
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+
+        {/* 출입증 발급 신청 그룹 */}
+        <li className="sidebar-menu-group">
+          <div
+            className={`sidebar-menu-title ${selectedGroup === 'pending' ? 'sidebar-group-selected' : ''}`}
+            onClick={() => toggleGroup('pending')}
+          >
+            {!isOpen ? (
+              <div className="sidebar-collapsed-item" data-tooltip="출입증 발급">
+                <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.pending ? 'sidebar-menu-open' : ''}`} />
+              </div>
+            ) : (
+              <>
+                <span>출입증 발급</span>
+                <span style={{ marginLeft: 'auto' }}>
+                  {groupOpen.pending ? <IoChevronDownOutline className="sidebar-chevron-icon" /> : <IoChevronForward className="sidebar-chevron-icon" />}
+                </span>
+              </>
+            )}
+          </div>
+          {groupOpen.pending && (
+            <ul>
+              {['출입증 발급 신청 내역'].map(menu => (
+                <li
+                  key={menu}
+                  className={selectedMenu === menu ? 'selected' : ''}
+                  onClick={() => handleMenuClick(menu, 'pending')}
                 >
                   {isOpen ? (
                     <span>{menu}</span>

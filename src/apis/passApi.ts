@@ -23,3 +23,32 @@ export const fetchIssuedPassLog = async (page: number) => {
         throw error;
     }
 };
+
+// 출입증 신청 요청 목록 조회
+export const fetchPassPending = async (page: number) => {
+    try {
+        const res = await axiosWithAuthorization.get(`/pass-logs/pending?page=${page}`);
+        console.log("출입증 신청 요청 목록 조회:", res.data);
+        return res.data.data;
+    } catch (error) {
+        console.log("출입증 신청 요청 목록 조회 오류:", error); 
+        throw error;
+    }
+};
+
+// 보호자 신청 승인/거절
+export const reviewPass = async (passId: number, issuanceStatus: "ISSUED" | "REJECTED") => {
+    try {
+        const res = await axiosWithAuthorization.post(`/pass-logs`, {
+            passId,
+            issuanceStatus,
+        });
+        console.log("보호자 신청 승인/거절:", res.data);
+        return res.data.data;
+    } catch (error) {
+        console.log("보호자 신청 승인/거절 오류:", error); 
+        throw error;
+    }
+};
+
+
