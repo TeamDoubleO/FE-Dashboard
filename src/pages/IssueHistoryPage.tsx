@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import Layout from '../components/layout/Layout';
@@ -9,15 +9,15 @@ import Pagination from '../components/table/Pagination.tsx';
 
 import './css/IssueHistoryPage.css';
 
-import issues from '../mocks/issuesData';
+import { fetchIssuedPassLog } from "../apis/passApi.ts";
 
-const issueColums = [
-    { key: "memberId", label: "사용자 ID" },
-    { key: "name", label: "발급자명"},
-    { key: "passId", label: "출입증 ID" },
-    { key: "districtId", label: "출입 구역 ID"},
-    { key: "startTime", label: "출입 시작 시간"},
-    { key: "endTime", label: "출입 만료 시간"},
+const issueColumns = [
+    { key: "memberId", label: "사용자ID" },
+    { key: "memberName", label: "발급자명"},
+    { key: "passId", label: "출입증ID" },
+    { key: "startAt", label: "출입시작시간"},
+    { key: "expiredAt", label: "출입마감시간"},
+    { key: "visitCategory", label: "출입구분"},
 ]
 
 const breadCrumbInfo = {
@@ -26,14 +26,25 @@ const breadCrumbInfo = {
 };
 
 const IssueHistoryPage = () => {
-  const navigate = useNavigate();
+  const [issueHistory, setIssueHistory] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
 
-  const paginatedData = issues.slice(
-      (currentPage - 1) * itemsPerPage,
-      currentPage * itemsPerPage
-  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+      const loadData = async () => {
+        try {
+          const data = await fetchIssuedPassLog(currentPage - 1); 
+          setIssueHistory(data.content);
+          setTotalPages(data.totalPages);
+        } catch (err) {
+          console.error("출입 내역 불러오기 실패:", err);
+        }
+      };
+  
+      loadData();
+    }, [currentPage]);
 
   return (
     <>
@@ -46,13 +57,13 @@ const IssueHistoryPage = () => {
           <div className="issue-history-container">
             <div className="issue-history-title">출입증 발급 내역 조회</div>
             <DefaultTable 
-                tableTitles={issueColums} 
-                data={paginatedData}
+                tableTitles={issueColumns} 
+                data={issueHistory}
                 onRowClick={(row) => navigate(`/issuedetail/${row.passId}`, { state: row })}
             />
             <Pagination
               currentPage={currentPage}
-              totalPages={Math.ceil(issues.length / itemsPerPage)}
+              totalPages={totalPages}
               onPageChange={setCurrentPage}
             />
         </div>

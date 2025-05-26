@@ -12,29 +12,26 @@ const breadCrumbInfo = {
     currentSidebarItem: "출입증 발급 내역"
 };
 
-const issuesColums = [
-    { key: "memberId", label: "사용자 ID" },
-    { key: "name", label: "발급자명"},
-    { key: "passId", label: "출입증 ID" },
-    { key: "districtId", label: "출입 구역 ID"},
-    { key: "startTime", label: "출입 시작 시간"},
-    { key: "endTime", label: "출입 만료 시간"},
+const issuesColumn = [
+    { key: "memberId", label: "사용자ID" },
+    { key: "memberName", label: "발급자명"},
+    { key: "passId", label: "출입증ID" },
+    { key: "startAt", label: "출입시작시간"},
+    { key: "expiredAt", label: "출입마감시간"},
+    { key: "visitCategory", label: "출입구분"},
 ]
 
-const districtsColums = [
-    { key: "districtName", label: "구역 명" },
-    { key: "districtDescription", label: "구역 설명" },
-]
-
-const districts = [
-    { districtName: "본관 1층", districtDescription: "강북삼성병원 본관 1층 로비"},
-    { districtName: "본관 암병동 303호", districtDescription: "강북삼성병원 본관 3층에 위치한 암병동"},
+const areasColumns = [
+    { key: "areaCode", label: "구역 ID" },
+    { key: "areaName", label: "구역 명" },
 ]
 
 
 const IssueDetailPage = () => {
   const location = useLocation();
-  const issue = location.state;
+  const data = location.state;
+  const issue = [data]; 
+  const areasInfo = data?.areas || [];
 
   return (
     <>
@@ -48,14 +45,14 @@ const IssueDetailPage = () => {
           <div className="issue-detail-container">
             <div className="issue-detail-title">출입증 발급 내역 상세 조회</div>
             <DefaultTable 
-                tableTitles={issuesColums} 
-                data={[issue]}
+                tableTitles={issuesColumn} 
+                data={issue}
             />
             <br /><br />
             <div className="issue-detail-title">출입 구역</div>
             <DefaultTable 
-                tableTitles={districtsColums} 
-                data={districts}
+                tableTitles={areasColumns} 
+                data={areasInfo}
             />
         </div>
       </Layout>
