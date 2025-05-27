@@ -33,7 +33,13 @@ const EntryHistoryPage = () => {
     const loadData = async () => {
       try {
         const data = await fetchEntryPassLog(currentPage - 1); 
-        setEntryHistory(data.content);
+        const transformed = data.content.map((item: any) => ({
+          ...item,
+          createdDt: item.createdDt
+            ? item.createdDt.slice(0, 19).replace("T", " ")
+            : "-"
+        }));
+        setEntryHistory(transformed);
         setTotalPages(data.totalPages);
       } catch (err) {
         console.error("출입 내역 불러오기 실패:", err);

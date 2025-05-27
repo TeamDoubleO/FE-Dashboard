@@ -35,8 +35,17 @@ const IssueHistoryPage = () => {
   useEffect(() => {
       const loadData = async () => {
         try {
-          const data = await fetchIssuedPassLog(currentPage - 1); 
-          setIssueHistory(data.content);
+          const data = await fetchIssuedPassLog(currentPage - 1);
+          const transformed = data.content.map((item: any) => ({
+            ...item,
+            startAt: item.startAt
+              ? item.startAt.slice(0, 19).replace("T", " ")
+              : "-",
+            expiredAt: item.expiredAt
+              ? item.expiredAt.slice(0, 19).replace("T", " ")
+              : "-"
+          })); 
+          setIssueHistory(transformed);
           setTotalPages(data.totalPages);
         } catch (err) {
           console.error("출입 내역 불러오기 실패:", err);
