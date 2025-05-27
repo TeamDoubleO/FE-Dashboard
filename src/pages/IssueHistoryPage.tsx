@@ -6,6 +6,7 @@ import Background from '../components/background/Background';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import DefaultTable from '../components/table/DefaultTable';
 import Pagination from '../components/table/Pagination.tsx';
+import Loading from "../components/loading/Loading.tsx";
 
 import './css/IssueHistoryPage.css';
 
@@ -29,11 +30,13 @@ const IssueHistoryPage = () => {
   const [issueHistory, setIssueHistory] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
       const loadData = async () => {
+        setIsLoading(true)
         try {
           const data = await fetchIssuedPassLog(currentPage - 1);
           const transformed = data.content.map((item: any) => ({
@@ -56,6 +59,8 @@ const IssueHistoryPage = () => {
           setTotalPages(data.totalPages);
         } catch (err) {
           console.error("출입 내역 불러오기 실패:", err);
+        } finally {
+          setIsLoading(false)
         }
       };
   
@@ -70,6 +75,12 @@ const IssueHistoryPage = () => {
             currentPage={breadCrumbInfo.currentPage}
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
+        {isLoading ? (
+          <div className="dashboard-pass-loading-overlay">
+            <Loading />
+            <div className="dashboard-pass-loading-text">출입증 발급 정보를 불러오는 중입니다...</div>
+          </div>
+        ) : (
           <div className="issue-history-container">
             <div className="issue-history-title">출입증 발급 내역 조회</div>
             <DefaultTable 
@@ -83,6 +94,7 @@ const IssueHistoryPage = () => {
               onPageChange={setCurrentPage}
             />
         </div>
+        )}
       </Layout>
     </>
   );

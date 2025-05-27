@@ -5,6 +5,7 @@ import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
 import Breadcrumb_ from '../components/breadcrumb/Breadcrumb_.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
+import Loading from "../components/loading/Loading.tsx";
 
 import './css/PatientDetailPage.css';
 
@@ -34,8 +35,10 @@ const PatientDetailPage = () => {
     const data = location.state;
     const patient = [data]; 
     const [guardianList, setGuardianList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); 
 
     const loadData = async () => {
+        setIsLoading(true);
         try {
             if (data.patientId) {
                 const guardianData = await fetchPatientGuardians(data.patientId);
@@ -43,6 +46,8 @@ const PatientDetailPage = () => {
             }
         } catch (err) {
             console.error("보호자 목록 불러오기 실패:", err);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -59,7 +64,12 @@ const PatientDetailPage = () => {
             firstSidebarItem={breadCrumbInfo.firstSidebarItem}
             secondSidebarItem={breadCrumbInfo.secondSidebarItem}
         />
-
+        {isLoading ? (
+        <div className="dashboard-pass-loading-overlay">
+            <Loading />
+            <div className="dashboard-pass-loading-text">환자별 보호자 목록을 불러오는 중입니다...</div>
+        </div>
+        ) : (
         <div className="patient-detail-container">
             <div className="patient-detail-title">환자별 보호자 목록 조회</div>
             <DefaultTable 
@@ -73,6 +83,7 @@ const PatientDetailPage = () => {
                 data={guardianList}
             />
         </div>
+        )}
         </Layout>
     </>
     );

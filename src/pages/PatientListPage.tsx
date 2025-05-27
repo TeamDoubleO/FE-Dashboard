@@ -6,6 +6,7 @@ import Background from '../components/background/Background';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import DefaultTable from '../components/table/DefaultTable';
 import Pagination from '../components/table/Pagination.tsx';
+import Loading from "../components/loading/Loading.tsx";
 
 import './css/PatientListPage.css';
 
@@ -28,26 +29,30 @@ const PatientListPage = () => {
   const [patientList, setPatientList] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true); 
 
   const navigate = useNavigate();
 
   useEffect(() => {
-      const loadData = async () => {
-        try {
-          const data = await fetchPatientList(currentPage - 1); 
-          const transformed = data.content.map((item: any) => ({
-            ...item,
-            sex: item.sex === "MALE" ? "남성" : item.sex === "FEMALE" ? "여성" : "-"
-          }));
-          setPatientList(transformed);
-          setTotalPages(data.totalPages);
-        } catch (err) {
-          console.error("출입 내역 불러오기 실패:", err);
-        }
-      };
-  
-      loadData();
-    }, [currentPage]);
+    const loadData = async () => {
+    setIsLoading(true);
+      try {
+        const data = await fetchPatientList(currentPage - 1); 
+        const transformed = data.content.map((item: any) => ({
+          ...item,
+          sex: item.sex === "MALE" ? "남성" : item.sex === "FEMALE" ? "여성" : "-"
+        }));
+        setPatientList(transformed);
+        setTotalPages(data.totalPages);
+      } catch (err) {
+        console.error("출입 내역 불러오기 실패:", err);
+      } finally {
+        setIsLoading(false);
+      }
+  };
+
+    loadData();
+  }, [currentPage]);
 
   return (
     <>
@@ -57,6 +62,12 @@ const PatientListPage = () => {
             currentPage={breadCrumbInfo.currentPage}
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
+        {isLoading ? (
+          <div className="dashboard-pass-loading-overlay">
+            <Loading />
+            <div className="dashboard-pass-loading-text">환자 정보를 불러오는 중입니다...</div>
+          </div>
+        ) : (
           <div className="patient-list-container">
             <div className="patient-list-title">환자 전체 목록 조회</div>
             <DefaultTable 
@@ -69,7 +80,8 @@ const PatientListPage = () => {
               totalPages={totalPages}
               onPageChange={setCurrentPage}
             />
-        </div>
+          </div>
+        )}
       </Layout>
     </>
   );

@@ -1,7 +1,7 @@
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
 import Breadcrumb_ from '../components/breadcrumb/Breadcrumb_';
-import AdminPasswordBox from '../components/Admin/AdminPasswordBox';
+import AdminPasswordBox from '../components/_Admin/AdminPasswordBox';
 
 const breadCrumbInfo = {
   currentPage: "관리페이지",

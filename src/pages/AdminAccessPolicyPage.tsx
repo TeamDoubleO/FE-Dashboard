@@ -1,7 +1,7 @@
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
-import AdminAccessPolicyBox from '../components/Admin/AdminAccessPolicyBox';
+import AdminAccessPolicyBox from '../components/_Admin/AdminAccessPolicyBox';
 
 const breadCrumbInfo = {
   currentPage: "관리페이지",
@@ -9,6 +9,7 @@ const breadCrumbInfo = {
 };
 
 const AdminAccessPolicyPage = () => {
+
   return (
     <>
       <Background />

@@ -1,5 +1,5 @@
 import './css/AdminLogin.css';
-import AdminLoginBox from '../components/Admin/AdminLoginBox';
+import AdminLoginBox from '../components/_Admin/AdminLoginBox';
 
 const AdminLogin = () => {
   const handleLogin = () => {

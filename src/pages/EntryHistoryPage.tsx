@@ -5,6 +5,7 @@ import Background from '../components/background/Background.tsx';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
 import Pagination from '../components/table/Pagination.tsx';
+import Loading from "../components/loading/Loading.tsx";
 
 import './css/EntryHistoryPage.css';
 
@@ -28,9 +29,11 @@ const EntryHistoryPage = () => {
   const [entryHistory, setEntryHistory] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
+    setIsLoading(true);
       try {
         const data = await fetchEntryPassLog(currentPage - 1); 
         const transformed = data.content.map((item: any) => ({
@@ -43,6 +46,8 @@ const EntryHistoryPage = () => {
         setTotalPages(data.totalPages);
       } catch (err) {
         console.error("출입 내역 불러오기 실패:", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -57,7 +62,12 @@ const EntryHistoryPage = () => {
             currentPage={breadCrumbInfo.currentPage}
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
-
+        {isLoading ? (
+          <div className="dashboard-pass-loading-overlay">
+            <Loading />
+            <div className="dashboard-pass-loading-text">출입 내역 정보를 불러오는 중입니다...</div>
+          </div>
+        ) : (
           <div className="entry-history-container">
             <div className="entry-history-title">출입 내역 조회</div>
             <DefaultTable 
@@ -70,6 +80,7 @@ const EntryHistoryPage = () => {
               onPageChange={setCurrentPage}
             />
         </div>
+      )}
       </Layout>
     </>
   );

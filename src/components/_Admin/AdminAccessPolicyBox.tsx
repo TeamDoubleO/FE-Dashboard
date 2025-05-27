@@ -11,7 +11,6 @@ const AdminAccessPolicyBox = () => {
   const [hour, setHour] = useState('09');
   const [minute, setMinute] = useState('00');
   const [maxGuardians, setMaxGuardians] = useState('1');
-
   const [initialData, setInitialData] = useState<any>(null);
 
   useEffect(() => {
@@ -25,7 +24,7 @@ const AdminAccessPolicyBox = () => {
         setMaxGuardians(data.maxGuardianNum.toString());
       } catch (error: unknown) {
         console.error("출입 신청 정책 로딩 오류", error);
-      }
+      } 
     };
 
     getPolicy();
@@ -64,9 +63,11 @@ const AdminAccessPolicyBox = () => {
     }
   };
 
-  if (!initialData) return <div>로딩 중...</div>;
+  if (!initialData) 
+    return <div>로딩 중...</div>
 
   return (
+  <>
     <div className="admin-access-policy-container">
       <h2 className="admin-access-policy-title">현재 출입 신청 정책</h2>
       <div className="admin-access-policy-current-box">
@@ -161,6 +162,7 @@ const AdminAccessPolicyBox = () => {
         </ReusableButton>
       </div>
     </div>
+  </>
   );
 };
 
