@@ -9,11 +9,12 @@ import { MdOutlineKey, MdSettings } from 'react-icons/md';
 import SidebarButtonGray from '../../assets/images/KEYWE-sidebar-button-gray.png';
 import SidebarButtonGreen from '../../assets/images/KEYWE-sidebar-button-green.png';
 
-type Group = 'dashboard' | 'access' | 'pending' | 'admin';
+type Group = 'dashboard' | 'access' | 'pending' | 'patient' | 'admin';
 interface GroupOpenState {
   dashboard: boolean;
   access: boolean;
   pending: boolean;
+  patient: boolean;
   admin: boolean;
 }
 
@@ -23,6 +24,7 @@ const menuPathMap: Record<string, string> = {
   '출입 내역': '/entryhistory',
   '출입증 발급 내역': '/issuehistory',
   '출입증 발급 신청 내역': '/passpending',
+  '환자 정보 조회': '/patientlist',
   '관리자 정보': '/admin/mypage',
   '출입 정책': '/admin/accesspolicy',
   
@@ -44,6 +46,7 @@ const Sidebar = () => {
       dashboard: true,
       access: true,
       pending: true,
+      patient: true,
       admin: true,
     };
   });
@@ -99,7 +102,14 @@ const Sidebar = () => {
     } else if (location.pathname.includes('/pendingdetail')) {
       matchedMenu = '출입증 발급 신청 내역';
       matchedGroup = 'pending';
+    } else if (location.pathname.includes('/patientlist')) {
+      matchedMenu = '환자 정보 조회';
+      matchedGroup = 'patient';
+    } else if (location.pathname.includes('/patientdetail')) {
+      matchedMenu = '환자 정보 조회';
+      matchedGroup = 'patient';
     }
+
 
     if (matchedMenu && matchedGroup) {
       setSelectedMenu(matchedMenu);
@@ -169,6 +179,50 @@ const Sidebar = () => {
           )}
         </li>
 
+        {/* 환자 정보 그룹 */}
+        <li className="sidebar-menu-group">
+          <div
+            className={`sidebar-menu-title ${selectedGroup === 'patient' ? 'sidebar-group-selected' : ''}`}
+            onClick={() => toggleGroup('patient')}
+          >
+            {!isOpen ? (
+              <div className="sidebar-collapsed-item" data-tooltip="환자 정보">
+                <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.patient ? 'sidebar-menu-open' : ''}`} />
+              </div>
+            ) : (
+              <>
+                <span>환자 정보</span>
+                <span style={{ marginLeft: 'auto' }}>
+                  {groupOpen.patient ? <IoChevronDownOutline className="sidebar-chevron-icon" /> : <IoChevronForward className="sidebar-chevron-icon" />}
+                </span>
+              </>
+            )}
+          </div>
+          {groupOpen.patient && (
+            <ul>
+              {['환자 정보 조회'].map(menu => (
+                <li
+                  key={menu}
+                  className={selectedMenu === menu ? 'selected' : ''}
+                  onClick={() => handleMenuClick(menu, 'patient')}
+                >
+                  {isOpen ? (
+                    <span>{menu}</span>
+                  ) : (
+                    <div className="sidebar-collapsed-item" data-tooltip={menu}>
+                      <img
+                        src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
+                        alt="sidebar-icon"
+                        className="sidebar-collapsed-image"
+                      />
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+
         {/* 출입증 발급 신청 그룹 */}
         <li className="sidebar-menu-group">
           <div
@@ -213,19 +267,19 @@ const Sidebar = () => {
           )}
         </li>
 
-        {/* 출입 관련 그룹 */}
+        {/* 출입 로그 그룹 */}
         <li className="sidebar-menu-group">
           <div
             className={`sidebar-menu-title ${selectedGroup === 'access' ? 'sidebar-group-selected' : ''}`}
             onClick={() => toggleGroup('access')}
           >
             {!isOpen ? (
-              <div className="sidebar-collapsed-item" data-tooltip="출입 관련">
+              <div className="sidebar-collapsed-item" data-tooltip="출입 로그">
                 <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.access ? 'sidebar-menu-open' : ''}`} />
               </div>
             ) : (
               <>
-                <span>출입 관련</span>
+                <span>출입 로그</span>
                 <span style={{ marginLeft: 'auto' }}>
                   {groupOpen.access ? <IoChevronDownOutline className="sidebar-chevron-icon" /> : <IoChevronForward className="sidebar-chevron-icon" />}
                 </span>

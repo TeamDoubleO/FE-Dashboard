@@ -13,8 +13,8 @@ import IssueDetailPage from './pages/IssueDetailPage';
 import PrivateRoute from './contexts/PrivateRoute';
 import AdminPasswordPage from './pages/AdminPasswordPage';
 import AdminAccessPolicyPage from './pages/AdminAccessPolicyPage';
-// import PatientListPage from './pages/PatientListPage';
-// import PatientDetailPage from './pages/PatientDetailPage';
+import PatientListPage from './pages/PatientListPage';
+import PatientDetailPage from './pages/PatientDetailPage';
 import PassPendingPage from './pages/PassPendingPage';
 import PendingDetailPage from './pages/PendingDetailPage';
 
@@ -41,8 +41,8 @@ function App() {
           <Route path="/issuehistory" element={<IssueHistoryPage />} />
           <Route path="/issuedetail/:requestId" element={<IssueDetailPage />} />
           <Route path="/entryhistory" element={<EntryHistoryPage />} />
-          {/* <Route path="/patientlist" element={<PatientListPage />} />
-          <Route path="/patientdetail/:patientId" element={<PatientDetailPage />} /> */}
+          <Route path="/patientlist" element={<PatientListPage />} />
+          <Route path="/patientdetail/:patientId" element={<PatientDetailPage />} />
           <Route path="/adminpassword" element={<AdminPasswordPage />} />
           <Route path="/admin/accesspolicy" element={<AdminAccessPolicyPage />} />
 
