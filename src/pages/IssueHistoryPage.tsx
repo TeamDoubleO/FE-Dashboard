@@ -43,6 +43,13 @@ const IssueHistoryPage = () => {
               : "-",
             expiredAt: item.expiredAt
               ? item.expiredAt.slice(0, 19).replace("T", " ")
+              : "-",
+            visitCategory: item.visitCategory === "PATIENT" 
+              ? "환자" 
+              : item.visitCategory === "GUARDIAN" 
+              ? "보호자" 
+              : item.visitCategory === "TEMPORARY" 
+              ? "임시출입"
               : "-"
           })); 
           setIssueHistory(transformed);
