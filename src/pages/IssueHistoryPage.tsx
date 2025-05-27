@@ -21,8 +21,8 @@ const issueColumns = [
 ]
 
 const breadCrumbInfo = {
-    currentPage: "출입 관련",
-    currentSidebarItem: "출입증 발급 내역"
+    currentPage: "출입 로그",
+    currentSidebarItem: "출입증 발급 내역 조회"
 };
 
 const IssueHistoryPage = () => {

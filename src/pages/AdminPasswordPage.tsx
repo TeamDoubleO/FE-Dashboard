@@ -1,11 +1,12 @@
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
-import Breadcrumb from '../components/breadcrumb/Breadcrumb';
+import Breadcrumb_ from '../components/breadcrumb/Breadcrumb_';
 import AdminPasswordBox from '../components/Admin/AdminPasswordBox';
 
 const breadCrumbInfo = {
   currentPage: "관리페이지",
-  currentSidebarItem: "비밀번호 변경"
+  firstSidebarItem: "관리자 정보",
+  secondSidebarItem: "비밀번호 변경",
 };
 
 const AdminPasswordPage = () => {
@@ -13,9 +14,10 @@ const AdminPasswordPage = () => {
     <>
       <Background />
       <Layout>
-        <Breadcrumb
+        <Breadcrumb_
           currentPage={breadCrumbInfo.currentPage}
-          currentSidebarItem={breadCrumbInfo.currentSidebarItem}
+          firstSidebarItem={breadCrumbInfo.firstSidebarItem}
+          secondSidebarItem={breadCrumbInfo.secondSidebarItem}
         />
         <div className="admin-password-page-wrapper">
           <AdminPasswordBox />

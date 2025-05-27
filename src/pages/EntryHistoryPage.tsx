@@ -20,8 +20,8 @@ const entryHistoryColumns = [
 ]
 
 const breadCrumbInfo = {
-    currentPage: "출입 관련",
-    currentSidebarItem: "출입 내역"
+    currentPage: "출입 로그",
+    currentSidebarItem: "출입 내역 조회"
 };
 
 const EntryHistoryPage = () => {

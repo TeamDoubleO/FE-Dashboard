@@ -2,14 +2,15 @@ import { useLocation } from 'react-router-dom';
 
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
-import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
+import Breadcrumb_ from '../components/breadcrumb/Breadcrumb_.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
 
 import './css/IssueDetailPage.css';
 
 const breadCrumbInfo = {
-    currentPage: "출입 관련",
-    currentSidebarItem: "출입증 발급 내역"
+    currentPage: "출입 로그",
+    firstSidebarItem: "출입증 발급 내역 조회",
+    secondSidebarItem: "출입증 발급 내역 상세 조회",
 };
 
 const issuesColumn = [
@@ -37,9 +38,10 @@ const IssueDetailPage = () => {
     <>
       <Background />
       <Layout>
-        <Breadcrumb 
+        <Breadcrumb_ 
             currentPage={breadCrumbInfo.currentPage}
-            currentSidebarItem={breadCrumbInfo.currentSidebarItem}
+            firstSidebarItem={breadCrumbInfo.firstSidebarItem}
+            secondSidebarItem={breadCrumbInfo.secondSidebarItem}
         />
 
           <div className="issue-detail-container">

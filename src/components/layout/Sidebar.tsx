@@ -23,7 +23,7 @@ const menuPathMap: Record<string, string> = {
   '출입증 발급 현황': '/dashboardpass',
   '출입 내역': '/entryhistory',
   '출입증 발급 내역': '/issuehistory',
-  '출입증 발급 신청 내역': '/passpending',
+  '출입증 신청 내역': '/passpending',
   '환자 정보 조회': '/patientlist',
   '관리자 정보': '/admin/mypage',
   '출입 정책': '/admin/accesspolicy',
@@ -97,10 +97,10 @@ const Sidebar = () => {
       matchedMenu = '관리자 정보';
       matchedGroup = 'admin';
     } else if (location.pathname.includes('/passpending')) {
-      matchedMenu = '출입증 발급 신청 내역';
+      matchedMenu = '출입증 신청 내역';
       matchedGroup = 'pending';
     } else if (location.pathname.includes('/pendingdetail')) {
-      matchedMenu = '출입증 발급 신청 내역';
+      matchedMenu = '출입증 신청 내역';
       matchedGroup = 'pending';
     } else if (location.pathname.includes('/patientlist')) {
       matchedMenu = '환자 정보 조회';
@@ -244,7 +244,7 @@ const Sidebar = () => {
           </div>
           {groupOpen.pending && (
             <ul>
-              {['출입증 발급 신청 내역'].map(menu => (
+              {['출입증 신청 내역'].map(menu => (
                 <li
                   key={menu}
                   className={selectedMenu === menu ? 'selected' : ''}

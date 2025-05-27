@@ -20,7 +20,7 @@ const pendingColumns = [
 
 const breadCrumbInfo = {
     currentPage: "출입증 발급",
-    currentSidebarItem: "출입증 발급 신청 내역"
+    currentSidebarItem: "출입증 신청 내역 조회"
 };
 
 const PassPendingPage = () => {
@@ -48,7 +48,7 @@ const PassPendingPage = () => {
       setPendingList(transformed);
       setTotalPages(data.totalPages);
     } catch (err) {
-      console.error("출입증 발급 신청 내역 불러오기 실패:", err);
+      console.error("출입증 신청 내역 불러오기 실패:", err);
     }
   };
 
@@ -85,7 +85,7 @@ const PassPendingPage = () => {
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
           <div className="pass-pending-container">
-            <div className="pass-pending-title">출입증 발급 신청 내역 조회</div>
+            <div className="pass-pending-title">출입증 신청 내역 조회</div>
             <ApproveTable 
                 tableTitles={pendingColumns} 
                 data={pendingList}

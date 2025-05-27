@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
-import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
+import Breadcrumb_ from '../components/breadcrumb/Breadcrumb_.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
 
 import './css/PatientDetailPage.css';
@@ -12,7 +12,8 @@ import { fetchPatientGuardians } from "../apis/patientApi.ts";
 
 const breadCrumbInfo = {
     currentPage: "환자 정보",
-    currentSidebarItem: "환자별 보호자 목록 조회"
+    firstSidebarItem: "환자 전체 목록 조회",
+    secondSidebarItem: "환자별 보호자 목록 조회",
 };
 
 const patientColumn = [
@@ -53,9 +54,10 @@ const PatientDetailPage = () => {
     <>
         <Background />
         <Layout>
-        <Breadcrumb 
+        <Breadcrumb_ 
             currentPage={breadCrumbInfo.currentPage}
-            currentSidebarItem={breadCrumbInfo.currentSidebarItem}
+            firstSidebarItem={breadCrumbInfo.firstSidebarItem}
+            secondSidebarItem={breadCrumbInfo.secondSidebarItem}
         />
 
         <div className="patient-detail-container">

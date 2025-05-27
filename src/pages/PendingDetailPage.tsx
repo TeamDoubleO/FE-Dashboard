@@ -2,14 +2,15 @@ import { useLocation } from 'react-router-dom';
 
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
-import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
+import Breadcrumb_ from '../components/breadcrumb/Breadcrumb_.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
 
 import './css/PendingDetailPage.css';
 
 const breadCrumbInfo = {
     currentPage: "출입증 발급",
-    currentSidebarItem: "출입증 발급 신청 내역"
+    firstSidebarItem: "출입증 신청 내역 조회",
+    secondSidebarItem: "출입증 신청 내역 상세 조회",
 };
 
 const pendingColumn = [
@@ -28,13 +29,14 @@ const PendingDetailPage = () => {
     <>
       <Background />
       <Layout>
-        <Breadcrumb 
+        <Breadcrumb_ 
             currentPage={breadCrumbInfo.currentPage}
-            currentSidebarItem={breadCrumbInfo.currentSidebarItem}
+            firstSidebarItem={breadCrumbInfo.firstSidebarItem}
+            secondSidebarItem={breadCrumbInfo.secondSidebarItem}
         />
 
         <div className="pending-detail-container">
-            <div className="pending-detail-title">출입증 발급 신청 내역 상세 조회</div>
+            <div className="pending-detail-title">출입증 신청 내역 상세 조회</div>
             <DefaultTable 
                 tableTitles={pendingColumn} 
                 data={pending}
