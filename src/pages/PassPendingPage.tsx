@@ -12,8 +12,8 @@ import './css/PassPendingPage.css';
 import { fetchPassPending, reviewPass } from "../apis/passApi.ts";
 
 const pendingColumns = [
-    { key: "passId", label: "보호자ID"},
-    { key: "guardianName", label: "보호자명" },
+    { key: "passId", label: "신청자ID"},
+    { key: "guardianName", label: "신청자명" },
     { key: "patientCode", label: "환자번호" },
     { key: "createdDt", label: "발급요청일자"},
 ]

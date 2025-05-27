@@ -22,8 +22,8 @@ const issuesColumn = [
 ]
 
 const areasColumns = [
-    { key: "areaCode", label: "구역 ID" },
-    { key: "areaName", label: "구역 명" },
+    { key: "areaCode", label: "구역ID" },
+    { key: "areaName", label: "구역명" },
 ]
 
 

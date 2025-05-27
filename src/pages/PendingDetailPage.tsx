@@ -13,8 +13,8 @@ const breadCrumbInfo = {
 };
 
 const pendingColumn = [
-    { key: "passId", label: "보호자ID"},
-    { key: "guardianName", label: "보호자명" },
+    { key: "passId", label: "신청자ID"},
+    { key: "guardianName", label: "신청자명" },
     { key: "patientCode", label: "환자번호" },
     { key: "createdDt", label: "발급요청일자"},
 ]
@@ -40,7 +40,7 @@ const PendingDetailPage = () => {
                 data={pending}
             />
             <br /><br />
-            <div className="pending-detail-title">보호자 상세 정보</div>
+            <div className="pending-detail-title">신청자 상세 정보</div>
                 <div className="pending-detail-table-wrapper">
                     <table className="pending-detail-table">
                         <tbody>
@@ -49,11 +49,11 @@ const PendingDetailPage = () => {
                             <td>{data.patientName}</td>
                         </tr>
                         <tr>
-                            <td className="pending-detail-table-label-cell">보호자명</td>
+                            <td className="pending-detail-table-label-cell">신청자명</td>
                             <td>{data.guardianName}</td>
                         </tr>
                         <tr>
-                            <td className="pending-detail-table-label-cell">보호자 연락처</td>
+                            <td className="pending-detail-table-label-cell">신청자 연락처</td>
                             <td>{data.guardianContact}</td>
                         </tr>
                         </tbody>
