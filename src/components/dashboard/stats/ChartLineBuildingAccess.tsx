@@ -79,7 +79,7 @@ const ChartLineBuildingAccess = () => {
         style: { fontSize: '11px' },
       },
     },
-    colors: ['#5AC66F', '#235D3A', '#0d6728', '#626262', '#82c7e2', '#2e7d7a', ],
+    colors: ['#5AC66F', '#235D3A', '#2e7d7a','#82c7e2', '#0d6728', '#626262' ],
     title: {
       text: '건물별 요일 출입 추이',
       align: 'left',
