@@ -26,3 +26,80 @@ export const fetchStatsHourly = async (): Promise<StatsHourlyItem[]> => {
     throw new Error(message);
   }
 };
+
+export interface StatsDailyItem {
+  date: string;
+  total: number;
+}
+
+// 일별 출입 통계 조회 API
+export const fetchStatsDaily = async (): Promise<StatsDailyItem[]> => {
+  try {
+    console.log("[DEBUG] GET 요청 시작: /pass-logs/period/daily");
+
+    const res = await axiosWithAuthorization.get(
+      `/pass-logs/period/daily`,
+      { withCredentials: true }
+    );
+
+    console.log("[DEBUG] 응답 데이터:", res.data);
+    return res.data.data;
+  } catch (error) {
+    const err = error as AxiosError<{ data?: { message?: string } }>;
+    const message = err.response?.data?.data?.message ?? "일별 출입 통계를 불러올 수 없습니다.";
+    console.error("[ERROR] 일별 출입 통계 요청 실패:", message);
+    throw new Error(message);
+  }
+};
+
+export interface StatsWeeklyItem {
+  startDate: string;
+  endDate: string;
+  entered: number;
+}
+
+// 주별 출입 통계 조회 API
+export const fetchStatsWeekly = async (): Promise<StatsWeeklyItem[]> => {
+  try {
+    console.log("[DEBUG] GET 요청 시작: /pass-logs/period/weekly");
+
+    const res = await axiosWithAuthorization.get(
+      `/pass-logs/period/weekly`,
+      { withCredentials: true }
+    );
+
+    console.log("[DEBUG] 응답 데이터:", res.data);
+    return res.data.data;
+  } catch (error) {
+    const err = error as AxiosError<{ data?: { message?: string } }>;
+    const message = err.response?.data?.data?.message ?? "주별 출입 통계를 불러올 수 없습니다.";
+    console.error("[ERROR] 주별 출입 통계 요청 실패:", message);
+    throw new Error(message);
+  }
+};
+
+export interface StatsMonthlyItem {
+  year: number;
+  month: number;
+  total: number;
+}
+
+// 월별 출입 통계 조회 API
+export const fetchStatsMonthly = async (): Promise<StatsMonthlyItem[]> => {
+  try {
+    console.log("[DEBUG] GET 요청 시작: /pass-logs/period/monthly");
+
+    const res = await axiosWithAuthorization.get(
+      `/pass-logs/period/monthly`,
+      { withCredentials: true }
+    );
+
+    console.log("[DEBUG] 응답 데이터:", res.data);
+    return res.data.data;
+  } catch (error) {
+    const err = error as AxiosError<{ data?: { message?: string } }>;
+    const message = err.response?.data?.data?.message ?? "월별 출입 통계를 불러올 수 없습니다.";
+    console.error("[ERROR] 월별 출입 통계 요청 실패:", message);
+    throw new Error(message);
+  }
+};

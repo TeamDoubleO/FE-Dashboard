@@ -105,7 +105,7 @@ const ChartAreaTotalByHour = () => {
         options={areaOptions}
         series={[{ name: '총 출입 수', data: hourlyData }]}
         type="area"
-        height={440}
+        height={460}
       />
     </div>
   );
