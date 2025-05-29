@@ -103,3 +103,30 @@ export const fetchStatsMonthly = async (): Promise<StatsMonthlyItem[]> => {
     throw new Error(message);
   }
 };
+
+export interface StatsDailyByCategoryItem {
+  date: string;
+  day: string;
+  category: 'PATIENT' | 'GUARDIAN' | string;
+  total: number;
+}
+
+// 요일별 출입 통계 조회 API
+export const fetchStatsDailyByCategory = async (): Promise<StatsDailyByCategoryItem[]> => {
+  try {
+    console.log("[DEBUG] GET 요청 시작: /pass-logs/category");
+
+    const res = await axiosWithAuthorization.get(
+      `/pass-logs/category`,
+      { withCredentials: true }
+    );
+
+    console.log("[DEBUG] 응답 데이터:", res.data);
+    return res.data.data;
+  } catch (error) {
+    const err = error as AxiosError<{ data?: { message?: string } }>;
+    const message = err.response?.data?.data?.message ?? "요일별 출입 통계를 불러올 수 없습니다.";
+    console.error("[ERROR] 요일별 출입 통계 요청 실패:", message);
+    throw new Error(message);
+  }
+};
