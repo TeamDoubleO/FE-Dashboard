@@ -130,3 +130,30 @@ export const fetchStatsDailyByCategory = async (): Promise<StatsDailyByCategoryI
     throw new Error(message);
   }
 };
+
+export interface StatsDailyByBuildingItem {
+  date: string;
+  day: string;
+  buildingName: string;
+  total: number;
+}
+
+// 건물별 출입 통계 조회 API
+export const fetchStatsDailyByBuilding = async (): Promise<StatsDailyByBuildingItem[]> => {
+  try {
+    console.log("[DEBUG] GET 요청 시작: /pass-logs/building");
+
+    const res = await axiosWithAuthorization.get(
+      `/pass-logs/building`,
+      { withCredentials: true }
+    );
+
+    console.log("[DEBUG] 응답 데이터:", res.data);
+    return res.data.data;
+  } catch (error) {
+    const err = error as AxiosError<{ data?: { message?: string } }>;
+    const message = err.response?.data?.data?.message ?? "건물별 출입 통계를 불러올 수 없습니다.";
+    console.error("[ERROR] 건물별 출입 통계 요청 실패:", message);
+    throw new Error(message);
+  }
+};
