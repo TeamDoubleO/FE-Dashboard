@@ -15,8 +15,6 @@ const ChartBarUserAccess = () => {
     const fetchData = async () => {
       try {
         const data: StatsDailyByCategoryItem[] = await fetchStatsDailyByCategory();
-
-        // 날짜별로 환자/보호자 분류
         const grouped: {
           [date: string]: {
             day: string;
@@ -33,7 +31,6 @@ const ChartBarUserAccess = () => {
           if (item.category === 'GUARDIAN') grouped[item.date].guardian = item.total;
         });
 
-        // 최신순 정렬
         const sortedDates = Object.keys(grouped).sort();
 
         const xLabels: string[] = [];
