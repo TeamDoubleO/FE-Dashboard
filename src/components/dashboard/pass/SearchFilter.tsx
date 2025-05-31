@@ -171,6 +171,10 @@ const SearchFilter = ({ onApply }: SearchFilterProps) => {
   const isAllBuildingsSelected =
     buildings.length > 0 && selectedBuildingIds.length === buildings.length;
 
+  //const minRange = 7;
+
+
+
   // 어제 날짜 (오늘 기준 -1일)
   const getYesterday = () => {
     const date = new Date();
