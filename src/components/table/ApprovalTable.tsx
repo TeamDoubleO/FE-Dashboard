@@ -32,7 +32,14 @@ const ApproveTable: React.FC<ApproveTableProps> = ({
           </tr>
         </thead>
         <tbody>
-          {data.map((row) => (
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={tableTitles.length + 2} style={{ textAlign: 'center', padding: '12px', color: '#888' }}>
+                조회된 결과가 존재하지 않습니다.
+              </td>
+            </tr>
+          ) : (
+          data.map((row) => (
             <tr
               key={row[idKey]}
               onClick={() => onRowClick?.(row)}
@@ -62,8 +69,9 @@ const ApproveTable: React.FC<ApproveTableProps> = ({
                 </button>
               </td>
             </tr>
-          ))}
-        </tbody>
+          ))
+        )}
+      </tbody>
       </table>
     </div>
   );

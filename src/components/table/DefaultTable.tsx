@@ -25,7 +25,14 @@ const DefaultTable: React.FC<CheckEditTableProps> = ({ tableTitles, data, onRowC
             </tr>
           </thead>
           <tbody>
-            {data.map((row, idx) => (
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={tableTitles.length + 2} style={{ textAlign: 'center', padding: '12px', color: '#888' }}>
+                조회된 결과가 존재하지 않습니다.
+              </td>
+            </tr>
+          ) : (
+            data.map((row, idx) => (
               <tr
                 key={idx}
                 onClick={() => onRowClick?.(row)} 
@@ -36,8 +43,9 @@ const DefaultTable: React.FC<CheckEditTableProps> = ({ tableTitles, data, onRowC
                 ))}
                 <td></td>
               </tr>
-            ))}
-          </tbody>
+            ))
+          )}
+        </tbody>
         </table>
       </div>
     );
