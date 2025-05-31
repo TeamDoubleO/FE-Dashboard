@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import ReusableInput from '../input/ReusableInput';
-import ReusableButton from '../buttons/ReusableButton';
+import ReusableInput from '../input/ReusableInput.tsx';
+import ReusableButton from '../buttons/ReusableButton.tsx';
 import './css/AdminAccessPolicyBox.css';
 import { AxiosError } from 'axios';
-import { fetchAccessPolicy, updateAccessPolicy } from "../../apis/policyApi";
-import Loading from "..//loading/Loading.tsx";
+import { fetchAccessPolicy, updateAccessPolicy } from "../../apis/policyApi.ts";
+import Loading from "../loading/Loading.tsx";
 
 const AdminAccessPolicyBox = () => {
   const [maxDays, setMaxDays] = useState('2');
@@ -65,9 +65,7 @@ const AdminAccessPolicyBox = () => {
     }
   };
 
-<<<<<<< Updated upstream:src/components/Admin/AdminAccessPolicyBox.tsx
-  if (!initialData) return <div>로딩 중...</div>;
-=======
+
   if (!initialData) {
   return (
     <div className="dashboard-pass-loading-overlay">
@@ -76,7 +74,6 @@ const AdminAccessPolicyBox = () => {
     </div>
   );
 }
->>>>>>> Stashed changes:src/components/_Admin/AdminAccessPolicyBox.tsx
 
   return (
     <div className="admin-access-policy-container">

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
-import AdminMypageTable from '../components/Admin/AdminMypageTable';
+import AdminMypageTable from '../components/_Admin/AdminMypageTable';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import { fetchAdminData } from '../apis/adminApi';
 import ReusableButton from '../components/buttons/ReusableButton';
