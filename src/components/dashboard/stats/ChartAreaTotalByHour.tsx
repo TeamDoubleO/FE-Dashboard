@@ -86,7 +86,7 @@ const ChartAreaTotalByHour = () => {
       },
     },
     title: {
-      text: '시간대별 총 출입 수',
+      text: '시간대별 출입 현황',
       align: 'left',
       margin: 40,
       offsetX: 10,

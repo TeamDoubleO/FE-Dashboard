@@ -61,7 +61,7 @@ const ChartSyncedDailyByPeriod = () => {
 
   return (
     <div className="chart-synced-total-by-period-group chart-synced-total-by-period-toolbar">
-      <h3 className="chart-subtitle">날짜별 출입 추이</h3>
+      <h3 className="chart-subtitle">날짜별 (금일 제외 최대 14일)</h3>
       <Chart
         options={options}
         series={[{ name: '출입 A', data: dailySeries }]}

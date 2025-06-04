@@ -52,7 +52,7 @@ const ChartSyncedWeeklyByPeriod = () => {
 
   return (
     <div className="chart-synced-total-by-period-group">
-      <h3 className="chart-subtitle">주별 출입 추이</h3>
+      <h3 className="chart-subtitle">주별 (금주 제외 최대 5주)</h3>
       <Chart
         options={options}
         series={[{ name: '출입 B', data: seriesData }]}

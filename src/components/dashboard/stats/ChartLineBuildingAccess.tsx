@@ -47,6 +47,8 @@ const ChartLineBuildingAccess = () => {
         setSeries(finalSeries);
       } catch (err) {
         console.error('건물별 출입 통계 로딩 실패:', err);
+        setCategories([]);
+        setSeries([]);
       }
     };
 
@@ -79,9 +81,9 @@ const ChartLineBuildingAccess = () => {
         style: { fontSize: '11px' },
       },
     },
-    colors: ['#5AC66F', '#235D3A', '#2e7d7a','#82c7e2', '#0d6728', '#626262' ],
+    colors: ['#5AC66F', '#235D3A', '#2e7d7a', '#82c7e2', '#0d6728', '#626262'],
     title: {
-      text: '건물별 요일 출입 추이',
+      text: '건물별 출입 현황',
       align: 'left',
       margin: 40,
       offsetX: 10,
@@ -99,9 +101,12 @@ const ChartLineBuildingAccess = () => {
 
   return (
     <div className="chart-line-building-access-card">
-      {series.length > 0 && (
-        <Chart options={lineOptions} series={series} type="line" height={400} />
-      )}
+      <Chart
+        options={lineOptions}
+        series={series.length > 0 ? series : [{ name: '데이터 없음', data: [] }]}
+        type="line"
+        height={400}
+      />
     </div>
   );
 };
