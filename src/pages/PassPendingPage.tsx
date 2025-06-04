@@ -33,7 +33,13 @@ const PassPendingPage = () => {
   const loadData = async () => {
     try {
       const data = await fetchPassPending(currentPage - 1); 
-      setPendingList(data.content);
+      const transformed = data.content.map((item: any) => ({
+        ...item,
+        createdDt: item.createdDt?.replace('T', '  '),
+        startAt: item.startAt?.replace('T', '  '),
+        expiredDt: item.expiredDt?.replace('T', '  '),
+      }));
+      setPendingList(transformed);
       setTotalPages(data.totalPages);
     } catch (err) {
       console.error("출입증 발급 신청 내역 불러오기 실패:", err);

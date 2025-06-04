@@ -36,7 +36,13 @@ const IssueHistoryPage = () => {
       const loadData = async () => {
         try {
           const data = await fetchIssuedPassLog(currentPage - 1); 
-          setIssueHistory(data.content);
+          const transformed = data.content.map((item: any) => ({
+            ...item,
+            startAt: item.startAt?.replace('T', '  '),
+            expiredAt: item.expiredAt?.replace('T', '  '),
+            visitCategory : item.visitCategory === "PATIENT" ? "환자" : item.visitCategory === "GUARDIAN" ? "보호자" : "-",
+          }));
+          setIssueHistory(transformed);
           setTotalPages(data.totalPages);
         } catch (err) {
           console.error("출입 내역 불러오기 실패:", err);
