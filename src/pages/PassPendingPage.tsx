@@ -37,7 +37,7 @@ const PassPendingPage = () => {
         ...item,
         createdDt: item.createdDt?.replace('T', '  '),
         startAt: item.startAt?.replace('T', '  '),
-        expiredDt: item.expiredDt?.replace('T', '  '),
+        expiredAt: item.expiredAt?.replace('T', '  '),
       }));
       setPendingList(transformed);
       setTotalPages(data.totalPages);
