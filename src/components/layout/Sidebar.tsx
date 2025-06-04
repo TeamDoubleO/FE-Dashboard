@@ -4,7 +4,11 @@ import './css/Sidebar.css';
 import { FaBars } from 'react-icons/fa';
 import { IoChevronForward, IoChevronDownOutline } from 'react-icons/io5';
 import { IoMdHome } from 'react-icons/io';
-import { MdOutlineKey, MdSettings } from 'react-icons/md';
+import { MdSettings } from 'react-icons/md';
+
+import { MdPersonalInjury } from "react-icons/md";
+import { MdBookOnline } from "react-icons/md";
+import { MdTextSnippet } from "react-icons/md";
 
 import SidebarButtonGray from '../../assets/images/KEYWE-sidebar-button-gray.png';
 import SidebarButtonGreen from '../../assets/images/KEYWE-sidebar-button-green.png';
@@ -187,7 +191,7 @@ const Sidebar = () => {
           >
             {!isOpen ? (
               <div className="sidebar-collapsed-item" data-tooltip="환자 정보">
-                <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.patient ? 'sidebar-menu-open' : ''}`} />
+                <MdPersonalInjury className={`sidebar-menu-icon ${groupOpen.patient ? 'sidebar-menu-open' : ''}`} />
               </div>
             ) : (
               <>
@@ -231,7 +235,7 @@ const Sidebar = () => {
           >
             {!isOpen ? (
               <div className="sidebar-collapsed-item" data-tooltip="출입증 발급">
-                <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.pending ? 'sidebar-menu-open' : ''}`} />
+                <MdBookOnline className={`sidebar-menu-icon ${groupOpen.pending ? 'sidebar-menu-open' : ''}`} />
               </div>
             ) : (
               <>
@@ -275,7 +279,7 @@ const Sidebar = () => {
           >
             {!isOpen ? (
               <div className="sidebar-collapsed-item" data-tooltip="출입 로그">
-                <MdOutlineKey className={`sidebar-menu-icon ${groupOpen.access ? 'sidebar-menu-open' : ''}`} />
+                <MdTextSnippet className={`sidebar-menu-icon ${groupOpen.access ? 'sidebar-menu-open' : ''}`} />
               </div>
             ) : (
               <>
