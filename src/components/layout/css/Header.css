@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 40px;
   position: relative;
   overflow: hidden;
 }
@@ -18,7 +18,7 @@
 .header-logo-image {
   height: 40px;
   cursor: pointer;
-  margin-left: -12px;
+  margin-left: -30px;
 }
 
 .header-more-icon {
@@ -33,14 +33,43 @@
   margin-right: 50px;
 }
 
-.logout-button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 14px;
-  text-decoration: underline;
-  cursor: pointer;
-  padding: 0;
-  font-weight: 400;
-  transition: color 0.2s ease;
+
+.header-user-wrapper {
+  position: absolute;
+  right: 200px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+
+
+.header-user-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.header-user-icon {
+  font-size: 35px; 
+  color: #c7c7c7;
+}
+
+.header-user-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.4;
+  font-size: 14px;
+  font-weight: 600;
+  color: #c7c7c7;
+}
+
+.header-user-subtext {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b2b2b2;
+}
+

@@ -19,3 +19,23 @@
     overflow-y: auto;
   }
   
+
+.logout-button {
+  background: linear-gradient(to bottom right, #1d5e3a, #104b10);
+  border: none;
+  color: white;
+  font-size: 15px;
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: linear-gradient(to bottom right, #104b10, #1d5e3a );
+  transform: translateY(-1px);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+}
