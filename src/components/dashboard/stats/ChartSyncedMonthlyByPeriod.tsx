@@ -61,7 +61,7 @@ const ChartSyncedMonthlyByPeriod = () => {
 
   return (
     <div className="chart-synced-total-by-period-group">
-      <h3 className="chart-subtitle">월별 출입 추이</h3>
+      <h3 className="chart-subtitle">월별 (금월 제외 최대 12개월)</h3>
       <Chart
         options={options}
         series={[{ name: '출입 C', data: monthlySeries }]}

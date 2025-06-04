@@ -65,6 +65,7 @@ const ChartBarUserAccess = () => {
     fetchData();
   }, []);
 
+
   const options: ApexOptions = {
     chart: {
       type: 'bar',
@@ -72,7 +73,7 @@ const ChartBarUserAccess = () => {
       toolbar: { show: true },
     },
     title: {
-      text: '요일별 사용자 출입 현황 요약',
+      text: '사용자별 출입 현황',
       align: 'left',
       margin: 40,
       offsetX: 10,
