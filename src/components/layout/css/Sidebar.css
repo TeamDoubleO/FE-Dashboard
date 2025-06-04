@@ -181,8 +181,8 @@
 .sidebar-collapsed-item:hover::after {
   content: attr(data-tooltip);
   position: absolute;
-  left: 130%;
-  top: 50%;
+  left: 140%;
+  top: 0;
   background-color: rgba(14, 61, 14, 0.689);
   color: #fff;
   padding: 6px 10px;
