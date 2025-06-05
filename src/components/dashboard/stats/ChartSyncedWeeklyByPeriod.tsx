@@ -28,6 +28,8 @@ const ChartSyncedWeeklyByPeriod = () => {
     fetchData();
   }, []);
 
+  const isDarkMode = document.body.classList.contains('dark-mode');
+
   const options: ApexOptions = {
     chart: {
       id: 'chart-weekly',
@@ -43,8 +45,19 @@ const ChartSyncedWeeklyByPeriod = () => {
       type: 'category',
       categories,
       labels: {
-        style: { fontSize: '11px' },
         rotate: -45,
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#fff' : '#000',
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ccc' : '#333',
+        },
       },
     },
     legend: { show: false },

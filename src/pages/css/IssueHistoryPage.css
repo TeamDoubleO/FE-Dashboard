@@ -1,14 +1,22 @@
-  .issue-history-container {
-    width: fit-content;
-    margin-top: 0px;
-    margin-left: 10px;
-    padding: 20px;
-    background-color: transparent;
-  }
-  
-  .issue-history-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #333;
-  }
+.issue-history-container {
+  width: fit-content;
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.issue-history-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+body.dark-mode .issue-history-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .issue-history-title {
+  color: #f0f0f0;
+}

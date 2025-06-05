@@ -41,7 +41,12 @@
   border-radius: 6px;
   background-color: white;
   color: #111;
-  min-width: 75px;
+  min-width: 80px;
+}
+
+.admin-access-policy-input,
+.admin-access-policy-input-wide {
+  width: 260px;
 }
 
 .admin-access-policy-select-group {
@@ -111,14 +116,45 @@
   margin-top: 20px;
 }
 
-
-.admin-access-policy-input,
-.admin-access-policy-input-wide {
-  width: 220px;
-  min-width: 100px;
-}
-
 .admin-access-policy-section.middle-section {
   padding-top: 16px;
   padding-bottom:16px;
+}
+
+body.dark-mode .admin-access-policy-title {
+  color: #f0f0f0;
+}
+
+body.dark-mode .admin-access-policy-section {
+  background-color: #2c2c2c;
+  border-color: #444;
+}
+
+body.dark-mode .admin-access-policy-label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .admin-access-policy-section input,
+body.dark-mode .admin-access-policy-section select {
+  background-color: #3a3a3a;
+  color: #f0f0f0;
+  border: 1px solid #666;
+}
+
+body.dark-mode .admin-access-policy-button {
+  background-color: #1a5e36;
+  color: #fff;
+}
+
+body.dark-mode .admin-access-policy-button:hover {
+  background-color: #144c2b;
+}
+
+body.dark-mode .admin-access-policy-current-box {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+body.dark-mode .admin-access-policy-current-list li {
+  color: #ccc;
 }

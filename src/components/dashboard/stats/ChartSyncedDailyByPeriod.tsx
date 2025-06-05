@@ -37,6 +37,8 @@ const ChartSyncedDailyByPeriod = () => {
     fetchData();
   }, []);
 
+  const isDarkMode = document.body.classList.contains('dark-mode');
+
   const options: ApexOptions = {
     chart: {
       id: 'chart-daily',
@@ -44,7 +46,7 @@ const ChartSyncedDailyByPeriod = () => {
       height: 160,
       toolbar: { show: true },
     },
-    colors: ['#1c6765'],
+    colors: ['#278b88'],
     stroke: { width: 2, curve: 'smooth' },
     markers: { size: 5, hover: { size: 7 } },
     dataLabels: { enabled: false },
@@ -52,8 +54,19 @@ const ChartSyncedDailyByPeriod = () => {
       type: 'category',
       categories: dailyCategories,
       labels: {
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#fff' : '#000',
+        },
         rotate: -45,
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ccc' : '#333',
+        },
       },
     },
     legend: { show: false },

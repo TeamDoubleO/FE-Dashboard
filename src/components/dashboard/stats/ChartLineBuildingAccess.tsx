@@ -10,6 +10,7 @@ import './css/ChartLineBuildingAccess.css';
 const ChartLineBuildingAccess = () => {
   const [series, setSeries] = useState<any[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
+  const [isDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,13 +73,17 @@ const ChartLineBuildingAccess = () => {
       style: {
         fontSize: '11px',
         fontWeight: 'bold',
+        colors: ['#fff'],
       },
     },
     xaxis: {
       categories: categories,
       labels: {
         rotate: -45,
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ccc' : '#000',
+        },
       },
     },
     colors: ['#5AC66F', '#235D3A', '#2e7d7a', '#82c7e2', '#0d6728', '#626262'],
@@ -90,12 +95,23 @@ const ChartLineBuildingAccess = () => {
       style: {
         fontSize: '18px',
         fontWeight: 'bold',
-        color: '#000',
+        color: isDarkMode ? '#fff' : '#000',
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: isDarkMode ? '#aaa' : '#000',
+          fontSize: '11px',
+        },
       },
     },
     legend: {
       position: 'bottom',
       horizontalAlign: 'center',
+      labels: {
+        colors: isDarkMode ? '#eee' : '#000',
+      },
     },
   };
 

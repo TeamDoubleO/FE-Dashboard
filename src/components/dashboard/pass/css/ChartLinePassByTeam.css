@@ -11,4 +11,7 @@
   max-width: 1500px;
 }
 
-
+body.dark-mode .chart-line-pass-by-team-card {
+  background-color: #3A3A3A;
+  color: #f0f0f0;
+}

@@ -7,3 +7,7 @@
   background-color: #E8E8E8; 
   z-index: -1;
 }
+
+body.dark-mode .background-layer {
+  background-color: #1e1e1e;
+}

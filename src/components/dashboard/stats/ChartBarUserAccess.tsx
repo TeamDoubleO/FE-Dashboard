@@ -10,6 +10,9 @@ import {
 const ChartBarUserAccess = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [series, setSeries] = useState<any[]>([]);
+  const [isDarkMode] = useState<boolean>(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,8 +47,7 @@ const ChartBarUserAccess = () => {
           const label = `${dayNumber}일 ${day}요일`;
           xLabels.push(label);
 
-          const visitorCount = Math.floor(Math.random() * 51) + 150; 
-
+          const visitorCount = Math.floor(Math.random() * 51) + 150;
           patients.push(patient);
           guardians.push(guardian);
           visitors.push(visitorCount);
@@ -65,7 +67,6 @@ const ChartBarUserAccess = () => {
     fetchData();
   }, []);
 
-
   const options: ApexOptions = {
     chart: {
       type: 'bar',
@@ -80,11 +81,25 @@ const ChartBarUserAccess = () => {
       style: {
         fontSize: '18px',
         fontWeight: 'bold',
-        color: '#000',
+        color: isDarkMode ? '#fff' : '#000',
       },
     },
     xaxis: {
       categories: categories,
+      labels: {
+        style: {
+          colors: isDarkMode ? '#ccc' : '#000',
+          fontSize: '11px',
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: isDarkMode ? '#ccc' : '#000',
+          fontSize: '11px',
+        },
+      },
     },
     colors: ['#82c7e2', '#2e7d7a', '#235D3A'],
     dataLabels: {
@@ -101,7 +116,7 @@ const ChartBarUserAccess = () => {
             style: {
               fontSize: '14px',
               fontWeight: 600,
-              color: '#000',
+              color: isDarkMode ? '#fff' : '#000',
             },
           },
         },
@@ -110,6 +125,9 @@ const ChartBarUserAccess = () => {
     legend: {
       position: 'bottom',
       horizontalAlign: 'center',
+      labels: {
+        colors: isDarkMode ? '#eee' : '#333',
+      },
     },
   };
 

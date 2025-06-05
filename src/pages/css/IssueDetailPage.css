@@ -1,14 +1,22 @@
 .issue-detail-container {
-    width: fit-content;
-    margin-top: 0px;
-    margin-left: 10px;
-    padding: 20px;
-    background-color: transparent;
-  }
-  
-  .issue-detail-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #333;
-  }
+  width: fit-content;
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.issue-detail-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+body.dark-mode .issue-detail-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .issue-detail-title {
+  color: #f0f0f0;
+}

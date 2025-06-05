@@ -13,13 +13,8 @@ const ChartAreaTotalByHour = () => {
       try {
         const res = await fetchStatsHourly();
 
-        // total 값에 index+1을 더해서 시각적으로 보이게 만듦 (테스트용)
-        //const values = res.map((item: StatsHourlyItem, index: number) => item.total + (index + 1));
         const values = res.map((item: StatsHourlyItem) => item.total);
         const labels = res.map((item: StatsHourlyItem) => `${item.hour}시`);
-
-        console.log('[DEBUG] adjusted values:', values);
-        console.log('[DEBUG] hour labels:', labels);
 
         setHourlyData(values);
         setHourLabels(labels);
@@ -30,6 +25,8 @@ const ChartAreaTotalByHour = () => {
 
     load();
   }, []);
+
+  const isDarkMode = document.body.classList.contains('dark-mode');
 
   const areaOptions: ApexOptions = {
     chart: {
@@ -45,13 +42,19 @@ const ChartAreaTotalByHour = () => {
       categories: hourLabels,
       labels: {
         rotate: -45,
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ffffff' : '#000000',
+        },
       },
     },
     yaxis: {
       min: 0,
       labels: {
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ffffff' : '#000000',
+        },
       },
     },
     dataLabels: {
@@ -59,7 +62,7 @@ const ChartAreaTotalByHour = () => {
       offsetY: -10,
       style: {
         fontSize: '12px',
-        colors: ['#000'],
+        colors: [isDarkMode ? '#ffffff' : '#000000'],
       },
       background: {
         enabled: true,
@@ -93,7 +96,7 @@ const ChartAreaTotalByHour = () => {
       style: {
         fontSize: '18px',
         fontWeight: 'bold',
-        color: '#000',
+        color: isDarkMode ? '#ffffff' : '#000000',
       },
     },
     legend: { show: false },

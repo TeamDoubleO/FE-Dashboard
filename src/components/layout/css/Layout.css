@@ -1,24 +1,23 @@
 .layout-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-  }
-  
-  .layout-body {
-    display: flex;
-    height: calc(100vh - 60px);
-    overflow: hidden;
-  }
-  
-  .layout-main {
-    flex: 1;
-    background-color: transparent;
-    padding: 10px;
-    overflow-y: auto;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.layout-body {
+  display: flex;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.layout-main {
+  flex: 1;
+  background-color: transparent;
+  padding: 10px;
+  overflow-y: auto;
+}
 
 .logout-button {
   background: linear-gradient(to bottom right, #1d5e3a, #104b10);
@@ -29,6 +28,7 @@
   border-radius: 7px;
   font-weight: 600;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .logout-button:hover {
