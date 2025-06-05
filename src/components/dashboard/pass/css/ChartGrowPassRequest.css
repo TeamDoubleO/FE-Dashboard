@@ -10,3 +10,7 @@
   min-width: 1300px;
   max-width: 1500px;
 }
+
+body.dark-mode .chart-grow-pass-request-card {
+  background: #3a3a3a;
+}

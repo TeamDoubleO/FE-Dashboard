@@ -1,40 +1,103 @@
-  .admin-mypage-table-title {
-    font-size: 20px;
-    font-weight: 700;
-  }
+.admin-mypage-table-title {
+  font-size: 20px;
+  font-weight: 700;
+}
 
-  .admin-mypage-table-container {
-    width: fit-content;
-    margin-top: 0px;
-    margin-left: 10px;
-    padding: 20px;
-    background-color: transparent;
-    color: black;
-  }
-  
-  .admin-mypage-table {
-    width: 100%;            
-    table-layout: auto;       
-    border-collapse: collapse;
-    background-color: white;
-    border: 1px solid #ccc;
-    margin-top: 10px;
-  }
-  
-  .admin-mypage-table td {
-    padding: 10px 26px;
-    border: 1px solid #ccc;
-    width: 180px;
-    background-color: #fff;
-  }
-  
-  .admin-mypage-table-label-cell {
-    font-weight: bold;
-    background-color: #f9f9f9;
-    width: 180px;
-  }
+.admin-mypage-table-container {
+  width: fit-content;
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 20px;
+  background-color: transparent;
+  color: black;
+}
 
+.admin-mypage-table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  color: black;
+  margin-top: 20px;
+}
 
-  .admin-mypage-table td:nth-child(2) {
-    width: 700px; 
-  }
+.admin-mypage-table {
+  margin-top: 0px;
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+  background-color: white;
+  color: black;
+}
+
+.admin-mypage-table td {
+  padding: 10px 26px;
+  width: 180px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.admin-mypage-table td:first-child {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  border-left: none;
+}
+
+.admin-mypage-table td:last-child {
+  border-right: none;
+}
+
+.admin-mypage-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-mypage-table td:nth-child(2) {
+  width: 700px;
+}
+
+body.dark-mode .admin-mypage-table-container {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode .admin-mypage-table-wrapper {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  color: #f0f0f0;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .admin-mypage-table {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+}
+
+body.dark-mode .admin-mypage-table td {
+  background-color: transparent;
+  color: #f0f0f0;
+  border: none;
+  border-bottom: 1px solid #444;
+  border-right: 1px solid #444;
+}
+
+body.dark-mode .admin-mypage-table td:first-child {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border-left: none;
+}
+
+body.dark-mode .admin-mypage-table td:last-child {
+  border-right: none;
+}
+
+body.dark-mode .admin-mypage-table tr:last-child td {
+  border-bottom: none;
+}
+
+body.dark-mode .admin-mypage-table td:nth-child(2) {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}

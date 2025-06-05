@@ -1,0 +1,21 @@
+.admin-loading-message {
+  padding: 20px;
+}
+
+.admin-password-button-wrapper {
+  margin-left: 30px;
+}
+
+.admin-password-button {
+  color: black;
+  text-decoration: underline;
+}
+
+body.dark-mode .admin-loading-message {
+  color: #f0f0f0;
+}
+
+body.dark-mode .admin-password-button {
+  color: #f0f0f0;
+  text-decoration: underline;
+}

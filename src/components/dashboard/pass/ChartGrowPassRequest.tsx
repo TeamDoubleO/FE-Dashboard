@@ -1,8 +1,7 @@
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import './css/ChartGrowPassRequest.css';
-
-const hours = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, '0')}시`);
 
 const 신청건수 = [
   10, 12, 13, 11, 9, 14, 15, 13, 12, 14, 15, 16,
@@ -14,14 +13,28 @@ const 발급건수 = [
   17, 16, 14, 14, 13, 12, 11, 12, 13, 14, 13, 12,
 ];
 
-
 const ChartGrowPassRequest = () => {
-  const options: ApexOptions = {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       height: 440,
       type: 'area',
       stacked: false,
       toolbar: { show: true },
+      foreColor: isDarkMode ? '#ddd' : undefined,
     },
     title: {
       text: '시간대별 출입증 신청·발급 건수',
@@ -31,7 +44,7 @@ const ChartGrowPassRequest = () => {
       style: {
         fontSize: '18px',
         fontWeight: 'bold',
-        color: '#000',
+        color: isDarkMode ? '#fff' : '#000',
       },
     },
     stroke: {
@@ -50,25 +63,39 @@ const ChartGrowPassRequest = () => {
         stops: [0, 100],
       },
     },
-    labels: hours,
     xaxis: {
       type: 'category',
       labels: {
         rotate: -45,
-        style: { fontSize: '12px' },
+        style: {
+          fontSize: '12px',
+          colors: isDarkMode ? '#ccc' : '#000',
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: '12px',
+          colors: isDarkMode ? '#ccc' : '#000',
+        },
       },
     },
     tooltip: {
       shared: true,
       intersect: false,
+      theme: isDarkMode ? 'dark' : 'light',
     },
     legend: {
       position: 'bottom',
       horizontalAlign: 'center',
       fontSize: '13px',
+      labels: {
+        colors: isDarkMode ? '#eee' : '#000',
+      },
     },
-    colors: ['#0098ba', '#235D3A'],
-  };
+    colors: ['#0098ba', '#2e7a4a'],
+  }), [isDarkMode]);
 
   const series = [
     {

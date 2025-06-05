@@ -173,7 +173,7 @@ const Sidebar = () => {
                       <img
                         src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
                         alt="sidebar-icon"
-                        className="sidebar-collapsed-image"
+                        className={`sidebar-collapsed-image ${selectedMenu !== menu ? 'gray-image' : ''}`}
                       />
                     </div>
                   )}
@@ -217,7 +217,7 @@ const Sidebar = () => {
                       <img
                         src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
                         alt="sidebar-icon"
-                        className="sidebar-collapsed-image"
+                        className={`sidebar-collapsed-image ${selectedMenu !== menu ? 'gray-image' : ''}`}
                       />
                     </div>
                   )}
@@ -261,7 +261,7 @@ const Sidebar = () => {
                       <img
                         src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
                         alt="sidebar-icon"
-                        className="sidebar-collapsed-image"
+                        className={`sidebar-collapsed-image ${selectedMenu !== menu ? 'gray-image' : ''}`}
                       />
                     </div>
                   )}
@@ -305,7 +305,7 @@ const Sidebar = () => {
                       <img
                         src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
                         alt="sidebar-icon"
-                        className="sidebar-collapsed-image"
+                        className={`sidebar-collapsed-image ${selectedMenu !== menu ? 'gray-image' : ''}`}
                       />
                     </div>
                   )}
@@ -349,7 +349,7 @@ const Sidebar = () => {
                       <img
                         src={selectedMenu === menu ? SidebarButtonGreen : SidebarButtonGray}
                         alt="sidebar-icon"
-                        className="sidebar-collapsed-image"
+                        className={`sidebar-collapsed-image ${selectedMenu !== menu ? 'gray-image' : ''}`}
                       />
                     </div>
                   )}

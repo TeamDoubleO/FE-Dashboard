@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { fetchStatsHourly, StatsHourlyItem } from '../../../apis/dashStatsApi';
@@ -7,31 +7,34 @@ import './css/ChartAreaTotalByHour.css';
 const ChartAreaTotalByHour = () => {
   const [hourlyData, setHourlyData] = useState<number[]>([]);
   const [hourLabels, setHourLabels] = useState<string[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
 
   useEffect(() => {
     const load = async () => {
       try {
         const res = await fetchStatsHourly();
-
-        // total 값에 index+1을 더해서 시각적으로 보이게 만듦 (테스트용)
-        //const values = res.map((item: StatsHourlyItem, index: number) => item.total + (index + 1));
-        const values = res.map((item: StatsHourlyItem) => item.total);
-        const labels = res.map((item: StatsHourlyItem) => `${item.hour}시`);
-
-        console.log('[DEBUG] adjusted values:', values);
-        console.log('[DEBUG] hour labels:', labels);
-
-        setHourlyData(values);
-        setHourLabels(labels);
+        setHourlyData(res.map((item: StatsHourlyItem) => item.total));
+        setHourLabels(res.map((item: StatsHourlyItem) => `${item.hour}시`));
       } catch (error) {
         console.error('시간대별 출입 수 데이터를 불러오는 데 실패했습니다:', error);
       }
     };
-
     load();
   }, []);
 
-  const areaOptions: ApexOptions = {
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const areaOptions: ApexOptions = useMemo(() => ({
     chart: {
       type: 'area',
       toolbar: { show: true },
@@ -45,13 +48,19 @@ const ChartAreaTotalByHour = () => {
       categories: hourLabels,
       labels: {
         rotate: -45,
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ffffff' : '#000000',
+        },
       },
     },
     yaxis: {
       min: 0,
       labels: {
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ffffff' : '#000000',
+        },
       },
     },
     dataLabels: {
@@ -59,7 +68,7 @@ const ChartAreaTotalByHour = () => {
       offsetY: -10,
       style: {
         fontSize: '12px',
-        colors: ['#000'],
+        colors: [isDarkMode ? '#ffffff' : '#000000'],
       },
       background: {
         enabled: true,
@@ -93,11 +102,11 @@ const ChartAreaTotalByHour = () => {
       style: {
         fontSize: '18px',
         fontWeight: 'bold',
-        color: '#000',
+        color: isDarkMode ? '#ffffff' : '#000000',
       },
     },
     legend: { show: false },
-  };
+  }), [hourLabels, isDarkMode]);
 
   return (
     <div className="chart-area-total-by-hour-card">

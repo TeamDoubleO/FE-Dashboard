@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { fetchStatsWeekly } from '../../../apis/dashStatsApi';
@@ -6,6 +6,19 @@ import { fetchStatsWeekly } from '../../../apis/dashStatsApi';
 const ChartSyncedWeeklyByPeriod = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [seriesData, setSeriesData] = useState<number[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +41,7 @@ const ChartSyncedWeeklyByPeriod = () => {
     fetchData();
   }, []);
 
-  const options: ApexOptions = {
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       id: 'chart-weekly',
       type: 'line',
@@ -43,12 +56,23 @@ const ChartSyncedWeeklyByPeriod = () => {
       type: 'category',
       categories,
       labels: {
-        style: { fontSize: '11px' },
         rotate: -45,
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#fff' : '#000',
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ccc' : '#333',
+        },
       },
     },
     legend: { show: false },
-  };
+  }), [categories, isDarkMode]);
 
   return (
     <div className="chart-synced-total-by-period-group">

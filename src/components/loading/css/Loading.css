@@ -31,3 +31,7 @@
     transform: rotate(360deg);
   }
 }
+
+body.dark-mode .loading-container {
+  background-color: rgba(0, 0, 0, 0.6);
+}

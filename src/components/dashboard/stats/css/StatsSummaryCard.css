@@ -95,7 +95,6 @@
   padding-bottom: 6px;
 }
 
-
 .stats-summary-table {
   width: 100%;
   border-collapse: collapse;
@@ -106,9 +105,20 @@
 
 .stats-summary-table th,
 .stats-summary-table td {
-  border: 1px solid #ccc;
   padding: 6px 8px;
   line-height: 1.4;
+  border: none;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.stats-summary-table tr:first-child th {
+  border-top: none;
+}
+
+.stats-summary-table td:first-child,
+.stats-summary-table th:first-child {
+  border-left: none;
 }
 
 .stats-summary-card.folded .stats-summary-card-count {
@@ -124,4 +134,64 @@
 
 .stats-summary-card.folded .stats-summary-card-title {
   margin-top: -60px;
+}
+
+body.dark-mode .stats-summary-card {
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .stats-summary-card-footer {
+  background-color: #444;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: #eee;
+}
+
+body.dark-mode .stats-summary-table {
+  background-color: #333;
+  color: #eee;
+}
+
+body.dark-mode .stats-summary-table th,
+body.dark-mode .stats-summary-table td {
+  border: none;
+  border-top: 1px solid #666;
+  border-left: 1px solid #666;
+}
+
+body.dark-mode .stats-summary-table tr:first-child th {
+  border-top: none;
+}
+
+body.dark-mode .stats-summary-table td:first-child,
+body.dark-mode .stats-summary-table th:first-child {
+  border-left: none;
+}
+
+body.dark-mode .stats-summary-card.folded .stats-summary-card-count {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.dark-mode .stats-summary-card-total {
+  background-color: #324a56;
+}
+
+body.dark-mode .stats-summary-card-patient {
+  background-color: #2f4c4b;
+}
+
+body.dark-mode .stats-summary-card-guardian {
+  background-color: #3a4f3e;
+}
+
+body.dark-mode .stats-summary-card-staff {
+  background-color: #375247;
+}
+
+body.dark-mode .stats-summary-card-visitor {
+  background-color: #35544e;
+}
+
+body.dark-mode .stats-summary-card-etc {
+  background-color: #3d423f;
 }

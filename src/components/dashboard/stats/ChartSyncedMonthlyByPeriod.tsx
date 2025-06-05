@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { fetchStatsMonthly } from '../../../apis/dashStatsApi';
@@ -6,6 +6,19 @@ import { fetchStatsMonthly } from '../../../apis/dashStatsApi';
 const ChartSyncedMonthlyByPeriod = () => {
   const [monthlyCategories, setMonthlyCategories] = useState<string[]>([]);
   const [monthlySeries, setMonthlySeries] = useState<number[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +50,7 @@ const ChartSyncedMonthlyByPeriod = () => {
     fetchData();
   }, []);
 
-  const options: ApexOptions = {
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       id: 'chart-monthly',
       type: 'line',
@@ -52,12 +65,23 @@ const ChartSyncedMonthlyByPeriod = () => {
       type: 'category',
       categories: monthlyCategories,
       labels: {
-        style: { fontSize: '11px' },
         rotate: -45,
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#fff' : '#000',
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ccc' : '#333',
+        },
       },
     },
     legend: { show: false },
-  };
+  }), [monthlyCategories, isDarkMode]);
 
   return (
     <div className="chart-synced-total-by-period-group">

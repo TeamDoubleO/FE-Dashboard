@@ -1,7 +1,6 @@
 .sidebar {
   background-color: #e6e4e4;
   height: calc(100vh - 45px);
-  border-right: 1px solid #ccc;
   transition: width 0.3s ease;
 }
 
@@ -42,7 +41,6 @@
 
 .sidebar-toggle-button:focus {
   outline: none;
-  background-color: #9ab69c;
 }
 
 .sidebar-menu {
@@ -191,4 +189,77 @@
   font-size: 13px;
   z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .sidebar {
+  background-color: #2c2c2c;
+}
+
+body.dark-mode .sidebar-toggle-button {
+  background-color: #222222;
+  color: #ddd;
+}
+
+body.dark-mode .sidebar-toggle-button:focus {
+  background-color: #393939;
+}
+
+body.dark-mode .sidebar-hamburger-icon {
+  color: #ffffff;
+}
+
+body.dark-mode .sidebar-menu-title {
+  background-color: #3a3a3a;
+  color: #ccc;
+}
+
+body.dark-mode .sidebar-open .sidebar-menu-title {
+  color: #f0f0f0;
+}
+
+body.dark-mode .sidebar-group-selected {
+  background-color: #19461A;
+}
+
+body.dark-mode .sidebar-menu-group ul li {
+  background-color: #2c2c2c;
+  color: #ccc;
+}
+
+body.dark-mode .sidebar-menu-group ul li:hover {
+  background-color: #444;
+}
+
+body.dark-mode .sidebar-menu-group ul li.selected {
+  background-color: #255526;
+  color: #fff;
+}
+
+body.dark-mode .sidebar-menu-icon {
+  color: #bbb;
+}
+
+body.dark-mode .sidebar-menu-open {
+  color: #5E9562;
+}
+
+body.dark-mode .sidebar-closed .sidebar-menu-icon:hover {
+  color: #5E9562;
+}
+
+body.dark-mode .sidebar-closed .sidebar-group-selected .sidebar-menu-icon {
+  color: #5E9562;
+}
+
+body.dark-mode .sidebar-chevron-icon {
+  color: #aaa;
+}
+
+body.dark-mode .sidebar-collapsed-item:hover::after {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #5E9562;
+}
+
+body.dark-mode .gray-image {
+  filter: brightness(0.8) invert(1);
 }

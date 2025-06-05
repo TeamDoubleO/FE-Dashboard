@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import './css/ChartBarUserAccess.css';
@@ -10,6 +10,9 @@ import {
 const ChartBarUserAccess = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [series, setSeries] = useState<any[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,8 +47,7 @@ const ChartBarUserAccess = () => {
           const label = `${dayNumber}일 ${day}요일`;
           xLabels.push(label);
 
-          const visitorCount = Math.floor(Math.random() * 51) + 150; 
-
+          const visitorCount = Math.floor(Math.random() * 51) + 150;
           patients.push(patient);
           guardians.push(guardian);
           visitors.push(visitorCount);
@@ -65,8 +67,17 @@ const ChartBarUserAccess = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
 
-  const options: ApexOptions = {
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       type: 'bar',
       stacked: true,
@@ -80,11 +91,25 @@ const ChartBarUserAccess = () => {
       style: {
         fontSize: '18px',
         fontWeight: 'bold',
-        color: '#000',
+        color: isDarkMode ? '#fff' : '#000',
       },
     },
     xaxis: {
       categories: categories,
+      labels: {
+        style: {
+          colors: isDarkMode ? '#ccc' : '#000',
+          fontSize: '11px',
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: isDarkMode ? '#ccc' : '#000',
+          fontSize: '11px',
+        },
+      },
     },
     colors: ['#82c7e2', '#2e7d7a', '#235D3A'],
     dataLabels: {
@@ -101,7 +126,7 @@ const ChartBarUserAccess = () => {
             style: {
               fontSize: '14px',
               fontWeight: 600,
-              color: '#000',
+              color: isDarkMode ? '#fff' : '#000',
             },
           },
         },
@@ -110,8 +135,11 @@ const ChartBarUserAccess = () => {
     legend: {
       position: 'bottom',
       horizontalAlign: 'center',
+      labels: {
+        colors: isDarkMode ? '#eee' : '#333',
+      },
     },
-  };
+  }), [categories, isDarkMode]);
 
   return (
     <div className="chart-bar-user-access-card">

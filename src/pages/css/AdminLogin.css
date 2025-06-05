@@ -17,11 +17,15 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(200, 200, 200, 0.497); /* 투명한 검정 오버레이 */
+  background-color: rgba(200, 200, 200, 0.4);
   z-index: 0;
 }
 
 .admin-login-box {
   position: relative;
   z-index: 1;
+}
+
+body.dark-mode .admin-login-page::before {
+  background-color: rgba(30, 30, 30, 0.8);
 }

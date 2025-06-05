@@ -1,58 +1,86 @@
 .admin-login-box {
-    background-color: white;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    width: 400px;
-    text-align: center;
-  }
-  
-  .admin-login-box h2 {
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    color: #1c1c1c;
-  }
-  
-  .admin-login-subtitle {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 24px;
-  }
-  
-  .admin-login-button {
-    width: 100%;
-    padding: 14px;
-    background-color: #164d27;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 12px;
-  }
-  
-  .admin-login-button:hover {
-    background-color: #133f20;
-  }
-  
-  .admin-login-error {
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    white-space: pre-line;
-  }
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 400px;
+  text-align: center;
+}
 
-  .admin-login-input {
- width: 100%;
-    padding: 15px;
-    margin-top: 2px;
-    margin-bottom: 4px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
+.admin-login-box h2 {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #1c1c1c;
+}
+
+.admin-login-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.admin-login-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #164d27;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.admin-login-button:hover {
+  background-color: #133f20;
+}
+
+.admin-login-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  white-space: pre-line;
+}
+
+.admin-login-input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+body.dark-mode .admin-login-box {
+  background-color: #292929;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .admin-login-box h2 {
+  color: #f0f0f0;
+}
+
+body.dark-mode .admin-login-subtitle {
+  color: #aaa;
+}
+
+body.dark-mode .admin-login-input {
+  background-color: hsl(0, 0%, 16%);
+  color: #fff;
+  border: 1px solid #454545;
+}
+
+body.dark-mode .admin-login-button {
+  background-color: #1a5e36;
+  color: white;
+}
+
+body.dark-mode .admin-login-button:hover {
+  background-color: #144c2b;
+}

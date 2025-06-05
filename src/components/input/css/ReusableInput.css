@@ -17,20 +17,20 @@
 }
 
 .reusable-input-icon {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #a8a8a8;
-  }
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #a8a8a8;
+}
 
 
-  input[type="password"]::-ms-reveal,
-  input[type="password"]::-ms-clear {
-    display: none;
-  }
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
 
-  .reusable-input-field {
+.reusable-input-field {
   background-color: white ;
   color: black;
   border: 1px solid #ccc;
@@ -40,4 +40,23 @@
 
 .reusable-input-field::placeholder {
   color: #aaa;
+}
+
+body.dark-mode .reusable-input-label {
+  color: #eee;
+}
+
+body.dark-mode .reusable-input-field {
+  background-color: #434343;
+  color: #f0f0f0;
+  border: 1px solid #555;
+  caret-color: #f0f0f0;
+}
+
+body.dark-mode .reusable-input-field::placeholder {
+  color: #888;
+}
+
+body.dark-mode .reusable-input-icon {
+  color: #888;
 }

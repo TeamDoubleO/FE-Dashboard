@@ -35,3 +35,15 @@
   margin-bottom: -20px;
   color: #444;
 }
+
+body.dark-mode .chart-synced-total-by-period-card {
+  background: #3a3a3a;
+}
+
+body.dark-mode .chart-synced-total-by-period-title {
+  color: #ffffff;
+}
+
+body.dark-mode .chart-subtitle {
+  color: #cccccc;
+}

@@ -1,14 +1,22 @@
-  .pass-pending-container {
-    width: fit-content;
-    margin-top: 0px;
-    margin-left: 10px;
-    padding: 20px;
-    background-color: transparent;
-  }
-  
-  .pass-pending-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #333;
-  }
+.pass-pending-container {
+  width: fit-content;
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.pass-pending-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+body.dark-mode .pass-pending-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .pass-pending-title {
+  color: #f0f0f0;
+}

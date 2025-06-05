@@ -7,6 +7,7 @@ import AdminMypageTable from '../components/_Admin/AdminMypageTable';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import { fetchAdminData } from '../apis/adminApi';
 import ReusableButton from '../components/buttons/ReusableButton';
+import './css/AdminMypage.css';
 
 const breadCrumbInfo = {
   currentPage: "관리페이지",
@@ -62,16 +63,13 @@ const AdminMyPage = () => {
             username={hospitalInfo.username}
           />
         ) : (
-          <div style={{ padding: "20px" }}>관리자 정보를 불러오는 중입니다...</div>
+          <div className="admin-loading-message">관리자 정보를 불러오는 중입니다...</div>
         )}
 
-<div className="admin-password-button-wrapper" style={{ marginLeft: "30px" }}>
+        <div className="admin-password-button-wrapper">
           <ReusableButton
             onClick={() => navigate("/adminpassword")}
             className="admin-password-button"
-            style={{ color: "black",
-            textDecoration: "underline"
-            }}
           >
             비밀번호 변경
           </ReusableButton>

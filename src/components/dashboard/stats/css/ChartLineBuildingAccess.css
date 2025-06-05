@@ -4,3 +4,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
+
+body.dark-mode .chart-line-building-access-card {
+  background: #3a3a3a;
+}

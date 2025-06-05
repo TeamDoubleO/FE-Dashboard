@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { fetchStatsDaily } from '../../../apis/dashStatsApi';
@@ -6,6 +6,19 @@ import { fetchStatsDaily } from '../../../apis/dashStatsApi';
 const ChartSyncedDailyByPeriod = () => {
   const [dailyCategories, setDailyCategories] = useState<string[]>([]);
   const [dailySeries, setDailySeries] = useState<number[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,14 +50,14 @@ const ChartSyncedDailyByPeriod = () => {
     fetchData();
   }, []);
 
-  const options: ApexOptions = {
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       id: 'chart-daily',
       type: 'line',
       height: 160,
       toolbar: { show: true },
     },
-    colors: ['#1c6765'],
+    colors: ['#278b88'],
     stroke: { width: 2, curve: 'smooth' },
     markers: { size: 5, hover: { size: 7 } },
     dataLabels: { enabled: false },
@@ -52,12 +65,23 @@ const ChartSyncedDailyByPeriod = () => {
       type: 'category',
       categories: dailyCategories,
       labels: {
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#fff' : '#000',
+        },
         rotate: -45,
       },
     },
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ccc' : '#333',
+        },
+      },
+    },
     legend: { show: false },
-  };
+  }), [dailyCategories, isDarkMode]);
 
   return (
     <div className="chart-synced-total-by-period-group chart-synced-total-by-period-toolbar">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import {
@@ -10,6 +10,19 @@ import './css/ChartLineBuildingAccess.css';
 const ChartLineBuildingAccess = () => {
   const [series, setSeries] = useState<any[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    document.body.classList.contains('dark-mode')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,12 +49,10 @@ const ChartLineBuildingAccess = () => {
           return getNum(a) - getNum(b);
         });
 
-        const finalSeries = Object.entries(grouped).map(([buildingName, valueMap]) => {
-          return {
-            name: buildingName,
-            data: sortedLabels.map((label) => valueMap[label] ?? 0),
-          };
-        });
+        const finalSeries = Object.entries(grouped).map(([buildingName, valueMap]) => ({
+          name: buildingName,
+          data: sortedLabels.map((label) => valueMap[label] ?? 0),
+        }));
 
         setCategories(sortedLabels);
         setSeries(finalSeries);
@@ -55,7 +66,7 @@ const ChartLineBuildingAccess = () => {
     fetchData();
   }, []);
 
-  const lineOptions: ApexOptions = {
+  const lineOptions: ApexOptions = useMemo(() => ({
     chart: { type: 'line' },
     stroke: { curve: 'straight', width: 2 },
     markers: { size: 0 },
@@ -72,13 +83,17 @@ const ChartLineBuildingAccess = () => {
       style: {
         fontSize: '11px',
         fontWeight: 'bold',
+        colors: ['#fff'],
       },
     },
     xaxis: {
       categories: categories,
       labels: {
         rotate: -45,
-        style: { fontSize: '11px' },
+        style: {
+          fontSize: '11px',
+          colors: isDarkMode ? '#ccc' : '#000',
+        },
       },
     },
     colors: ['#5AC66F', '#235D3A', '#2e7d7a', '#82c7e2', '#0d6728', '#626262'],
@@ -90,14 +105,25 @@ const ChartLineBuildingAccess = () => {
       style: {
         fontSize: '18px',
         fontWeight: 'bold',
-        color: '#000',
+        color: isDarkMode ? '#fff' : '#000',
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: isDarkMode ? '#aaa' : '#000',
+          fontSize: '11px',
+        },
       },
     },
     legend: {
       position: 'bottom',
       horizontalAlign: 'center',
+      labels: {
+        colors: isDarkMode ? '#eee' : '#000',
+      },
     },
-  };
+  }), [categories, isDarkMode]);
 
   return (
     <div className="chart-line-building-access-card">
