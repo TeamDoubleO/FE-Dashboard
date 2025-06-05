@@ -7,7 +7,7 @@ import AdminMypageTable from '../components/_Admin/AdminMypageTable';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import { fetchAdminData } from '../apis/adminApi';
 import ReusableButton from '../components/buttons/ReusableButton';
-import './css/AdminMyPage.css';
+import './css/AdminMypage.css';
 
 const breadCrumbInfo = {
   currentPage: "관리페이지",
