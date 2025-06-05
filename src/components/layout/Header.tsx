@@ -11,9 +11,54 @@ import { fetchAdminData } from '../../apis/adminApi';
 const Header = () => {
   const navigate = useNavigate();
   const [hospitalName, setHospitalName] = useState<string>('');
-  const [isDarkMode] = useState<boolean>(() => {
-    return localStorage.getItem('theme') === 'dark';
-  });
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    const isDark = storedTheme === 'dark';
+    setIsDarkMode(isDark);
+    if (isDark) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isDarkMode;
+    setIsDarkMode(next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
+    if (next) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  };
+
+  const handleLogout = async () => {
+    const confirmed = window.confirm('로그아웃 하시겠습니까?');
+    if (!confirmed) return;
+
+    try {
+      const theme = localStorage.getItem('theme');
+      await adminLogout();
+      localStorage.clear();
+      if (theme) {
+        localStorage.setItem('theme', theme);
+      }
+      navigate('/admin/login');
+    } catch (err: any) {
+      const theme = localStorage.getItem('theme');
+      localStorage.clear();
+      if (theme) {
+        localStorage.setItem('theme', theme);
+      }
+      const message = err?.message ?? '로그아웃 실패';
+      alert(message);
+      console.warn('관리자 로그아웃 실패:', err);
+      navigate('/admin/login');
+    }
+  };
 
   useEffect(() => {
     const loadAdminInfo = async () => {
@@ -27,34 +72,6 @@ const Header = () => {
 
     loadAdminInfo();
   }, []);
-
-  useEffect(() => {
-    document.body.className = isDarkMode ? 'dark-mode' : '';
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
-
-  const toggleTheme = () => {
-    const next = !isDarkMode;
-    localStorage.setItem('theme', next ? 'dark' : 'light');
-    window.location.reload();
-  };
-
-  const handleLogout = async () => {
-    const confirmed = window.confirm('로그아웃 하시겠습니까?');
-    if (!confirmed) return;
-
-    try {
-      await adminLogout();
-      localStorage.clear();
-      navigate('/admin/login');
-    } catch (err: any) {
-      localStorage.clear();
-      const message = err?.message ?? '로그아웃 실패';
-      alert(message);
-      console.warn('관리자 로그아웃 실패:', err);
-      navigate('/admin/login');
-    }
-  };
 
   return (
     <header className="header">

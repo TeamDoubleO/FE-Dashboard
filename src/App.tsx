@@ -1,3 +1,10 @@
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark-mode');
+} else {
+  document.body.classList.remove('dark-mode');
+}
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import DashboardStats from './pages/DashboardStats'
