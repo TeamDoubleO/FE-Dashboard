@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './css/SearchFilter.css';
-import { fetchBuildings, fetchAreas } from '../../../apis/dashPassApi';
+import { fetchBuildings, fetchAreas, fetchStatsByFilter, convertUserTypesToCategories } from '../../../apis/dashPassApi';
 import type { Area } from '../../../apis/dashPassApi';
 
 const userTypes = ['전체', '환자', '보호자', '방문객'];
@@ -144,16 +144,31 @@ const SearchFilter = ({ onApply }: SearchFilterProps) => {
     return Object.keys(newWarnings).length === 0;
   };
 
-  const handleConfirm = () => {
-    if (validate()) {
-      onApply({
+  const handleConfirm = async () => {
+    if (!validate()) return;
+
+    const categories = convertUserTypesToCategories(selectedTypes);
+    const areaCodes = selectedZones.map((z) => z.areaCode);
+
+    try {
+      const result = await fetchStatsByFilter({
+        categories,
         startDate,
         endDate,
-        userTypes: selectedTypes,
-        buildings: selectedBuildingIds,
-        zones: selectedZones.map((z) => `${z.buildingName}: ${z.areaName}`),
+        areaCodes,
       });
+      console.log('[RESULT] 출입 통계 결과:', result);
+    } catch (error) {
+      console.error('[ERROR] 출입 통계 조회 실패:', error);
     }
+
+    onApply({
+      startDate,
+      endDate,
+      userTypes: selectedTypes,
+      buildings: selectedBuildingIds,
+      zones: selectedZones.map((z) => `${z.areaCode}||${z.buildingName}: ${z.areaName}`),
+    });
   };
 
   const handleReset = () => {
@@ -171,24 +186,17 @@ const SearchFilter = ({ onApply }: SearchFilterProps) => {
   const isAllBuildingsSelected =
     buildings.length > 0 && selectedBuildingIds.length === buildings.length;
 
-  //const minRange = 7;
-
-
-
-  // 어제 날짜 (오늘 기준 -1일)
   const getYesterday = () => {
     const date = new Date();
     date.setDate(date.getDate() - 1);
     return date.toISOString().split('T')[0];
   };
 
-  // 어제로부터 27일 전 (즉, 28일 범위 시작)
   const get28DaysAgo = () => {
     const date = new Date();
     date.setDate(date.getDate() - 28);
     return date.toISOString().split('T')[0];
   };
-
 
   return (
     <div className="search-filter-wrapper">
@@ -259,8 +267,6 @@ const SearchFilter = ({ onApply }: SearchFilterProps) => {
             />
           </>
         )}
-
-
         {warnings.date && <div className="search-filter-warning-text">{warnings.date}</div>}
       </div>
 
