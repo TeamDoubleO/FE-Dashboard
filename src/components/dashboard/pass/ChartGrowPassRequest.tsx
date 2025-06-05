@@ -1,7 +1,7 @@
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import './css/ChartGrowPassRequest.css';
-import { useEffect, useState } from 'react';
 
 const 신청건수 = [
   10, 12, 13, 11, 9, 14, 15, 13, 12, 14, 15, 16,
@@ -14,14 +14,21 @@ const 발급건수 = [
 ];
 
 const ChartGrowPassRequest = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme');
-    setIsDarkMode(theme === 'dark');
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
   }, []);
 
-  const options: ApexOptions = {
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       height: 440,
       type: 'area',
@@ -88,7 +95,7 @@ const ChartGrowPassRequest = () => {
       },
     },
     colors: ['#0098ba', '#2e7a4a'],
-  };
+  }), [isDarkMode]);
 
   const series = [
     {

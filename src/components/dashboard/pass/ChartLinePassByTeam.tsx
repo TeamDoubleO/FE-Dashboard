@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import './css/ChartLinePassByTeam.css';
@@ -36,11 +36,18 @@ const ChartLinePassByTeam = ({ filters }: ChartLinePassByTeamProps) => {
   const categories = generateDateLabels(filters.startDate, filters.endDate);
   const numDays = categories.length;
 
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme');
-    setIsDarkMode(theme === 'dark');
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
   }, []);
 
   const buildingColors: Record<string, string> = {};
@@ -66,7 +73,7 @@ const ChartLinePassByTeam = ({ filters }: ChartLinePassByTeamProps) => {
     return buildingColors[buildingName];
   });
 
-  const options: ApexOptions = {
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       height: 340,
       type: 'line',
@@ -137,7 +144,7 @@ const ChartLinePassByTeam = ({ filters }: ChartLinePassByTeamProps) => {
       },
     },
     colors: seriesColors,
-  };
+  }), [categories, seriesColors, numDays, isDarkMode]);
 
   return (
     <div className="chart-line-pass-by-team-card">

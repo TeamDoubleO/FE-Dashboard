@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import {
@@ -10,7 +10,19 @@ import './css/ChartLineBuildingAccess.css';
 const ChartLineBuildingAccess = () => {
   const [series, setSeries] = useState<any[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
-  const [isDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    document.body.classList.contains('dark-mode')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,12 +49,10 @@ const ChartLineBuildingAccess = () => {
           return getNum(a) - getNum(b);
         });
 
-        const finalSeries = Object.entries(grouped).map(([buildingName, valueMap]) => {
-          return {
-            name: buildingName,
-            data: sortedLabels.map((label) => valueMap[label] ?? 0),
-          };
-        });
+        const finalSeries = Object.entries(grouped).map(([buildingName, valueMap]) => ({
+          name: buildingName,
+          data: sortedLabels.map((label) => valueMap[label] ?? 0),
+        }));
 
         setCategories(sortedLabels);
         setSeries(finalSeries);
@@ -56,7 +66,7 @@ const ChartLineBuildingAccess = () => {
     fetchData();
   }, []);
 
-  const lineOptions: ApexOptions = {
+  const lineOptions: ApexOptions = useMemo(() => ({
     chart: { type: 'line' },
     stroke: { curve: 'straight', width: 2 },
     markers: { size: 0 },
@@ -113,7 +123,7 @@ const ChartLineBuildingAccess = () => {
         colors: isDarkMode ? '#eee' : '#000',
       },
     },
-  };
+  }), [categories, isDarkMode]);
 
   return (
     <div className="chart-line-building-access-card">

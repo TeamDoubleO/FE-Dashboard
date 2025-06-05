@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import './css/ChartBarUserAccess.css';
@@ -10,9 +10,9 @@ import {
 const ChartBarUserAccess = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [series, setSeries] = useState<any[]>([]);
-  const [isDarkMode] = useState<boolean>(() => {
-    return localStorage.getItem('theme') === 'dark';
-  });
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +67,17 @@ const ChartBarUserAccess = () => {
     fetchData();
   }, []);
 
-  const options: ApexOptions = {
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       type: 'bar',
       stacked: true,
@@ -129,7 +139,7 @@ const ChartBarUserAccess = () => {
         colors: isDarkMode ? '#eee' : '#333',
       },
     },
-  };
+  }), [categories, isDarkMode]);
 
   return (
     <div className="chart-bar-user-access-card">

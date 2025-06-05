@@ -103,6 +103,7 @@
   list-style: none;
   padding-left: 0;
   margin: 0;
+  margin-bottom: -10px;
 }
 
 .admin-access-policy-current-list li {

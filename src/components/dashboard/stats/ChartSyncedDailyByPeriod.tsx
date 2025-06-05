@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import { fetchStatsDaily } from '../../../apis/dashStatsApi';
@@ -6,6 +6,19 @@ import { fetchStatsDaily } from '../../../apis/dashStatsApi';
 const ChartSyncedDailyByPeriod = () => {
   const [dailyCategories, setDailyCategories] = useState<string[]>([]);
   const [dailySeries, setDailySeries] = useState<number[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    document.body.classList.contains('dark-mode')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,9 +50,7 @@ const ChartSyncedDailyByPeriod = () => {
     fetchData();
   }, []);
 
-  const isDarkMode = document.body.classList.contains('dark-mode');
-
-  const options: ApexOptions = {
+  const options: ApexOptions = useMemo(() => ({
     chart: {
       id: 'chart-daily',
       type: 'line',
@@ -70,7 +81,7 @@ const ChartSyncedDailyByPeriod = () => {
       },
     },
     legend: { show: false },
-  };
+  }), [dailyCategories, isDarkMode]);
 
   return (
     <div className="chart-synced-total-by-period-group chart-synced-total-by-period-toolbar">

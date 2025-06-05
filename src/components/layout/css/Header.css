@@ -75,11 +75,11 @@
 
 .theme-icon {
   font-size: 25px;
-  color: #b8b8b8;
+  color: #bcbcbc;
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .theme-icon:hover {
-  color: #e8ebbb;
+  color: #efefef;
   transform: scale(1.1);
 }
