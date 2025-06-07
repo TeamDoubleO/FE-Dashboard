@@ -14,7 +14,7 @@
 
 .default-table {
   width: 100%;             
-  table-layout: auto;      
+  table-layout: fixed;  
   border-collapse: collapse;
   color: black
 }
@@ -29,9 +29,20 @@
 .default-table td {
   width: 120px;
   height: 30px;     
-  padding: 8px 50px;
+  padding: 8px 16px;
   border-bottom: 1px solid #e0e0e0;
   color: black
+}
+
+.default-table td:first-child,
+.default-table th:first-child {
+  padding-left: 50px;
+}
+
+.default-table td:nth-child(5),
+.default-table th:nth-child(5) {
+  padding-right: 100px; 
+  padding-left: 80px; 
 }
 
 .default-table-name {

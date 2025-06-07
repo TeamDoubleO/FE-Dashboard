@@ -14,7 +14,7 @@
 
 .approval-table {
   width: 100%;             
-  table-layout: auto;      
+  table-layout: fixed;      
   border-collapse: collapse;
   color: black
 }
@@ -27,11 +27,22 @@
 
 .approval-table th,
 .approval-table td {
-  width: 100px;
-  height: 30px;     
-  padding: 8px 50px;
+  padding: 8px 16px; 
   border-bottom: 1px solid #e0e0e0;
   color: black;
+  white-space: nowrap;
+}
+
+.approval-table td:first-child,
+.approval-table th:first-child {
+  padding-left: 50px;
+}
+
+.approval-table td:last-child,
+.approval-table th:last-child {
+  width: 120px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .approval-table-name {
