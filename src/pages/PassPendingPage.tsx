@@ -35,9 +35,9 @@ const PassPendingPage = () => {
       const data = await fetchPassPending(currentPage - 1); 
       const transformed = data.content.map((item: any) => ({
         ...item,
-        createdDt: item.createdDt?.replace('T', '  '),
-        startAt: item.startAt?.replace('T', '  '),
-        expiredAt: item.expiredAt?.replace('T', '  '),
+        createdDt: item.createdDt?.replace('T', '  ').split('.')[0],
+        startAt: item.startAt?.replace('T', '  ').split('.')[0],
+        expiredAt: item.expiredAt?.replace('T', '  ').split('.')[0],
       }));
       setPendingList(transformed);
       setTotalPages(data.totalPages);

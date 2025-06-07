@@ -35,7 +35,7 @@ const EntryHistoryPage = () => {
         const data = await fetchEntryPassLog(currentPage - 1); 
         const transformed = data.content.map((item: any) => ({
           ...item,
-          createdDt: item.createdDt?.replace('T', '  '),
+          createdDt: item.createdDt?.replace('T', '  ').split('.')[0],
         }));
         setEntryHistory(transformed);
         setTotalPages(data.totalPages);

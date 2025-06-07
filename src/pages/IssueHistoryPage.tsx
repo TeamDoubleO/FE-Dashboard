@@ -38,8 +38,8 @@ const IssueHistoryPage = () => {
           const data = await fetchIssuedPassLog(currentPage - 1); 
           const transformed = data.content.map((item: any) => ({
             ...item,
-            startAt: item.startAt?.replace('T', '  '),
-            expiredAt: item.expiredAt?.replace('T', '  '),
+            startAt: item.startAt?.replace('T', '  ').split('.')[0],
+            expiredAt: item.expiredAt?.replace('T', '  ').split('.')[0],
             visitCategory : item.visitCategory === "PATIENT" ? "환자" : item.visitCategory === "GUARDIAN" ? "보호자" : "-",
           }));
           setIssueHistory(transformed);
