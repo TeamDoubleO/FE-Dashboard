@@ -13,13 +13,13 @@ export const fetchPatientList = async (page: number) => {
 };
 
 // 환자 개별 상세 조회
-export const fetchPatientDetail = async (patientId: number, page: number) => {
+export const fetchPatientDetail = async (patientId: number) => {
     try {
-        const res = await axiosWithAuthorization.get(`/patients/${patientId}/?page=${page}`);
-        console.log("환자 목록 전체 조회:", res.data);
+        const res = await axiosWithAuthorization.get(`/patients/${patientId}`);
+        console.log("환자 개별 상세 조회:", res.data);
         return res.data.data;
     } catch (error) {
-        console.log("환자 목록 전체 조회 오류:", error); 
+        console.log("환자 개별 상세 조회 오류:", error); 
         throw error;
     }
 };

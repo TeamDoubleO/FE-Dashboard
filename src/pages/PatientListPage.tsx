@@ -21,7 +21,7 @@ const patientsColumns = [
 
 const breadCrumbInfo = {
     currentPage: "환자 정보",
-    currentSidebarItem: "환자 정보 조회"
+    currentSidebarItem: "환자 전체 목록 조회"
 };
 
 const PatientListPage = () => {
