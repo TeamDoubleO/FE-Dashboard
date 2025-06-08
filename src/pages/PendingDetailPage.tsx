@@ -58,9 +58,25 @@ const PendingDetailPage = () => {
                         </tr>
                         </tbody>
                     </table>
-                </div>
             </div>
-      </Layout>
+            <br /><br />
+            <div className="pending-detail-title">출입 신청 시간 </div>
+                <div className="pending-detail-table-wrapper">
+                <table className="pending-detail-table">
+                    <tbody>
+                        <tr>
+                            <td className="pending-detail-table-label-cell">출입시작시간</td>
+                            <td>{data.startAt}</td>
+                        </tr>
+                        <tr>
+                            <td className="pending-detail-table-label-cell">출입마감시간</td>
+                            <td>{data.expiredAt}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </Layout>
     </>
   );
 };
