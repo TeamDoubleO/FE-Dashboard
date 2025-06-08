@@ -24,7 +24,7 @@
 .admin-mypage-table {
   margin-top: 0px;
   width: 100%;
-  table-layout: auto;
+  table-layout: fixed;
   border-collapse: collapse;
   background-color: white;
   color: black;
