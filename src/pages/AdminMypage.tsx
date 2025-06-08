@@ -5,9 +5,13 @@ import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
 import AdminMypageTable from '../components/_Admin/AdminMypageTable';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
-import { fetchAdminData } from '../apis/adminApi';
 import ReusableButton from '../components/buttons/ReusableButton';
+import Loading from "../components/loading/Loading.tsx";
+
+import '../components/loading/css/Loading.css'
 import './css/AdminMypage.css';
+
+import { fetchAdminData } from '../apis/adminApi';
 
 const breadCrumbInfo = {
   currentPage: "관리페이지",
@@ -22,11 +26,14 @@ const AdminMyPage = () => {
   } | null>(null);
 
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadAdminData = async () => {
       try {
+        setIsLoading(true);
         const data = await fetchAdminData();
         setHospitalInfo({
           affiliation: data.affiliation,
@@ -35,6 +42,8 @@ const AdminMyPage = () => {
         });
       } catch (err) {
         setError((err as Error).message);
+      } finally {
+        setIsLoading(false); 
       }
     };
 
@@ -55,16 +64,18 @@ const AdminMyPage = () => {
           currentPage={breadCrumbInfo.currentPage}
           currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
-
-        {hospitalInfo ? (
-          <AdminMypageTable
-            affiliation={hospitalInfo.affiliation}
-            affiliationId={hospitalInfo.affiliationId}
-            username={hospitalInfo.username}
-          />
-        ) : (
-          <div className="admin-loading-message">관리자 정보를 불러오는 중입니다...</div>
-        )}
+        {isLoading ? (
+          <div className="loading-overlay">
+            <Loading />
+            <div className="loading-text">관리자 정보를 불러오는 중입니다...</div>
+          </div>
+        ) : hospitalInfo ? (
+        <>
+        <AdminMypageTable
+          affiliation={hospitalInfo.affiliation}
+          affiliationId={hospitalInfo.affiliationId}
+          username={hospitalInfo.username}
+        />
 
         <div className="admin-password-button-wrapper">
           <ReusableButton
@@ -74,6 +85,8 @@ const AdminMyPage = () => {
             비밀번호 변경
           </ReusableButton>
         </div>
+        </>
+      ) : null }
       </Layout>
     </>
   );

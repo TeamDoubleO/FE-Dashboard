@@ -6,7 +6,9 @@ import Background from '../components/background/Background';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import ApproveTable from "../components/table/ApprovalTable.tsx";
 import Pagination from '../components/table/Pagination.tsx';
+import Loading from "../components/loading/Loading.tsx";
 
+import '../components/loading/css/Loading.css'
 import './css/PassPendingPage.css';
 
 import { fetchPassPending, reviewPass } from "../apis/passApi.ts";
@@ -27,11 +29,13 @@ const PassPendingPage = () => {
   const [pendingList, setPendingList] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const loadData = async () => {
     try {
+      setIsLoading(true);
       const data = await fetchPassPending(currentPage - 1); 
       const transformed = data.content.map((item: any) => ({
         ...item,
@@ -43,6 +47,8 @@ const PassPendingPage = () => {
       setTotalPages(data.totalPages);
     } catch (err) {
       console.error("출입증 발급 신청 내역 불러오기 실패:", err);
+    } finally {
+      setIsLoading(false); 
     }
   };
 
@@ -79,6 +85,13 @@ const PassPendingPage = () => {
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
           <div className="pass-pending-container">
+            {isLoading ? (
+              <div className="loading-overlay">
+                <Loading />
+                <div className="loading-text">출입증 발급 신청 내역을 불러오는 중입니다...</div>
+              </div>
+            ) : (
+            <>
             <div className="pass-pending-title">출입증 발급 신청 내역 조회</div>
             <ApproveTable 
                 tableTitles={pendingColumns} 
@@ -92,6 +105,8 @@ const PassPendingPage = () => {
               totalPages={totalPages}
               onPageChange={setCurrentPage}
             />
+            </>
+            )}
         </div>
       </Layout>
     </>

@@ -6,7 +6,9 @@ import Background from '../components/background/Background';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import DefaultTable from '../components/table/DefaultTable';
 import Pagination from '../components/table/Pagination.tsx';
+import Loading from "../components/loading/Loading.tsx";
 
+import '../components/loading/css/Loading.css'
 import './css/IssueHistoryPage.css';
 
 import { fetchIssuedPassLog } from "../apis/passApi.ts";
@@ -29,12 +31,14 @@ const IssueHistoryPage = () => {
   const [issueHistory, setIssueHistory] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
       const loadData = async () => {
         try {
+          setIsLoading(true);
           const data = await fetchIssuedPassLog(currentPage - 1); 
           const transformed = data.content.map((item: any) => ({
             ...item,
@@ -46,6 +50,8 @@ const IssueHistoryPage = () => {
           setTotalPages(data.totalPages);
         } catch (err) {
           console.error("출입 내역 불러오기 실패:", err);
+        } finally {
+          setIsLoading(false); 
         }
       };
   
@@ -61,6 +67,13 @@ const IssueHistoryPage = () => {
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
           <div className="issue-history-container">
+            {isLoading ? (
+              <div className="loading-overlay">
+                <Loading />
+                <div className="loading-text">출입증 발급 내역을 불러오는 중입니다...</div>
+              </div>
+            ) : (
+            <>
             <div className="issue-history-title">출입증 발급 내역 조회</div>
             <DefaultTable 
                 tableTitles={issueColumns} 
@@ -72,6 +85,8 @@ const IssueHistoryPage = () => {
               totalPages={totalPages}
               onPageChange={setCurrentPage}
             />
+            </>
+            )}
         </div>
       </Layout>
     </>
