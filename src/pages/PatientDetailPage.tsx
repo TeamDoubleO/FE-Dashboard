@@ -12,7 +12,7 @@ import { fetchPatientGuardians } from "../apis/patientApi.ts";
 
 const breadCrumbInfo = {
     currentPage: "환자 정보",
-    currentSidebarItem: "환자별 보호자 목록 조회"
+    currentSidebarItem: "환자별 상세 조회"
 };
 
 const patientColumn = [
@@ -21,6 +21,11 @@ const patientColumn = [
     { key: "name", label: "환자명"},
     { key: "sex", label: "성별"},
     { key: "guardianCount", label: "보호자수"},
+]
+
+const areasColumns = [
+    { key: "areaCode", label: "구역 ID" },
+    { key: "areaName", label: "구역 명" },
 ]
 
 const guardiansColumn = [
@@ -32,6 +37,7 @@ const PatientDetailPage = () => {
     const location = useLocation();
     const data = location.state;
     const patient = [data]; 
+    const areasInfo = data?.areas || [];
     const [guardianList, setGuardianList] = useState([]);
 
     const loadData = async () => {
@@ -59,10 +65,16 @@ const PatientDetailPage = () => {
         />
 
         <div className="patient-detail-container">
-            <div className="patient-detail-title">환자별 보호자 목록 조회</div>
+            <div className="patient-detail-title">환자별 상세 조회</div>
             <DefaultTable 
                 tableTitles={patientColumn} 
                 data={patient}
+            />
+            <br /><br />
+            <div className="patient-detail-title">출입 구역</div>
+            <DefaultTable 
+                tableTitles={areasColumns} 
+                data={areasInfo}
             />
             <br /><br />
             <div className="patient-detail-title">보호자 목록</div>

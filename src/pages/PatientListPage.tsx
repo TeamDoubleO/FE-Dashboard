@@ -6,7 +6,9 @@ import Background from '../components/background/Background';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import DefaultTable from '../components/table/DefaultTable';
 import Pagination from '../components/table/Pagination.tsx';
+import Loading from "../components/loading/Loading.tsx";
 
+import '../components/loading/css/Loading.css'
 import './css/PatientListPage.css';
 
 import { fetchPatientList } from "../apis/patientApi.ts";
@@ -21,19 +23,21 @@ const patientsColumns = [
 
 const breadCrumbInfo = {
     currentPage: "환자 정보",
-    currentSidebarItem: "환자 정보 조회"
+    currentSidebarItem: "환자 전체 목록 조회"
 };
 
 const PatientListPage = () => {
   const [patientList, setPatientList] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
       const loadData = async () => {
         try {
+          setIsLoading(true);
           const data = await fetchPatientList(currentPage - 1); 
           const transformed = data.content.map((item: any) => ({
             ...item,
@@ -43,6 +47,8 @@ const PatientListPage = () => {
           setTotalPages(data.totalPages);
         } catch (err) {
           console.error("출입 내역 불러오기 실패:", err);
+        } finally {
+        setIsLoading(false); 
         }
       };
   
@@ -58,6 +64,13 @@ const PatientListPage = () => {
             currentSidebarItem={breadCrumbInfo.currentSidebarItem}
         />
           <div className="patient-list-container">
+            {isLoading ? (
+              <div className="loading-overlay">
+                <Loading />
+                <div className="loading-text">환자 정보를 불러오는 중입니다...</div>
+              </div>
+            ) : (
+            <>
             <div className="patient-list-title">환자 전체 목록 조회</div>
             <DefaultTable 
                 tableTitles={patientsColumns} 
@@ -69,6 +82,8 @@ const PatientListPage = () => {
               totalPages={totalPages}
               onPageChange={setCurrentPage}
             />
+            </>
+            )}
         </div>
       </Layout>
     </>
