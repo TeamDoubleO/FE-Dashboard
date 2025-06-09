@@ -1,35 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import './css/StatsSummaryCard.css';
+import { fetchDashboardSummary } from '../../../apis/dashStatsApi';
 
-const cardData = [
-  {
-    title: '전체',
-    count: 123,
-    classKey: 'total',
-    details: { 현재: 320, 입장: 200, 퇴장: 90, 잔류: 30 },
-  },
-  {
-    title: '환자',
-    count: 45,
-    classKey: 'patient',
-    details: { 현재: 150, 입장: 90, 퇴장: 40, 잔류: 20 },
-  },
-  {
-    title: '보호자',
-    count: 67,
-    classKey: 'guardian',
-    details: { 현재: 80, 입장: 60, 퇴장: 10, 잔류: 10 },
-  },
-  {
-    title: '방문객',
-    count: 89,
-    classKey: 'visitor',
-    details: { 현재: 100, 입장: 70, 퇴장: 20, 잔류: 10 },
-  },
-];
+interface CardItem {
+  title: string;
+  count: number;
+  classKey: string;
+  details: {
+    입장: number;
+    퇴장: number;
+  };
+}
 
 const StatsSummaryCard = () => {
+  const [summaryData, setSummaryData] = useState<CardItem[]>([]);
   const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
 
   const toggleDropdown = (index: number) => {
@@ -44,14 +29,89 @@ const StatsSummaryCard = () => {
     });
   };
 
+  const getRandomInRange = (min: number, max: number) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const result = await fetchDashboardSummary();
+
+        const patient = result.find(item => item.category === 'PATIENT');
+        const guardian = result.find(item => item.category === 'GUARDIAN');
+
+        const visitor = {
+          category: 'VISITOR',
+          entered: getRandomInRange(2200, 2300),
+          exited: getRandomInRange(1200, 1300),
+          remaining: getRandomInRange(3000, 3500),
+        };
+
+        const totalEntered =
+          (patient?.entered || 0) + (guardian?.entered || 0) + visitor.entered;
+        const totalExited =
+          (patient?.exited || 0) + (guardian?.exited || 0) + visitor.exited;
+        const totalRemaining =
+          (patient?.remaining || 0) + (guardian?.remaining || 0) + visitor.remaining;
+
+        const newData: CardItem[] = [
+          {
+            title: '전체',
+            count: totalRemaining,
+            classKey: 'total',
+            details: {
+              입장: totalEntered,
+              퇴장: totalExited,
+            },
+          },
+          {
+            title: '환자',
+            count: patient?.remaining || 0,
+            classKey: 'patient',
+            details: {
+              입장: patient?.entered || 0,
+              퇴장: patient?.exited || 0,
+            },
+          },
+          {
+            title: '보호자',
+            count: guardian?.remaining || 0,
+            classKey: 'guardian',
+            details: {
+              입장: guardian?.entered || 0,
+              퇴장: guardian?.exited || 0,
+            },
+          },
+          {
+            title: '방문객',
+            count: visitor.remaining,
+            classKey: 'visitor',
+            details: {
+              입장: visitor.entered,
+              퇴장: visitor.exited,
+            },
+          },
+        ];
+
+        setSummaryData(newData);
+      } catch (error) {
+        console.error('요약 데이터 로딩 실패:', error);
+      }
+    };
+
+    loadData();
+  }, []);
+
   return (
     <div className="stats-summary-card-wrapper">
-      {cardData.map((card, idx) => {
+      {summaryData.map((card, idx) => {
         const isOpen = openIndices.has(idx);
         return (
           <div
             key={idx}
-            className={`stats-summary-card stats-summary-card-${card.classKey} ${isOpen ? 'unfolded' : 'folded'}`}
+            className={`stats-summary-card stats-summary-card-${card.classKey} ${
+              isOpen ? 'unfolded' : 'folded'
+            }`}
           >
             <div className="stats-summary-card-body">
               <div className="stats-summary-card-title">{card.title}</div>

@@ -87,7 +87,7 @@ const ChartLinePassByTeam = ({ filters }: ChartLinePassByTeamProps) => {
           Object.entries(areaCodeToLabel).forEach(([code, label]) => {
             if (code === 'AA_01_03') return;
             for (let i = 0; i < numDays; i++) {
-              const dummyVisitor = Math.floor(Math.random() * 51) + 200;
+              const dummyVisitor = Math.floor(Math.random() * 51) + 50;
               zoneMap[label][i] += dummyVisitor;
             }
           });

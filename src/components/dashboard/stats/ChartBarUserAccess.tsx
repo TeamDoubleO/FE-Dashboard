@@ -47,7 +47,7 @@ const ChartBarUserAccess = () => {
           const label = `${dayNumber}일 ${day}요일`;
           xLabels.push(label);
 
-          const visitorCount = Math.floor(Math.random() * 51) + 150;
+          const visitorCount = Math.floor(Math.random() * 101) + 2200;
           patients.push(patient);
           guardians.push(guardian);
           visitors.push(visitorCount);
