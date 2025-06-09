@@ -14,6 +14,7 @@ import PatientListPage from './pages/PatientListPage';
 import PatientDetailPage from './pages/PatientDetailPage';
 import PassPendingPage from './pages/PassPendingPage';
 import PendingDetailPage from './pages/PendingDetailPage';
+import WarningPage from './pages/WarningPage';
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
           <Route path="/patientdetail/:patientId" element={<PatientDetailPage />} />
           <Route path="/adminpassword" element={<AdminPasswordPage />} />
           <Route path="/admin/accesspolicy" element={<AdminAccessPolicyPage />} />
-
+          <Route path="/warning" element={<WarningPage />} />
         </Route>
       </Routes>
     </Router>
