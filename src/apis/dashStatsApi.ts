@@ -157,3 +157,30 @@ export const fetchStatsDailyByBuilding = async (): Promise<StatsDailyByBuildingI
     throw new Error(message);
   }
 };
+
+//요약
+export interface DashboardSummaryItem {
+  category: 'PATIENT' | 'GUARDIAN';
+  entered: number;
+  exited: number;
+  remaining: number;
+}
+
+export const fetchDashboardSummary = async (): Promise<DashboardSummaryItem[]> => {
+  try {
+    console.log("[DEBUG] GET 요청 시작: /pass-logs/dashboard-summary");
+
+    const res = await axiosWithAuthorization.get(
+      `/pass-logs/dashboard-summary`,
+      { withCredentials: true }
+    );
+
+    console.log("[DEBUG] 응답 데이터:", res.data);
+    return res.data.data;
+  } catch (error) {
+    const err = error as AxiosError<{ data?: { message?: string } }>;
+    const message = err.response?.data?.data?.message ?? "대시보드 요약 정보를 불러올 수 없습니다.";
+    console.error("[ERROR] 대시보드 요약 요청 실패:", message);
+    throw new Error(message);
+  }
+};
