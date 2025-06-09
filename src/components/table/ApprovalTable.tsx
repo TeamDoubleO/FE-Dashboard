@@ -34,7 +34,7 @@ const ApproveTable: React.FC<ApproveTableProps> = ({
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan={tableTitles.length + 2} style={{ textAlign: 'center', padding: '12px', color: '#888' }}>
+              <td colSpan={tableTitles.length + 1} style={{ textAlign: 'center', padding: '12px', color: '#888' }}>
                 조회된 결과가 존재하지 않습니다.
               </td>
             </tr>
