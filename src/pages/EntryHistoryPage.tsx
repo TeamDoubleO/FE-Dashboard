@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { usePassLogContext } from "../contexts/PassLogContext.tsx";
 
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
@@ -6,6 +7,7 @@ import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
 import DefaultTable from '../components/table/DefaultTable.tsx';
 import Pagination from '../components/table/Pagination.tsx';
 import Loading from "../components/loading/Loading.tsx";
+import Warning from "../components/warning/Warning.tsx";
 
 import '../components/loading/css/Loading.css'
 import './css/EntryHistoryPage.css';
@@ -31,6 +33,8 @@ const EntryHistoryPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  
+  const { isPassLogAvailable } = usePassLogContext();
 
   useEffect(() => {
     const loadData = async () => {
@@ -52,6 +56,17 @@ const EntryHistoryPage = () => {
 
     loadData();
   }, [currentPage]);
+
+  if (!isPassLogAvailable) {
+    return (
+      <>
+        <Background />
+        <Layout>
+          <Warning />
+        </Layout>
+      </>
+    );
+  }
 
   return (
     <>
