@@ -13,6 +13,8 @@ import { MdTextSnippet } from "react-icons/md";
 import SidebarButtonGray from '../../assets/images/KEYWE-sidebar-button-gray.png';
 import SidebarButtonGreen from '../../assets/images/KEYWE-sidebar-button-green.png';
 
+import { usePassLogContext } from '../../contexts/PassLogContext';
+
 type Group = 'dashboard' | 'access' | 'pending' | 'patient' | 'admin';
 interface GroupOpenState {
   dashboard: boolean;
@@ -57,6 +59,8 @@ const Sidebar = () => {
 
   const [selectedMenu, setSelectedMenu] = useState<string>('');
   const [selectedGroup, setSelectedGroup] = useState<Group | null>(null);
+
+  const { isPassLogAvailable } = usePassLogContext();
 
   const toggleSidebar = () => setIsOpen(prev => !prev);
 
@@ -140,6 +144,7 @@ const Sidebar = () => {
 
       <ul className="sidebar-menu">
         {/* 대시보드 그룹 */}
+        {isPassLogAvailable && (
         <li className="sidebar-menu-group">
           <div
             className={`sidebar-menu-title ${selectedGroup === 'dashboard' ? 'sidebar-group-selected' : ''}`}
@@ -182,6 +187,7 @@ const Sidebar = () => {
             </ul>
           )}
         </li>
+        )}
 
         {/* 환자 정보 그룹 */}
         <li className="sidebar-menu-group">
@@ -272,6 +278,7 @@ const Sidebar = () => {
         </li>
 
         {/* 출입 로그 그룹 */}
+        {isPassLogAvailable && (
         <li className="sidebar-menu-group">
           <div
             className={`sidebar-menu-title ${selectedGroup === 'access' ? 'sidebar-group-selected' : ''}`}
@@ -314,6 +321,7 @@ const Sidebar = () => {
             </ul>
           )}
         </li>
+        )}
 
         {/* 관리페이지 그룹 */}
         <li className="sidebar-menu-group">
