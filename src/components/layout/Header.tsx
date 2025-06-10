@@ -80,7 +80,6 @@ const Header = () => {
           src={Logo}
           alt="KEYWE Logo"
           className="header-logo-image"
-          onClick={() => navigate('/dashboardstats')}
         />
       </div>
       <div className="header-right-wrapper">
