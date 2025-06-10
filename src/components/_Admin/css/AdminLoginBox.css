@@ -84,3 +84,13 @@ body.dark-mode .admin-login-button {
 body.dark-mode .admin-login-button:hover {
   background-color: #144c2b;
 }
+
+input.admin-login-input:-webkit-autofill,
+input.admin-login-input:-webkit-autofill:focus,
+input.admin-login-input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0 1000px hsl(0, 0%, 16%) inset !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+  border: 1px solid #454545 !important;
+  transition: background-color 0s ease-in-out 0s;
+}

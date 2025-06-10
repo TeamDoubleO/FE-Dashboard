@@ -42,9 +42,9 @@ const StatsSummaryCard = () => {
 
         const visitor = {
           category: 'VISITOR',
-          entered: getRandomInRange(2200, 2300),
-          exited: getRandomInRange(1200, 1300),
-          remaining: getRandomInRange(3000, 3500),
+          entered: getRandomInRange(2000, 2200),
+          exited: getRandomInRange(1900, 2100),
+          remaining: getRandomInRange(80, 120),
         };
 
         const totalEntered =
