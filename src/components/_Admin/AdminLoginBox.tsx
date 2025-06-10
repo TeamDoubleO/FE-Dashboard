@@ -49,6 +49,8 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
         <form onSubmit={handleSubmit}>
           <ReusableInput
             type="text"
+            name="email"
+            autoComplete="email"
             placeholder="관리자 ID"
             value={adminId}
             onChange={(e) => setAdminId(e.target.value)}
@@ -56,6 +58,8 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
           />
           <ReusableInput
             type="password"
+            name="password"
+            autoComplete="current-password"
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
