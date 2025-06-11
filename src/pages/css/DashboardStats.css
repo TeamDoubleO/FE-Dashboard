@@ -6,6 +6,14 @@
   justify-items: center;
 }
 
+.dashboard-stats-loading-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  min-height: 400px;
+}
+
 .dashboard-stats-container > :first-child {
   grid-column: span 2;
 }
