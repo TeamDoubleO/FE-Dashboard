@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { usePassLogContext } from "../contexts/PassLogContext.tsx";
+
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
 import ChartGrowPassRequest from '../components/dashboard/pass/ChartGrowPassRequest';
@@ -6,6 +8,7 @@ import SearchFilter from '../components/dashboard/pass/SearchFilter';
 import ChartLinePassByTeam from '../components/dashboard/pass/ChartLinePassByTeam';
 import { fetchAdminData } from '../apis/adminApi';
 import Loading from '../components/loading/Loading';
+import Warning from '../components/warning/Warning';
 
 import '../components/loading/css/Loading.css'
 import './css/DashboardPass.css';
@@ -22,6 +25,8 @@ const DashboardPass = () => {
   const [hospitalId, setHospitalId] = useState<string | null>(null);
   const [filterOptions, setFilterOptions] = useState<FilterOptions | null>(null);
 
+  const { isPassLogAvailable } = usePassLogContext();
+
   useEffect(() => {
     fetchAdminData()
       .then((admin) => {
@@ -33,6 +38,17 @@ const DashboardPass = () => {
       });
   }, []);
 
+  if (!isPassLogAvailable) {
+    return (
+      <>
+        <Background />
+        <Layout>
+          <Warning />
+        </Layout>
+      </>
+    );
+  }
+
   return (
     <>
       <Background />
@@ -41,7 +57,7 @@ const DashboardPass = () => {
           {!hospitalId && (
             <div className="loading-overlay">
               <Loading />
-              <div className="loading-text">병원 정보를 불러오는 중입니다...</div>
+              <div className="loading-text">출입증 발급 현황을 불러오는 중입니다...</div>
             </div>
           )}
 

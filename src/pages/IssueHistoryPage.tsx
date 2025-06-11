@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { usePassLogContext } from "../contexts/PassLogContext.tsx";
 
 import Layout from '../components/layout/Layout';
 import Background from '../components/background/Background';
@@ -7,6 +8,7 @@ import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 import DefaultTable from '../components/table/DefaultTable';
 import Pagination from '../components/table/Pagination.tsx';
 import Loading from "../components/loading/Loading.tsx";
+import Warning from "../components/warning/Warning.tsx";
 
 import '../components/loading/css/Loading.css'
 import './css/IssueHistoryPage.css';
@@ -33,6 +35,8 @@ const IssueHistoryPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { isPassLogAvailable } = usePassLogContext();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,6 +61,17 @@ const IssueHistoryPage = () => {
   
       loadData();
     }, [currentPage]);
+
+  if (!isPassLogAvailable) {
+    return (
+      <>
+        <Background />
+        <Layout>
+          <Warning />
+        </Layout>
+      </>
+    );
+  }
 
   return (
     <>

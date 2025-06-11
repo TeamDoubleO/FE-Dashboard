@@ -13,6 +13,7 @@ const ReusableInput: React.FC<ReusableInputProps> = ({
   className = "",
   type,
   showToggle = false,
+  iconClassName, 
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +32,7 @@ const ReusableInput: React.FC<ReusableInputProps> = ({
         />
         {isPassword && (
           <span
-            className="reusable-input-icon"
+            className={`reusable-input-icon ${iconClassName || ''}`} 
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? <IoEyeOff /> : <IoEye />}

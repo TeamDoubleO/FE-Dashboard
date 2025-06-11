@@ -5,6 +5,7 @@ import ReusableButton from "../buttons/ReusableButton";
 import ReusableInput from "../input/ReusableInput";
 
 import { adminLogin } from "../../apis/loginApi";
+import { fetchEntryPassLog } from "../../apis/passApi";
 
 interface AdminLoginProps {
   onLogin: () => void;
@@ -26,7 +27,15 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
       if (token) {
         localStorage.setItem("accessToken", token);
         onLogin();
-        navigate("/dashboardstats");
+        try {
+          await fetchEntryPassLog(0);
+          navigate("/dashboardstats");
+        } catch (error) {
+          console.error("<--- 출입 로그 조회 실패:", error);  
+          navigate("/admin/mypage");
+        }
+
+
       } else {
         setError("로그인 실패: 엑세스 토큰이 없음");
       }

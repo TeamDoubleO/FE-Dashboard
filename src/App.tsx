@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import DashboardStats from './pages/DashboardStats'
 import DashboardPass from './pages/DashboardPass'
@@ -17,6 +18,19 @@ import PendingDetailPage from './pages/PendingDetailPage';
 import WarningPage from './pages/WarningPage';
 
 function App() {
+  
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem('reloaded', 'true');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <Router>
       <Routes>
