@@ -85,9 +85,15 @@ body.dark-mode .admin-login-button:hover {
   background-color: #144c2b;
 }
 
-input.admin-login-input:-webkit-autofill,
-input.admin-login-input:-webkit-autofill:focus,
-input.admin-login-input:-webkit-autofill:hover {
+input.admin-login-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
+  caret-color: #000 !important;
+  border: 1px solid #ccc !important;
+  transition: background-color 0s ease-in-out 0s;
+}
+
+body.dark-mode input.admin-login-input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px hsl(0, 0%, 16%) inset !important;
   -webkit-text-fill-color: #fff !important;
   caret-color: #fff !important;
