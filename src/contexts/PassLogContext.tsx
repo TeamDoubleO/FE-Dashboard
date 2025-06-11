@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { fetchEntryPassLog } from '../apis/passApi';
+import { checkPassLogHealthCheck } from '../apis/passApi';
 
 export interface PassLogContextType {
   isPassLogAvailable: boolean;
@@ -23,7 +23,7 @@ export const PassLogProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const checkAccessLogAvailability = async (): Promise<boolean> => {
     try {
-      await fetchEntryPassLog(0);
+      await checkPassLogHealthCheck();
       setIsPassLogAvailable(true);
       setHasCheckedAvailability(true);
       return true;

@@ -5,7 +5,7 @@ import ReusableButton from "../buttons/ReusableButton";
 import ReusableInput from "../input/ReusableInput";
 
 import { adminLogin } from "../../apis/loginApi";
-import { fetchEntryPassLog } from "../../apis/passApi";
+import { checkPassLogHealthCheck } from "../../apis/passApi";
 import { usePassLogContext } from "../../contexts/PassLogContext.tsx";
 
 interface AdminLoginProps {
@@ -40,7 +40,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
         localStorage.setItem("skipFirstCheck", "true");
         onLogin();
         try {
-          await fetchEntryPassLog(0);
+          await checkPassLogHealthCheck();
           setIsPassLogAvailable(true);
           setHasCheckedAvailability(true);
           navigate("/dashboardstats");
