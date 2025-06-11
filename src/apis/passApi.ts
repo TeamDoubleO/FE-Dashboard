@@ -27,7 +27,7 @@ export const fetchIssuedPassLog = async (page: number) => {
 // 출입증 신청 요청 목록 조회
 export const fetchPassPending = async (page: number) => {
     try {
-        const res = await axiosWithAuthorization.get(`/admin-passes/pending?page=${page}`);
+        const res = await axiosWithAuthorization.get(`/passes/pending?page=${page}`);
         console.log("출입증 신청 요청 목록 조회:", res.data);
         return res.data.data;
     } catch (error) {
@@ -39,7 +39,7 @@ export const fetchPassPending = async (page: number) => {
 // 보호자 신청 승인/거절
 export const reviewPass = async (passId: number, issuanceStatus: "ISSUED" | "REJECTED") => {
     try {
-        const res = await axiosWithAuthorization.post(`/admin-passes/approve`, {
+        const res = await axiosWithAuthorization.post(`/passes/approve`, {
             passId,
             issuanceStatus,
         });
