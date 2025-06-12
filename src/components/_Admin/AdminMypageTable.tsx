@@ -19,15 +19,15 @@ const AdminMypageTable: React.FC<HospitalInfoProps> = ({
         <table className="admin-mypage-table">
           <tbody>
             <tr>
-              <td className="admin-mypage-table-label-cell">병원명(기관명)</td>
+              <td className="admin-mypage-table-label-cell">병원명 (기관명)</td>
               <td>{affiliation}</td>
             </tr>
             <tr>
-              <td className="admin-mypage-table-label-cell">병원 ID (기관 ID)</td>
+              <td className="admin-mypage-table-label-cell">병원ID (기관ID)</td>
               <td>{affiliationId}</td>
             </tr>
             <tr>
-              <td className="admin-mypage-table-label-cell">관리자 ID</td>
+              <td className="admin-mypage-table-label-cell">관리자ID</td>
               <td>{username}</td>
             </tr>
           </tbody>
