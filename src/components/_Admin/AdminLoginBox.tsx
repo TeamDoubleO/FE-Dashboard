@@ -73,9 +73,9 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
         <form onSubmit={handleSubmit}>
           <ReusableInput
             type="text"
-            name="email"
-            autoComplete="email"
-            placeholder="관리자 ID"
+            name="username"
+            autoComplete="username"
+            placeholder="관리자ID"
             value={adminId}
             onChange={(e) => setAdminId(e.target.value)}
             className="admin-login-input"
