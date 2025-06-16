@@ -17,6 +17,7 @@ const pendingColumns = [
     { key: "passId", label: "보호자ID"},
     { key: "guardianName", label: "보호자명" },
     { key: "patientCode", label: "환자번호" },
+    { key: "startAt", label: "출입시작시간"},
     { key: "createdDt", label: "발급요청일자"},
 ]
 

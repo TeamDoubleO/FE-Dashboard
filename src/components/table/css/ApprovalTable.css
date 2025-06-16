@@ -3,13 +3,13 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-  color: black
+  color: black;
 }
 
 .approval-table-title {
   font-size: 20px;
   font-weight: 700;
-  color: black
+  color: black;
 }
 
 .approval-table {
@@ -17,14 +17,14 @@
   min-width: 900px;          
   table-layout: fixed;      
   border-collapse: collapse;
-  color: black
+  color: black;
 }
 
 .approval-table thead {
   display: table-header-group;
   background-color: #f5f5f5;
   text-align: left;
-  color: black
+  color: black;
 }
 
 .approval-table th,
@@ -40,16 +40,33 @@
   padding-left: 50px;
 }
 
+.approval-table td:nth-child(3),
+.approval-table th:nth-child(3) {
+  padding-right: 10px;
+}
+
+.approval-table td:nth-child(4),
+.approval-table th:nth-child(4) {
+  padding-left: 0px;
+  padding-right: 40px;
+}
+
+.approval-table td:nth-child(5),
+.approval-table th:nth-child(5) {
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
 .approval-table td:last-child,
 .approval-table th:last-child {
-  width: 120px;
+  width: 100px;
   padding-left: 16px;
   padding-right: 16px;
 }
 
 .approval-table-name {
   font-weight: 500;
-  color: black
+  color: black;
 }
 
 
