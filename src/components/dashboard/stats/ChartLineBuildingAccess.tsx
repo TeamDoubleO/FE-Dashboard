@@ -14,6 +14,8 @@ const ChartLineBuildingAccess = () => {
     document.body.classList.contains('dark-mode')
   );
 
+  const chartColors = ['#5AC66F', '#235D3A', '#2e7d7a', '#82c7e2', '#0d6728', '#626262'];
+
   useEffect(() => {
     const observer = new MutationObserver(() => {
       setIsDarkMode(document.body.classList.contains('dark-mode'));
@@ -34,13 +36,10 @@ const ChartLineBuildingAccess = () => {
         data.forEach(({ date, day, buildingName, total }) => {
           const dayNum = new Date(date).getDate();
           const label = `${dayNum}일 ${day}요일`;
-
           labelSet.add(label);
-
           if (!grouped[buildingName]) {
             grouped[buildingName] = {};
           }
-
           grouped[buildingName][label] = total;
         });
 
@@ -70,20 +69,25 @@ const ChartLineBuildingAccess = () => {
     chart: { type: 'line' },
     stroke: { curve: 'straight', width: 2 },
     markers: { size: 0 },
+    colors: chartColors,
     dataLabels: {
       enabled: true,
       background: {
         enabled: true,
-        foreColor: '#fff',
-        borderRadius: 2,
-        padding: 4,
-        opacity: 0.9,
+        borderRadius: 4,
+        opacity: 1,
         dropShadow: { enabled: false },
       },
       style: {
         fontSize: '11px',
         fontWeight: 'bold',
         colors: ['#fff'],
+      },
+      formatter: function (val, opts) {
+        const seriesIndex = opts.seriesIndex;
+        const backgroundColor = chartColors[seriesIndex % chartColors.length];
+        opts.w.config.dataLabels.background.backgroundColor = backgroundColor;
+        return val;
       },
     },
     xaxis: {
@@ -96,7 +100,6 @@ const ChartLineBuildingAccess = () => {
         },
       },
     },
-    colors: ['#5AC66F', '#235D3A', '#2e7d7a', '#82c7e2', '#0d6728', '#626262'],
     title: {
       text: '건물별 출입 현황',
       align: 'left',
