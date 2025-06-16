@@ -1,9 +1,14 @@
 import axiosWithAuthorization from "../contexts/axiosWithAuthorization";
 
 // 환자 목록 전체 조회
-export const fetchPatientList = async (page: number) => {
+export const fetchPatientList = async (page: number, keyword: string = "") => {
     try {
-        const res = await axiosWithAuthorization.get(`/patients/paged?page=${page}`);
+        const res = await axiosWithAuthorization.get(`/patients/paged?page=${page}`, {
+            params: {
+                page,
+                ...(keyword ? { keyword } : {}),
+            },
+        });
         console.log("환자 목록 전체 조회:", res.data);
         return res.data.data;
     } catch (error) {
