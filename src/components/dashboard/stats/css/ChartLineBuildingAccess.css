@@ -8,3 +8,22 @@
 body.dark-mode .chart-line-building-access-card {
   background: #3a3a3a;
 }
+
+.apexcharts-series[data\:realIndex="0"] .apexcharts-datalabel {
+  background-color: #5AC66F !important;
+}
+.apexcharts-series[data\:realIndex="1"] .apexcharts-datalabel {
+  background-color: #235D3A !important;
+}
+.apexcharts-series[data\:realIndex="2"] .apexcharts-datalabel {
+  background-color: #2e7d7a !important;
+}
+.apexcharts-series[data\:realIndex="3"] .apexcharts-datalabel {
+  background-color: #82c7e2 !important;
+}
+.apexcharts-series[data\:realIndex="4"] .apexcharts-datalabel {
+  background-color: #0d6728 !important;
+}
+.apexcharts-series[data\:realIndex="5"] .apexcharts-datalabel {
+  background-color: #626262 !important;
+}
