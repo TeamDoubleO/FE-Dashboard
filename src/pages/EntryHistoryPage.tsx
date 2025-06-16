@@ -109,8 +109,8 @@ const EntryHistoryPage = () => {
             />
             <br />
             <DefaultTable 
-                tableTitles={entryHistoryColumns} 
-                data={entryHistory}
+              tableTitles={entryHistoryColumns} 
+              data={entryHistory}
             />
             <Pagination
               currentPage={currentPage}
