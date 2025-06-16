@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePassLogContext } from "../contexts/PassLogContext.tsx";
 
 import Layout from '../components/layout/Layout.tsx';
 import Background from '../components/background/Background.tsx';
 import Breadcrumb from '../components/breadcrumb/Breadcrumb.tsx';
+import SearchBar from "../components/searchbar/SearchBar.tsx";
 import DefaultTable from '../components/table/DefaultTable.tsx';
 import Pagination from '../components/table/Pagination.tsx';
 import Loading from "../components/loading/Loading.tsx";
@@ -32,15 +33,16 @@ const EntryHistoryPage = () => {
   const [entryHistory, setEntryHistory] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchKeyword, setSearchKeyword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
+  const prevSearchKeywordRef = useRef('');
   const { isPassLogAvailable } = usePassLogContext();
 
-  useEffect(() => {
-    const loadData = async () => {
+  const loadData = async (page: number, keyword: string) => {
       try {
         setIsLoading(true);
-        const data = await fetchEntryPassLog(currentPage - 1); 
+        const data = await fetchEntryPassLog(page - 1, keyword); 
         const transformed = data.content.map((item: any) => ({
           ...item,
           createdDt: item.createdDt?.replace('T', '  ').split('.')[0],
@@ -51,11 +53,27 @@ const EntryHistoryPage = () => {
         console.error("출입 내역 불러오기 실패:", err);
       } finally {
         setIsLoading(false); 
-      }
-    };
+    }
+  };
 
-    loadData();
-  }, [currentPage]);
+  const handleSearch = async (input: string) => {
+    const trimmed = input.trim();
+
+    if (trimmed !== prevSearchKeywordRef.current || currentPage !== 1) {
+      prevSearchKeywordRef.current = trimmed;
+      setSearchKeyword(trimmed);
+
+      if (currentPage === 1) {
+        await loadData(1, trimmed); 
+      } else {
+        setCurrentPage(1);
+      }
+    }
+  };
+
+  useEffect(() => {
+    loadData(currentPage, searchKeyword);
+  }, [currentPage, searchKeyword]);
 
   if (!isPassLogAvailable) {
     return (
@@ -85,9 +103,14 @@ const EntryHistoryPage = () => {
             ) : (
             <>
             <div className="entry-history-title">출입 내역 조회</div>
+            <SearchBar
+              placeholder="출입자명을 입력하세요"
+              onSearch={handleSearch}
+            />
+            <br />
             <DefaultTable 
-                tableTitles={entryHistoryColumns} 
-                data={entryHistory}
+              tableTitles={entryHistoryColumns} 
+              data={entryHistory}
             />
             <Pagination
               currentPage={currentPage}
