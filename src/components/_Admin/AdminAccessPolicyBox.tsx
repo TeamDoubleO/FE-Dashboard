@@ -19,10 +19,28 @@ const AdminAccessPolicyBox = () => {
     const getPolicy = async () => {
       try {
         const data = await fetchAccessPolicy();
+        console.log('[출입정책 조회 응답]', data);
         setInitialData(data);
         setMaxDays(data.reserveDayOffset.toString());
-        setHour(data.cutoffTime.slice(0, 2));
-        setMinute(data.cutoffTime.slice(3, 5));
+
+        const [hh, mm] = data.cutoffTime.split(':');
+        const hourInt = parseInt(hh, 10);
+
+        if (hourInt === 0) {
+          setPeriod('AM');
+          setHour('12');
+        } else if (hourInt < 12) {
+          setPeriod('AM');
+          setHour(hh.padStart(2, '0'));
+        } else if (hourInt === 12) {
+          setPeriod('PM');
+          setHour('12');
+        } else {
+          setPeriod('PM');
+          setHour((hourInt - 12).toString().padStart(2, '0'));
+        }
+
+        setMinute(mm);
         setMaxGuardians(data.maxGuardianNum.toString());
       } catch (error: unknown) {
         console.error("출입 신청 정책 로딩 오류", error);
@@ -45,17 +63,26 @@ const AdminAccessPolicyBox = () => {
   const formattedTime = `${period} ${hour}:${minute}`;
 
   const handleSave = async () => {
+    const convertedHour =
+      period === 'AM'
+        ? hour === '12' ? '00' : hour
+        : hour === '12' ? '12' : (parseInt(hour) + 12).toString().padStart(2, '0');
+
     const updatedPolicy = {
       reserveDayOffset: parseInt(maxDays),
-      cutoffTime: `${hour}:${minute}:00`,
+      cutoffTime: `${convertedHour}:${minute}:00`,
       maxGuardianNum: parseInt(maxGuardians),
     };
 
+    console.log('[출입정책 저장 요청]', updatedPolicy);
+
     try {
       await updateAccessPolicy(updatedPolicy);
+      console.log('[출입정책 저장 성공]', updatedPolicy);
       alert('출입 신청 정책이 성공적으로 수정되었습니다.');
       setInitialData(updatedPolicy);
     } catch (error: unknown) {
+      console.error('[출입정책 저장 실패]', error);
       if (error instanceof AxiosError) {
         const message = error.response?.data?.data?.message ?? '출입 신청 정책을 수정할 수 없습니다.';
         alert(message);
@@ -65,15 +92,14 @@ const AdminAccessPolicyBox = () => {
     }
   };
 
-
   if (!initialData) {
-  return (
-    <div className="dashboard-pass-loading-overlay">
-      <Loading />
-      <div className="dashboard-pass-loading-text">출입 정책을 불러오는 중입니다...</div>
-    </div>
-  );
-}
+    return (
+      <div className="dashboard-pass-loading-overlay">
+        <Loading />
+        <div className="dashboard-pass-loading-text">출입 정책을 불러오는 중입니다...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="admin-access-policy-container">
