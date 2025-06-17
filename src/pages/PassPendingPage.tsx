@@ -59,7 +59,7 @@ const PassPendingPage = () => {
 
   const handleApprove = async (passId: number) => {
     try {
-      await reviewPass(passId, "ISSUED");
+      await reviewPass(passId, "PROCESSING");
       alert("출입증 발급이 승인되었습니다.");
       loadData();
     } catch (err) {
