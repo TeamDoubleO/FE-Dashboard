@@ -47,7 +47,7 @@ export const fetchPassPending = async (page: number) => {
 };
 
 // 보호자 신청 승인/거절
-export const reviewPass = async (passId: number, issuanceStatus: "ISSUED" | "REJECTED") => {
+export const reviewPass = async (passId: number, issuanceStatus: "PROCESSING" | "REJECTED") => {
     try {
         const res = await axiosWithAuthorization.post(`/passes/approve`, {
             passId,
