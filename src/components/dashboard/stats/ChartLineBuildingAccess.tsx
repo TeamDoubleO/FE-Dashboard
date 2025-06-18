@@ -22,7 +22,6 @@ const ChartLineBuildingAccess = () => {
     });
 
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
     return () => observer.disconnect();
   }, []);
 
@@ -67,28 +66,26 @@ const ChartLineBuildingAccess = () => {
 
   const lineOptions: ApexOptions = useMemo(() => ({
     chart: { type: 'line' },
-    stroke: { curve: 'straight', width: 2 },
+    stroke: { curve: 'straight', width: 3 },
     markers: { size: 0 },
     colors: chartColors,
     dataLabels: {
       enabled: true,
+      useHtml: false,
       background: {
         enabled: true,
+        backgroundColor: '#666',
+        foreColor: '#fff',
         borderRadius: 4,
-        opacity: 1,
+        opacity: 0.7,
         dropShadow: { enabled: false },
       },
       style: {
         fontSize: '11px',
         fontWeight: 'bold',
-        colors: ['#fff'],
+        colors: ['#fff'], // redundant but ensured
       },
-      formatter: function (val, opts) {
-        const seriesIndex = opts.seriesIndex;
-        const backgroundColor = chartColors[seriesIndex % chartColors.length];
-        opts.w.config.dataLabels.background.backgroundColor = backgroundColor;
-        return val;
-      },
+      formatter: (val) => val,
     },
     xaxis: {
       categories: categories,

@@ -49,7 +49,7 @@ export const fetchStatsByFilter = async (
   rawParams: StatsByFilterParams
 ): Promise<StatsByFilterItem[]> => {
   try {
-    console.log('[DEBUG] POST 요청 시작: /pass-logs/search');
+    console.log('[DEBUG] POST 요청 시작: /pass-logs/mock/search');
 
     const filteredParams: StatsByFilterParams = {
       ...rawParams,
@@ -70,7 +70,7 @@ export const fetchStatsByFilter = async (
     }
 
     const res = await axiosWithAuthorization.post<ApiResponse<StatsByFilterItem[]>>(
-      '/pass-logs/search',
+      '/pass-logs/mock/search',
       filteredParams,
       {
         withCredentials: true,
